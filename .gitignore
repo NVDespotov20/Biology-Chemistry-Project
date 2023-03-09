@@ -25,6 +25,14 @@
 *.la
 *.a
 *.lib
+*.pdb
+.vs/
+
+[Ee]xpress/
+**/lib/VSFiles/
+
+
+lib/VSFiles/
 
 # Executables
 *.exe
