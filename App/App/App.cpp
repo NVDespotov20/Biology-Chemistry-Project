@@ -2,30 +2,36 @@
 #include <iostream>
 using namespace std;
 
+
 App::App() {
 
-    InitWindow(800, 450, "Human muscles");
-
+    mousePoint = GetMousePosition(); 
+    InitWindow(0, 0, "Human muscles");
+    mousePoint = {0,0};
+    WIDTH = GetScreenWidth();
+    HEIGHT = GetScreenHeight();
     SetTargetFPS(60);
 
-    previousButton = LoadTexture("../src/images/previous.png");
     nextButton = LoadTexture("../src/images/next.png");
+    previousButton = LoadTexture("../src/images/previous.png");
 
-    previousButton.width = 50;
-    previousButton.height = 75;
+    nextButton.width = WIDTH / 38.4f;
+    nextButton.height = HEIGHT /14.4;
 
-    nextButton.width = 50;
-    nextButton.height = 75;
+    previousButton.width = WIDTH / 38.4f;
+    previousButton.height = HEIGHT / 14.4;
 
-    nextButtonRec = {735, 200, float(nextButton.width) ,float(nextButton.height)};
-    previousButtonRec = { 10, 200, float(previousButton.width) ,float(previousButton.height)};
+    nextButtonRec = {WIDTH/1.5f, HEIGHT/ 2, (float)nextButton.width ,(float)nextButton.height};
+    previousButtonRec = { WIDTH/3.8f, HEIGHT / 2, (float)nextButton.width ,(float)nextButton.height };
 
     humanBody = LoadTexture("../src/images/Human_body.png");
-
-    sideOfHumanFloat = 170;
-
-    sideOfHumanRec = { 0, 0, sideOfHumanFloat-10, 250 };
-    sideOfHumanVec = {300, 100};
+    humanBody.width = WIDTH/2;
+    humanBody.height = HEIGHT/2;
+    
+ 
+   
+    sideOfHumanRec = { WIDTH / 3, HEIGHT, (float)humanBody.width / 3, (float)humanBody.height};
+   sideOfHumanVec = { WIDTH / 2.5f, HEIGHT / 4};
 }
 App::~App() {
     delete this;
@@ -41,18 +47,18 @@ void App::loop()
 
         DrawTextureRec(humanBody, sideOfHumanRec, sideOfHumanVec, WHITE);
 
-        DrawTexture(previousButton,10,200,WHITE);
-        DrawTexture(nextButton, 735, 200, WHITE);
-
+        
+        DrawTexture(nextButton, (float)WIDTH/1.5, (float)HEIGHT / 2, WHITE);
+        DrawTexture(previousButton, (float)WIDTH / 3.8f, (float)HEIGHT / 2, WHITE);
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, nextButtonRec))
         {
-            sideOfHumanRec.x = sideOfHumanRec.x + 160;
+            sideOfHumanRec.x = sideOfHumanRec.x + WIDTH/ 1.5f;
         }
         
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, previousButtonRec))
         {
-            sideOfHumanRec.x = sideOfHumanRec.x - 160;
+            sideOfHumanRec.x = sideOfHumanRec.x - WIDTH/ 1.5f;
         }
 
         EndDrawing();
