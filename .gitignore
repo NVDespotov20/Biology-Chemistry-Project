@@ -351,4 +351,6 @@ MigrationBackup/
 
 
 #extra ignored
-App/lib/VSFiles/*
+lib/VSFiles/
+[Ee]xpress/
+**/lib/VSFiles/

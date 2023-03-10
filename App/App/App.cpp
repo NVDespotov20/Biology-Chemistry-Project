@@ -12,8 +12,8 @@ App::App()
     HEIGHT = GetScreenHeight();
     SetTargetFPS(60);
 
-    nextButton = LoadTexture("../src/images/next.png");
-    previousButton = LoadTexture("../src/images/previous.png");
+    nextButton = LoadTexture("../assets/next.png");
+    previousButton = LoadTexture("../assets/previous.png");
 
     nextButton.width = WIDTH / 38.4f;
     nextButton.height = HEIGHT /14.4;
@@ -24,7 +24,7 @@ App::App()
     nextButtonRec = {WIDTH/1.5f, HEIGHT/ 2, (float)nextButton.width ,(float)nextButton.height};
     previousButtonRec = { WIDTH/3.8f, HEIGHT / 2, (float)nextButton.width ,(float)nextButton.height };
 
-    humanBody = LoadTexture("../src/images/Human_body.png");
+    humanBody = LoadTexture("../assets/Human_body.png");
     humanBody.width = WIDTH/2;
     humanBody.height = HEIGHT/2;
     
@@ -56,9 +56,9 @@ void App::loop()
         DrawTexture(previousButton, (float)WIDTH / 3.8f, (float)HEIGHT / 2, WHITE);
 
 
-        // Fix unable to alt-tab
-        //if (!IsWindowFocused())
-            //MinimizeWindow();
+         //Fix unable to alt-tab
+        if (!IsWindowFocused())
+            MinimizeWindow();
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, nextButtonRec))
         {
