@@ -9,14 +9,13 @@ public:
 	Vector2 mousePoint; 
 
 	Texture2D humanBody;
-
 	Texture2D nextButton;
-	Texture2D previousButton ;
+	Texture2D previousButton;
 
-	Rectangle nextButtonRec ;
+	Rectangle nextButtonRec;
 	Rectangle previousButtonRec ;
-
 	Rectangle sideOfHumanRec;
+
 	Vector2 sideOfHumanVec;
 
 

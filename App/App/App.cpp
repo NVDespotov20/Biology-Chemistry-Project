@@ -3,9 +3,9 @@
 using namespace std;
 
 
-App::App() {
-
-    mousePoint = GetMousePosition(); 
+App::App() 
+{
+    SetConfigFlags(FLAG_FULLSCREEN_MODE);
     InitWindow(0, 0, "Human muscles");
     mousePoint = {0,0};
     WIDTH = GetScreenWidth();
@@ -31,11 +31,15 @@ App::App() {
  
    
     sideOfHumanRec = { WIDTH / 3, HEIGHT, (float)humanBody.width / 3, (float)humanBody.height};
-   sideOfHumanVec = { WIDTH / 2.5f, HEIGHT / 4};
+    sideOfHumanVec = { WIDTH / 2.5f, HEIGHT / 4};
 }
-App::~App() {
-    delete this;
+App::~App() 
+{
+    UnloadTexture(humanBody);
+    UnloadTexture(nextButton);
+    UnloadTexture(previousButton);
     CloseWindow();
+    delete this;
 }
 void App::loop()
 {
@@ -50,6 +54,11 @@ void App::loop()
         
         DrawTexture(nextButton, (float)WIDTH/1.5, (float)HEIGHT / 2, WHITE);
         DrawTexture(previousButton, (float)WIDTH / 3.8f, (float)HEIGHT / 2, WHITE);
+
+
+        // Fix unable to alt-tab
+        //if (!IsWindowFocused())
+            //MinimizeWindow();
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, nextButtonRec))
         {
