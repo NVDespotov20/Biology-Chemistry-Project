@@ -1,4 +1,4 @@
-#include"App.hpp"
+#include"headers/App.hpp"
 #include <iostream>
 using namespace std;
 
@@ -12,8 +12,8 @@ App::App()
     HEIGHT = GetScreenHeight();
     SetTargetFPS(60);
 
-    nextButton = LoadTexture("../assets/next.png");
-    previousButton = LoadTexture("../assets/previous.png");
+    nextButton = LoadTexture("../assets/images/UI elements/next.png");
+    previousButton = LoadTexture("../assets/images/UI elements/previous.png");
 
     nextButton.width = WIDTH / 38.4f;
     nextButton.height = HEIGHT /14.4;
@@ -24,7 +24,7 @@ App::App()
     nextButtonRec = {WIDTH/1.5f, HEIGHT/ 2, (float)nextButton.width ,(float)nextButton.height};
     previousButtonRec = { WIDTH/3.8f, HEIGHT / 2, (float)nextButton.width ,(float)nextButton.height };
 
-    humanBody = LoadTexture("../assets/Human_body.png");
+    humanBody = LoadTexture("../assets/images/muscles/Human_body.png");
     humanBody.width = WIDTH/2;
     humanBody.height = HEIGHT/2;
     
