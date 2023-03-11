@@ -1,6 +1,6 @@
 #include"headers/App.hpp"
 int main()
 {
-    App* app = new App();
+    App* app = App::getInstance();
     app->loop();
 }

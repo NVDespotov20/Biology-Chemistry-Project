@@ -1,8 +1,9 @@
-#include"headers/App.hpp"
+#include <App.hpp>
 #include <iostream>
 using namespace std;
 
 
+App* App::singleton_ = nullptr;
 App::App()
 {
 	// Initialize window and settings
@@ -26,6 +27,17 @@ App::~App()
 	delete this;
 }
 
+App* App::getInstance()
+{
+	/**
+	 * This is a safer way to create an instance. instance = new Singleton is
+	 * dangeruous in case two instance threads wants to access at the same time
+	 */
+	if (singleton_ == nullptr) {
+		singleton_ = new App();
+	}
+	return singleton_;
+}
 void App::loadTexutres()
 {
 	nextButton = LoadTexture("../assets/images/UI elements/next.png");

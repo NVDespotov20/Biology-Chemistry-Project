@@ -1,10 +1,9 @@
 #pragma once
-#include "raylib.h"
+#include <raylib.h>
 #include <string>
 class App
 {
 public:
-	App();
 	~App();
 
 	void loop();
@@ -14,9 +13,11 @@ public:
 	void setSizes();
 
 	void showVideosAndInfo(int indexOfMuscle);
-
+	static App* getInstance();
 
 private:
+	App();
+	static App* singleton_;
 
 	int indexOfButtons;
 
