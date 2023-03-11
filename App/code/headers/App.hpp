@@ -1,8 +1,23 @@
 #pragma once
 #include "raylib.h"
+#include <string>
 class App
 {
 public:
+	App();
+	~App();
+
+	void loop();
+	
+	void loadTexutres();
+	void unloadTexutres();
+	void setSizes();
+
+	void showVideosAndInfo(int indexOfMuscle);
+
+
+private:
+
 	int indexOfButtons;
 
 	float WIDTH;
@@ -20,13 +35,4 @@ public:
 	Vector2 mousePoint;
 	Vector2 sideOfHumanVec;
 	Vector2 lineOfButtons[2];
-
-	App();
-	~App();
-	void loop();
-	void showVideosAndInfo(int indexOfMuscle);
-
-
-private:
-
 };
