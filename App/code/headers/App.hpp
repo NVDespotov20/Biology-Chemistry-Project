@@ -4,8 +4,8 @@
 class App
 {
 public:
-	~App();
 
+	~App();
 	void loop();
 	
 	void loadTexutres();
@@ -17,7 +17,7 @@ public:
 
 private:
 	App();
-	static App* singleton_;
+	static App* instantiate_;
 
 	int indexOfButtons;
 

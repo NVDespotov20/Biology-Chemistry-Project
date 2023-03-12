@@ -3,4 +3,5 @@ int main()
 {
     App* app = App::getInstance();
     app->loop();
+    delete app;
 }

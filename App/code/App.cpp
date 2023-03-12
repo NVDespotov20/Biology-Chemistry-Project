@@ -1,9 +1,8 @@
 #include <App.hpp>
 #include <iostream>
-using namespace std;
 
 
-App* App::singleton_ = nullptr;
+App* App::instantiate_ = nullptr;
 App::App()
 {
 	// Initialize window and settings
@@ -24,19 +23,14 @@ App::~App()
 {
 	unloadTexutres();
 	CloseWindow();
-	delete this;
 }
 
 App* App::getInstance()
 {
-	/**
-	 * This is a safer way to create an instance. instance = new Singleton is
-	 * dangeruous in case two instance threads wants to access at the same time
-	 */
-	if (singleton_ == nullptr) {
-		singleton_ = new App();
+	if (instantiate_ == nullptr) {
+		instantiate_ = new App();
 	}
-	return singleton_;
+	return instantiate_;
 }
 void App::loadTexutres()
 {
@@ -113,10 +107,15 @@ void App::loop()
 		for (int i = 0; i < 8; ++i) 
 		{
 			DrawRectangleRounded(buttonsRec[i], 20, 10, BLUE);
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, buttonsRec[i]))
+			if (CheckCollisionPointRec(mousePoint, buttonsRec[i]))
 			{
-				indexOfButtons = i;
-				showVideosAndInfo(indexOfButtons);
+				DrawRectangleRounded(buttonsRec[i], 20, 10, Fade(SKYBLUE, .5f));
+				if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+				{
+					indexOfButtons = i;
+					showVideosAndInfo(indexOfButtons);
+				}
+
 			}
 		}
 		DrawLineEx(lineOfButtons[0], lineOfButtons[1], 5, BLACK);
@@ -144,6 +143,8 @@ void App::showVideosAndInfo(int indexOfMuscle)
 	if (indexOfMuscle == 0)
 	{
 		// play biceps video
+		std::cout << "Aide nashteeeee";
+		OpenURL("https://www.youtube.com/watch?v=l5dfkW6w5qI");
 	}
 
 }
