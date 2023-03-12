@@ -8,8 +8,8 @@ public:
 	~App();
 	void loop();
 	
-	void loadTexutres();
-	void unloadTexutres();
+	void load();
+	void unload();
 	void setSizes();
 
 	void showVideosAndInfo(int indexOfMuscle);

@@ -16,12 +16,13 @@ App::App()
 
 	mousePoint = { 0,0 };
 	
-	loadTexutres();
+	load();
 	setSizes();
+	
 }
 App::~App()
 {
-	unloadTexutres();
+	unload();
 	CloseWindow();
 }
 
@@ -32,14 +33,14 @@ App* App::getInstance()
 	}
 	return instantiate_;
 }
-void App::loadTexutres()
+void App::load()
 {
 	nextButton = LoadTexture("../assets/images/UI elements/next.png");
 	previousButton = LoadTexture("../assets/images/UI elements/previous.png");
 	humanBody = LoadTexture("../assets/images/muscles/Human_body.png");
 }
 
-void App::unloadTexutres()
+void App::unload()
 {
 	UnloadTexture(humanBody);
 	UnloadTexture(nextButton);
@@ -84,7 +85,6 @@ void App::loop()
 		ClearBackground(LIGHTGRAY);
 
 		DrawTextureRec(humanBody, sideOfHumanRec, sideOfHumanVec, WHITE);
-
 
 		DrawTexture(nextButton, (float)WIDTH / 1.5f, (float)HEIGHT / 2.f, WHITE);
 		DrawTexture(previousButton, (float)WIDTH / 3.8f, (float)HEIGHT / 2.f, WHITE);
@@ -143,8 +143,7 @@ void App::showVideosAndInfo(int indexOfMuscle)
 	if (indexOfMuscle == 0)
 	{
 		// play biceps video
-		std::cout << "Aide nashteeeee";
-		OpenURL("https://www.youtube.com/watch?v=l5dfkW6w5qI");
+		sideOfHumanRec.x = 2 * (WIDTH / 3.f);
 	}
 
 }
