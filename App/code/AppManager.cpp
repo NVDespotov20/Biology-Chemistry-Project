@@ -35,24 +35,26 @@ void AppManager::manage()
 	switch (dir)
 	{
 		case MENU:
-			Menu* menu;
-			menu = Menu::getInstantiation();
+		{
+
+			Menu* menu = Menu::getInstantiation();
 			menu->loop();
 			break;
+		}
 		case APP:
-			App* app;
-			app = App::getInstantiation();
+		{
+			App* app = App::getInstantiation();
 			app->loop();
 			break;
+		}
 		case OPTIONS:
-			Options* opt;
-			opt = Options::getInstantiation();
+		{
+			Options* opt = Options::getInstantiation();
 			opt->loop();
 			break;
+		}
 		case QUIT:
 			delete this;
-			break;
-		default:
 			break;
 	}
 }

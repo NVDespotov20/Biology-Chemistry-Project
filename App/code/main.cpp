@@ -4,5 +4,5 @@ int main()
 {
     AppManager* manager = AppManager::getInstantiation();
     manager->loop();
-    //delete manager;
+    delete manager;
 }
