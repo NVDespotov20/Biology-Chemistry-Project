@@ -1,7 +1,8 @@
-#include<App.hpp>
+
+#include<AppManager.hpp>
 int main()
 {
-    App* app = App::getInstance();
-    app->loop();
-    delete app;
+    AppManager* manager = AppManager::getInstantiation();
+    manager->loop();
+    //delete manager;
 }

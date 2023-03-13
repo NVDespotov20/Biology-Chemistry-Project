@@ -1,46 +1,42 @@
 #include <App.hpp>
-#include <iostream>
-
+#include <AppManager.hpp>
 
 App* App::instantiate_ = nullptr;
 App::App()
 {
-	// Initialize window and settings
-	SetConfigFlags(FLAG_FULLSCREEN_MODE);
-	InitWindow(0, 0, "Human muscles");
-	SetTargetFPS(60);
-
+	
 	// Initialize members
 	WIDTH = GetScreenWidth();
 	HEIGHT = GetScreenHeight();
 
 	mousePoint = { 0,0 };
 	
+	
 	load();
+	
 	setSizes();
 	
 }
 App::~App()
 {
 	unload();
-	CloseWindow();
 }
 
-App* App::getInstance()
+App* App::getInstantiation()
 {
 	if (instantiate_ == nullptr) {
 		instantiate_ = new App();
 	}
 	return instantiate_;
 }
-void App::load()
+inline void App::load()
 {
 	nextButton = LoadTexture("../assets/images/UI elements/next.png");
 	previousButton = LoadTexture("../assets/images/UI elements/previous.png");
 	humanBody = LoadTexture("../assets/images/muscles/Human_body.png");
 }
 
-void App::unload()
+inline void App::unload()
 {
 	UnloadTexture(humanBody);
 	UnloadTexture(nextButton);
@@ -49,6 +45,7 @@ void App::unload()
 
 void App::setSizes()
 {
+	backButtonRec = { 0,0, 50, 50};//size of back button
 
 	nextButton.width = WIDTH / 38.4f;
 	nextButton.height = HEIGHT / 14.4f;
@@ -78,11 +75,14 @@ void App::setSizes()
 
 void App::loop()
 {
-	while (!WindowShouldClose())
-	{
 		mousePoint = GetMousePosition();
 
 		ClearBackground(LIGHTGRAY);
+		DrawRectangleRounded(backButtonRec, 15, 1, Fade(RED, 0.5f));
+		if (CheckCollisionPointRec(mousePoint, backButtonRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+			AppManager* manager = AppManager::getInstantiation();
+			manager->dir = manager->MENU;
+		}
 
 		DrawTextureRec(humanBody, sideOfHumanRec, sideOfHumanVec, WHITE);
 
@@ -130,10 +130,6 @@ void App::loop()
 		DrawText("Chest", WIDTH - WIDTH / 6.95, HEIGHT - HEIGHT /	  2.51014f, 40, BLACK);
 		DrawText("Core", WIDTH - WIDTH / 7.1, HEIGHT - HEIGHT /		  3.08347f, 40, BLACK);
 
-		
-
-		EndDrawing();
-	}
 
 }
 

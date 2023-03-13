@@ -1,5 +1,6 @@
 #pragma once
 #include <raylib.h>
+#include<iostream>
 #include <string>
 class App
 {
@@ -8,16 +9,19 @@ public:
 	~App();
 	void loop();
 	
-	void load();
-	void unload();
-	void setSizes();
 
+	void setSizes();
 	void showVideosAndInfo(int indexOfMuscle);
-	static App* getInstance();
+	static App* getInstantiation();
 
 private:
+	//Texture2D backButtonTex;
+	Rectangle backButtonRec;
 	App();
 	static App* instantiate_;
+
+	void load();
+	void unload();
 
 	int indexOfButtons;
 
