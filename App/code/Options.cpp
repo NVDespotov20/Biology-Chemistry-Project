@@ -1,5 +1,5 @@
 #include <Options.hpp>
-Options* Options::instantiate_ = nullptr;
+std::shared_ptr<Options> Options::instantiate_ = nullptr;
 Options::Options()
 {
 	load();
@@ -8,10 +8,10 @@ Options::~Options()
 {
 	unload();
 }
-Options* Options::getInstantiation()
+std::shared_ptr<Options> Options::getInstantiation()
 {
 	if (instantiate_ == nullptr) {
-		instantiate_ = new Options();
+		instantiate_ = std::shared_ptr<Options>(new Options);
 	}
 	return instantiate_;
 }

@@ -8,7 +8,7 @@ AppManager::AppManager()
 	ToggleFullscreen();
 	SetTargetFPS(60);
 
-	dir = APP;
+	dir = MENU;
 }
 AppManager::~AppManager()
 {
@@ -26,6 +26,7 @@ void AppManager::loop()
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
+		ClearBackground(LIGHTGRAY);
 		manage();
 		EndDrawing();
 	}
@@ -37,19 +38,19 @@ void AppManager::manage()
 		case MENU:
 		{
 
-			Menu* menu = Menu::getInstantiation();
+			std::shared_ptr<Menu> menu = Menu::getInstantiation();
 			menu->loop();
 			break;
 		}
 		case APP:
 		{
-			App* app = App::getInstantiation();
+			std::shared_ptr<App> app = App::getInstantiation();
 			app->loop();
 			break;
 		}
 		case OPTIONS:
 		{
-			Options* opt = Options::getInstantiation();
+			std::shared_ptr<Options> opt = Options::getInstantiation();
 			opt->loop();
 			break;
 		}

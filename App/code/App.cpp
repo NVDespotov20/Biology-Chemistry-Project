@@ -1,7 +1,7 @@
 #include <App.hpp>
 #include <AppManager.hpp>
 
-App* App::instantiate_ = nullptr;
+std::shared_ptr<App> App::instantiate_ = nullptr;
 App::App()
 {
 	
@@ -22,10 +22,10 @@ App::~App()
 	unload();
 }
 
-App* App::getInstantiation()
+std::shared_ptr<App> App::getInstantiation()
 {
 	if (instantiate_ == nullptr) {
-		instantiate_ = new App();
+		instantiate_ = std::shared_ptr<App>(new App);
 	}
 	return instantiate_;
 }
@@ -77,8 +77,7 @@ void App::loop()
 {
 		mousePoint = GetMousePosition();
 
-		ClearBackground(LIGHTGRAY);
-		DrawRectangleRounded(backButtonRec, 15, 1, Fade(RED, 0.5f));
+		DrawRectangleRounded(backButtonRec, 0.4f, 1, Fade(RED, 0.5f));
 		if (CheckCollisionPointRec(mousePoint, backButtonRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
 			AppManager* manager = AppManager::getInstantiation();
 			manager->dir = manager->MENU;
@@ -106,10 +105,10 @@ void App::loop()
 
 		for (int i = 0; i < 8; ++i) 
 		{
-			DrawRectangleRounded(buttonsRec[i], 20, 10, BLUE);
+			DrawRectangleRounded(buttonsRec[i], 0.4f, 10, BLUE);
 			if (CheckCollisionPointRec(mousePoint, buttonsRec[i]))
 			{
-				DrawRectangleRounded(buttonsRec[i], 20, 10, Fade(SKYBLUE, .5f));
+				DrawRectangleRounded(buttonsRec[i], 0.4f, 10, Fade(SKYBLUE, .5f));
 				if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 				{
 					indexOfButtons = i;

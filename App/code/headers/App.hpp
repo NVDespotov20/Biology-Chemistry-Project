@@ -12,13 +12,13 @@ public:
 
 	void setSizes();
 	void showVideosAndInfo(int indexOfMuscle);
-	static App* getInstantiation();
+	static std::shared_ptr<App> getInstantiation();
 
 private:
 	//Texture2D backButtonTex;
 	Rectangle backButtonRec;
 	App();
-	static App* instantiate_;
+	static std::shared_ptr<App> instantiate_;
 
 	void load();
 	void unload();
