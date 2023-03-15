@@ -1,6 +1,5 @@
+#include<pch.hpp>
 #include <Menu.hpp>
-#include <AppManager.hpp>
-
 std::shared_ptr<Menu> Menu::instantiate_ = nullptr;
 
 Menu::Menu()
@@ -65,8 +64,9 @@ void Menu::loop()
 		for (auto button : buttonsRecs)
 		{
 			if(isClicked(mousePoint, button)) {
-				AppManager* manager = AppManager::getInstantiation();
-				manager->dir = manager->APP;
+
+				auto manager = pch::getInstantiation();
+				manager->dir = pch::Direction::APP;
 			}
 			DrawRectangleRounded(button, 0.5f, 15, RED);
 			DrawText("MAIN MENU", button.x + button.width / 2, button.y + button.height / 2, WIDTH / 400, BLACK);

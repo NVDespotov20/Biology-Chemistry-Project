@@ -1,4 +1,4 @@
-
+#include<pch.hpp>
 #include<AppManager.hpp>
 int main()
 {

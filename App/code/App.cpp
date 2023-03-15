@@ -1,6 +1,5 @@
+#include <pch.hpp>
 #include <App.hpp>
-#include <AppManager.hpp>
-
 std::shared_ptr<App> App::instantiate_ = nullptr;
 App::App()
 {
@@ -29,6 +28,7 @@ std::shared_ptr<App> App::getInstantiation()
 	}
 	return instantiate_;
 }
+
 inline void App::load()
 {
 	nextButton = LoadTexture("../assets/images/UI elements/next.png");
@@ -79,8 +79,8 @@ void App::loop()
 
 		DrawRectangleRounded(backButtonRec, 0.4f, 1, Fade(RED, 0.5f));
 		if (CheckCollisionPointRec(mousePoint, backButtonRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-			AppManager* manager = AppManager::getInstantiation();
-			manager->dir = manager->MENU;
+			auto manager = pch::getInstantiation();
+			manager->dir = pch::Direction::MENU;
 		}
 
 		DrawTextureRec(humanBody, sideOfHumanRec, sideOfHumanVec, WHITE);

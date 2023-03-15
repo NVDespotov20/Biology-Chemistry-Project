@@ -1,3 +1,4 @@
+#include<pch.hpp>  
 #include <AppManager.hpp>
 AppManager* AppManager::instantiate_ = nullptr;
 AppManager::AppManager()
@@ -7,8 +8,6 @@ AppManager::AppManager()
 	InitWindow(0, 0, "Human muscles");
 	ToggleFullscreen();
 	SetTargetFPS(60);
-
-	dir = MENU;
 }
 AppManager::~AppManager()
 {
@@ -33,29 +32,33 @@ void AppManager::loop()
 }
 void AppManager::manage()
 {
-	switch (dir)
+	//create pch instance
+	std::shared_ptr<pch> manager = pch::getInstantiation();
+	switch (manager->dir)
 	{
-		case MENU:
+		case pch::Direction::MENU:
 		{
 
 			std::shared_ptr<Menu> menu = Menu::getInstantiation();
 			menu->loop();
 			break;
 		}
-		case APP:
+		case pch::Direction::APP:
 		{
 			std::shared_ptr<App> app = App::getInstantiation();
 			app->loop();
 			break;
 		}
-		case OPTIONS:
+		case pch::Direction::OPTIONS:
 		{
 			std::shared_ptr<Options> opt = Options::getInstantiation();
 			opt->loop();
 			break;
 		}
-		case QUIT:
+		case pch::Direction::QUIT:
+		{
 			delete this;
 			break;
+		}
 	}
 }

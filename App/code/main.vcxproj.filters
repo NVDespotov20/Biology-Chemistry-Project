@@ -6,6 +6,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="AppManager.cpp" />
+    <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
