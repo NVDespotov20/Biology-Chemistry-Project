@@ -6,12 +6,12 @@
 class AppManager
 {
 public:
-	~AppManager();
-	void manage();
-	void loop();
-	static AppManager* getInstantiation();
+    ~AppManager();
+    void manageApp();
+    void drawMainLoop();
+    static AppManager* getInstantiation();
 private:
-	static AppManager* instantiate_;
-	AppManager();
-};
+    static AppManager* instantiate_;
 
+    AppManager();
+};

@@ -2,22 +2,21 @@
 #include<iostream>
 #include<raylib.h>
 #include<vector>
+
 class pch
 {
 public:
-	~pch() = default;
-	enum class Direction
-	{
-		MENU,
-		APP,
-		OPTIONS,
-		QUIT
-	} dir = Direction::APP;
+    enum class Direction
+    {
+        MENU,
+        APP,
+        OPTIONS,
+        QUIT
+    } dir = Direction::APP;
 
-	static std::shared_ptr<pch> getInstantiation();
+    static std::shared_ptr<pch> getInstantiation();
 
 private:
-	pch() = default;
-	static std::shared_ptr<pch> instantiate_;
+    static std::shared_ptr<pch> instantiate_;
 
 };

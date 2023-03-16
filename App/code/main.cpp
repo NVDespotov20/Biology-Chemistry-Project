@@ -3,6 +3,6 @@
 int main()
 {
     AppManager* manager = AppManager::getInstantiation();
-    manager->loop();
+    manager->drawMainLoop();
     delete manager;
 }
