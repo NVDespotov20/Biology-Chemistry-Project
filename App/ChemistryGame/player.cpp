@@ -1,4 +1,4 @@
-#include "player.hpp"
+#include"Player.hpp"
 
 void Player::LoadSprites(int fps)
 {
@@ -12,6 +12,8 @@ void Player::LoadSprites(int fps)
 	idleU = LoadTexture("../assets/images/heroSprite/upIdle.png");
 	idleL = LoadTexture("../assets/images/heroSprite/leftIdle.png");
 	idleR = LoadTexture("../assets/images/heroSprite/rightIdle.png");
+
+	TableDrink = LoadTexture("../assets/images/backgrounds/grBackground.png");
 
 	playerSprites.push_back(l);
 	playerSprites.push_back(r);
@@ -43,7 +45,7 @@ Player::Player()
 	renameMe = 0;
 	HeroDir = LEFT;
 }
-//
+
 ////find if the player is colliding item
 //bool findDistance(Player& player, int posX, int posY)
 //{
@@ -116,6 +118,7 @@ void Player::Movement()
 	}
 	else if (!HorizotnalOrVertical[0] && !HorizotnalOrVertical[1])
 	{
+		//cout << renameMe << "Forest" << endl;
 		animationSpeed = 4;
 		playerSprite = idleSprites.at(int(HeroDir));
 	}
@@ -144,6 +147,7 @@ void Player::Movement()
 		view.x = lim;
 	}
 	counter++;
+	move = Rectangle{ playerCords.x, playerCords.y, lim, (float)playerSprite.height };
 }
 void Player::CheckWalls()
 {
@@ -184,4 +188,6 @@ void Player::UnLoadTextures()
 	UnloadTexture(idleL);
 	UnloadTexture(idleR);
 	UnloadTexture(idleU);
+
+	//UnloadTexture(background);
 }

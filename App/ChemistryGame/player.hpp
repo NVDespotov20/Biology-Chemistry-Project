@@ -1,9 +1,10 @@
 #pragma once
-#include "pch.hpp"
+#include <raylib.h>
+#include <vector>
 
-class Player 
+class Player
 {
-	private:
+private:
 
 
 	Texture2D u;
@@ -15,6 +16,7 @@ class Player
 	Texture2D idleD;
 	Texture2D idleR;
 	Texture2D idleL;
+	Texture2D TableDrink;
 
 
 	std::vector<Texture2D> playerSprites;
