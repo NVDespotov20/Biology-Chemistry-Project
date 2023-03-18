@@ -6,9 +6,9 @@ AppManager* AppManager::instantiate_ = nullptr;
 AppManager::AppManager()
 {
     // Initialize window and settings
-
-    InitWindow(0, 0, "Human muscles");
-    ToggleFullscreen();
+    const int width = GetScreenWidth();
+    const int height = GetScreenHeight();
+    InitWindow(width, height, "Human muscles");
     SetTargetFPS(60);
 }
 

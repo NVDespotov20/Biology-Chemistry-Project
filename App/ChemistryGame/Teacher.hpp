@@ -13,7 +13,7 @@ private:
     int counterFlip;
     int counterFrame;
     Vector2 position;
-    Rectangle positionRec;
+    //Rectangle positionRec;
     int speed;
     bool isSeen;
     Rectangle itemRec;
@@ -21,8 +21,8 @@ public:
     Teacher();
     void LoadSprites();
     void Draw(int xBg, int yBg);
-    void Update(Vector2 posHero, int xBg, int yBg);
-    void Draw(int xBg, int yBg, bool check);
+    void Update(Vector2 posHero, Rectangle heroRec);
+    void Draw(bool check);
     void CheckMiniGame(bool& check, Rectangle heroRec);
     void Update(Vector2 posHero, int xBg, int yBg, Rectangle heroRec);
 };

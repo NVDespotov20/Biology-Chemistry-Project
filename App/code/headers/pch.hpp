@@ -12,7 +12,7 @@ public:
         APP,
         OPTIONS,
         QUIT
-    } dir = Direction::APP;
+    } dir = Direction::MENU;
 
     static std::shared_ptr<pch> getInstantiation();
 
