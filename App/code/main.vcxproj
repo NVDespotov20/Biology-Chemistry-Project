@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AppManager.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Options.cpp" />
@@ -146,6 +147,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.hpp" />
     <ClInclude Include="headers\App.hpp" />
     <ClInclude Include="headers\AppManager.hpp" />
     <ClInclude Include="headers\Menu.hpp" />

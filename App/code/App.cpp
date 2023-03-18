@@ -1,5 +1,6 @@
 #include <pch.hpp>
-#include <App.hpp>
+#include "App.hpp"
+#include "Button.hpp"
 
 std::shared_ptr<App> App::instantiate_ = nullptr;
 
@@ -45,7 +46,9 @@ inline void App::unload()
 
 void App::setSizes()
 {
-	backButtonRec = { 0,0, 50, 50 };//size of back button
+	fontSize = HEIGHT / 27;
+	
+	backButton = Button ("", 0, 0, HEIGHT / 21.6, HEIGHT / 21.6, fontSize); //size of back button
 
 	nextButton.width = WIDTH / 38.4f;
 	nextButton.height = HEIGHT / 14.4f;
@@ -66,30 +69,20 @@ void App::setSizes()
 	sideOfHumanVec = { WIDTH / 2.5f, HEIGHT / 4.f };
 
 	for (float i = 0, x = HEIGHT / 1.18f; i < 8; ++i, x -= HEIGHT / 13.5f)
-	{
-		buttonsRec[(int)i] = { WIDTH - WIDTH / 5.f, HEIGHT - x, WIDTH / 6.f, HEIGHT / 21.6f };
-		// Use this to recalculate the height offsets for drawing the muscle text
-		// The formula is --> HEIGHT / HEIGHT - ( y of button ) + ( height of button ) / number
-		// std::cout << "Y offset (inverted): " <<HEIGHT / (HEIGHT - ((HEIGHT - x) + (HEIGHT / 21.6f) / 10.f)) << '\n';
-	}
+		muscles[(int)i] = Button("BUTTON", WIDTH - WIDTH / 5.f, HEIGHT - x, WIDTH / 6.f, HEIGHT / 21.6f, fontSize);
+	muscles[0].setLabel("Biceps");
+	muscles[1].setLabel("Traps");
+	muscles[2].setLabel("Legs");
+	muscles[3].setLabel("Triceps");
+	muscles[4].setLabel("Shoulders");
+	muscles[5].setLabel("Back");
+	muscles[6].setLabel("Chest");
+	muscles[7].setLabel("Core");
 }
 
 void App::drawHumanAndButtons()
 {
 	mousePoint = GetMousePosition();
-
-	DrawRectangleRounded(backButtonRec, 0.4f, 1, Fade(RED, 0.5f));
-
-	if (CheckCollisionPointRec(mousePoint, backButtonRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-	{
-		auto manager = pch::getInstantiation();
-		manager->dir = pch::Direction::MENU;
-	}
-
-	DrawTextureRec(humanBody, sideOfHumanRec, sideOfHumanVec, WHITE);
-
-	DrawTexture(nextButton, (float)WIDTH / 1.5f, (float)HEIGHT / 2.f, WHITE);
-	DrawTexture(previousButton, (float)WIDTH / 3.8f, (float)HEIGHT / 2.f, WHITE);
 
 	// Fix unable to alt-tab
 	if (!IsWindowFocused())
@@ -105,12 +98,27 @@ void App::drawHumanAndButtons()
 		sideOfHumanRec.x = sideOfHumanRec.x - WIDTH / 1.5f;
 	}
 
+	if (CheckCollisionPointRec(mousePoint, backButton.getBoundingBox()) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	{
+		auto manager = pch::getInstantiation();
+		manager->dir = pch::Direction::MENU;
+	}
+
+	BeginDrawing();
+
+		DrawRectangleRounded(backButton.getBoundingBox(), 0.4f, 1, Fade(RED, 0.5f));
+
+		DrawTextureRec(humanBody, sideOfHumanRec, sideOfHumanVec, WHITE);
+
+		DrawTexture(nextButton, (float)WIDTH / 1.5f, (float)HEIGHT / 2.f, WHITE);
+		DrawTexture(previousButton, (float)WIDTH / 3.8f, (float)HEIGHT / 2.f, WHITE);
+
 	for (int i = 0; i < 8; ++i)
 	{
-		DrawRectangleRounded(buttonsRec[i], 0.4f, 10, BLUE);
-		if (CheckCollisionPointRec(mousePoint, buttonsRec[i]))
+		muscles[i].draw(0.4f, 10, BLUE, BLACK);
+		if (CheckCollisionPointRec(mousePoint, muscles[i].getBoundingBox()))
 		{
-			DrawRectangleRounded(buttonsRec[i], 0.4f, 10, Fade(SKYBLUE, .5f));
+			muscles[i].draw(0.4f, 10, SKYBLUE, BLACK);
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			{
 				showVideosAndInfo(i);
@@ -120,15 +128,6 @@ void App::drawHumanAndButtons()
 
 	DrawLineEx(lineOfButtons[0], lineOfButtons[1], 5, BLACK);
 
-	// Offsets for drawing the muscle text recalculate via the formula in setSizes()
-	DrawText("Biceps", WIDTH - WIDTH / 6.7, HEIGHT - HEIGHT / 1.18648f, 40, BLACK);
-	DrawText("Traps", WIDTH - WIDTH / 6.8, HEIGHT - HEIGHT / 1.30081f, 40, BLACK);
-	DrawText("Legs", WIDTH - WIDTH / 6.9, HEIGHT - HEIGHT / 1.43951f, 40, BLACK);
-	DrawText("Triceps", WIDTH - WIDTH / 6.4, HEIGHT - HEIGHT / 1.61133f, 40, BLACK);
-	DrawText("Shoulders", WIDTH - WIDTH / 5.89, HEIGHT - HEIGHT / 1.82972f, 40, BLACK);
-	DrawText("Back", WIDTH - WIDTH / 7.1, HEIGHT - HEIGHT / 2.11659f, 40, BLACK);
-	DrawText("Chest", WIDTH - WIDTH / 6.95, HEIGHT - HEIGHT / 2.51014f, 40, BLACK);
-	DrawText("Core", WIDTH - WIDTH / 7.1, HEIGHT - HEIGHT / 3.08347f, 40, BLACK);
 }
 
 
@@ -139,5 +138,4 @@ void App::showVideosAndInfo(int indexOfMuscle)
 		// play biceps video
 		sideOfHumanRec.x = 2 * (WIDTH / 3.f);
 	}
-
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "Button.hpp"
 class Menu
 {
 public:
@@ -16,11 +17,13 @@ private:
     void load();
     bool isClicked(const Vector2& mPos, const Rectangle& rec);
 
+    int fontSize;
+
     Texture2D menuBackground;
 
     Rectangle menuBackgroundRec;
 
     Vector2 mousePoint;
 
-    std::vector<Rectangle> buttonsRecs;
+    std::vector<Button> buttonsRecs;
 };

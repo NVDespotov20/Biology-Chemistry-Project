@@ -7,11 +7,14 @@ Menu::Menu()
     WIDTH = GetScreenWidth();
     HEIGHT = GetScreenHeight();
     mousePoint = { 0,0 };
+
+    fontSize = HEIGHT / 27;
+
     buttonsRecs = {
-        {WIDTH / 2.25f,HEIGHT / 6.25f,WIDTH / 6,HEIGHT / 10},
-        {WIDTH / 2.25f,HEIGHT / 2,WIDTH / 6,HEIGHT / 10},
-        {WIDTH / 2.25f,HEIGHT / 1.50f,WIDTH / 6,HEIGHT / 10},
-        {WIDTH / 2.25f,HEIGHT - HEIGHT / 1.5f,WIDTH / 6,HEIGHT / 10},
+        Button("Start", WIDTH / 2 - WIDTH / 12,  HEIGHT / 6.25f  , WIDTH / 6, HEIGHT / 10, fontSize),
+        Button("????",  WIDTH / 2 - WIDTH / 12,  HEIGHT / 3.f    , WIDTH / 6, HEIGHT / 10, fontSize),
+        Button("????",  WIDTH / 2 - WIDTH / 12,  HEIGHT / 2.f    , WIDTH / 6, HEIGHT / 10, fontSize),
+        Button("Exit",  WIDTH / 2 - WIDTH / 12,  HEIGHT / 1.50f  , WIDTH / 6, HEIGHT / 10, fontSize),
     };
     load();
 }
@@ -57,13 +60,11 @@ void Menu::drawMainMenu()
 
     for (auto& button : buttonsRecs)
     {
-        if (isClicked(mousePoint, button))
+        if (isClicked(mousePoint, button.getBoundingBox()))
         {
             auto manager = pch::getInstantiation();
             manager->dir = pch::Direction::APP;
         }
-
-        DrawRectangleRounded(button, 0.5f, 15, RED);
-        DrawText("MAIN MENU", button.x + button.width / 2, button.y + button.height / 2, WIDTH / 400, BLACK);
+        button.draw(0.5f, 15, RED, BLACK);
     }
 }

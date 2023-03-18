@@ -1,4 +1,6 @@
 #pragma once
+#include "Button.hpp"
+
 class App
 {
 public:
@@ -18,6 +20,7 @@ private:
     void unload();
 
     int indexOfButtons;
+    int fontSize = 20;
 
     float WIDTH;
     float HEIGHT;
@@ -26,13 +29,15 @@ private:
     Texture2D nextButton;
     Texture2D previousButton;
 
-    Rectangle backButtonRec;
+    Button backButton;
+    Button muscles[8];
+
     Rectangle nextButtonRec;
     Rectangle previousButtonRec;
     Rectangle sideOfHumanRec;
-    Rectangle buttonsRec[8];
 
     Vector2 mousePoint;
     Vector2 sideOfHumanVec;
     Vector2 lineOfButtons[2];
+
 };
