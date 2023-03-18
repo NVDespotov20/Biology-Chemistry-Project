@@ -156,10 +156,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="chemistryGame.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Teacher.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Inventory.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Teacher.hpp" />
   </ItemGroup>
