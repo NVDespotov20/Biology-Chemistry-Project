@@ -12,11 +12,8 @@ int main(void)
 {
 	// Initialization
 	//--------------------------------------------------------------------------------------
-	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight();
-
-	InitWindow(screenWidth, screenHeight, "Chemistry game");
-
+	InitWindow(0, 0, "Chemistry game");
+	ToggleFullscreen();
 	SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 	//--------------------------------------------------------------------------------------
 
