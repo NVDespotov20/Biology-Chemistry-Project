@@ -352,5 +352,7 @@ MigrationBackup/
 
 #extra ignored
 lib/VSFiles/
-[Ee]xpress/
 **/lib/VSFiles/
+
+lib/gamefiles/
+**/lib/gamefiles/
