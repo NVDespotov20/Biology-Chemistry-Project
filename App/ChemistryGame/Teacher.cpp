@@ -12,14 +12,11 @@ Teacher::Teacher()
 
 void Teacher::LoadSprites()
 {
-	l = LoadTexture("../assets/images/heroSprite/left.png");
-	r = LoadTexture("../assets/images/heroSprite/right.png");
-	/*l = LoadTexture("../assets/images/rivalSprite/left.png");
-	r = LoadTexture("../assets/images/rivalSprite/right.png");*/
+	left = LoadTexture("../assets/images/heroSprite/left.png");
+	right = LoadTexture("../assets/images/heroSprite/right.png");
 
-	SpasNPC = r;
+	SpasNPC = right;
 	SpasNPCView = { (float)SpasNPC.width / 4, 0, (float)SpasNPC.width / 4, (float)SpasNPC.height };
-
 }
 
 void Teacher::Draw(bool check)
@@ -46,12 +43,11 @@ void Teacher::Update(Vector2 posHero, Rectangle heroRec)
 	
 		if (CheckCollisionPointCircle(posHero, position, 1100) && !isSeen) {
 			isSeen = 1;
-			//cout << "IsSeen" << endl;
 		}
 
 		if (isSeen)
 		{
-			(position.x > posHero.x) ? SpasNPC = l : SpasNPC = r;
+			(position.x > posHero.x) ? SpasNPC = left : SpasNPC = right;
 
 			if (CheckCollisionPointCircle(position, posHero, 50))
 			{
@@ -69,7 +65,7 @@ void Teacher::Update(Vector2 posHero, Rectangle heroRec)
 			isSeen = 0;
 			if (position.x > 800) {
 				if (counterFlip > 60) {
-					SpasNPC = l;
+					SpasNPC = left;
 					speed = -100;
 				}
 				else {
@@ -79,7 +75,7 @@ void Teacher::Update(Vector2 posHero, Rectangle heroRec)
 			}
 			else if (position.x < 450) {
 				if (counterFlip > 60) {
-					SpasNPC = r;
+					SpasNPC = right;
 					speed = 100;
 				}
 				else {

@@ -3,26 +3,21 @@
 
 class Teacher {
 private:
-    Texture2D r;
-    Texture2D l;
-    Texture2D u;
-    Texture2D d;
+    Texture2D right;
+    Texture2D left;
+    Texture2D up;
+    Texture2D down;
     Texture2D SpasNPC;
     Rectangle SpasNPCView;
-    Texture2D itemForShowingTheMinigame;
     int counterFlip;
     int counterFrame;
     Vector2 position;
-    //Rectangle positionRec;
     int speed;
     bool isSeen;
     Rectangle itemRec;
 public:
     Teacher();
     void LoadSprites();
-    void Draw(int xBg, int yBg);
     void Update(Vector2 posHero, Rectangle heroRec);
     void Draw(bool check);
-    void CheckMiniGame(bool& check, Rectangle heroRec);
-    void Update(Vector2 posHero, int xBg, int yBg, Rectangle heroRec);
 };

@@ -162,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inventory.hpp" />
+    <ClInclude Include="pch.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Teacher.hpp" />
   </ItemGroup>

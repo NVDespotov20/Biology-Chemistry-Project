@@ -133,9 +133,16 @@ void App::drawHumanAndButtons()
 
 void App::showVideosAndInfo(int indexOfMuscle)
 {
-	if (indexOfMuscle == 0)
+	if (indexOfMuscle == 0 or indexOfMuscle == 3 or indexOfMuscle == 4)
 	{
-		// play biceps video
 		sideOfHumanRec.x = 2 * (WIDTH / 3.f);
+	}
+	else if (indexOfMuscle == 1 or indexOfMuscle == 2 or indexOfMuscle == 6 or indexOfMuscle == 7)
+	{
+		sideOfHumanRec.x = 2 * (WIDTH / 2.f);
+	}
+	else
+	{
+		sideOfHumanRec.x = 2 * (WIDTH / 1.5);
 	}
 }
