@@ -1,12 +1,9 @@
 #pragma once
-#include <raylib.h>
-#include <vector>
+#include "pch.hpp"
 
 class Player
 {
 private:
-
-
 	Texture2D u;
 	Texture2D d;
 	Texture2D r;
@@ -16,12 +13,9 @@ private:
 	Texture2D idleD;
 	Texture2D idleR;
 	Texture2D idleL;
-	Texture2D TableDrink;
-
 
 	std::vector<Texture2D> playerSprites;
 	std::vector<Texture2D> idleSprites;
-
 
 	int counter = 0;
 	float lim;
@@ -29,15 +23,12 @@ private:
 	Vector2 speed;
 	int animationSpeed;
 	int fps;
-	Texture2D exampleItem;
-	friend bool findDistance(Player& player, int posX, int posY);
 	enum Dir {
 		LEFT,
 		RIGHT,
 		UP,
 		DOWN
 	}HeroDir;
-	bool renameMe;
 public:
 	bool MoveBg;
 	Vector2 playerCords;

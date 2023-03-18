@@ -1,19 +1,20 @@
 // chemistryGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <raylib.h>
 #include "Player.hpp"
+
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
+
 int main(void)
 {
 	// Initialization
 	//--------------------------------------------------------------------------------------
-	const int screenWidth = 800;
-	const int screenHeight = 450;
+	const int screenWidth = GetScreenWidth();
+	const int screenHeight = GetScreenHeight();
 
-	InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+	InitWindow(screenWidth, screenHeight, "Chemistry game");
 
 	SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 	//--------------------------------------------------------------------------------------
@@ -37,7 +38,6 @@ int main(void)
 		player.Movement();
 		DrawTexturePro(player.playerSprite, player.view, player.move, Vector2{ 10, 10 }, 0, WHITE);
 
-
 		EndDrawing();
 		//----------------------------------------------------------------------------------
 	}
@@ -47,6 +47,4 @@ int main(void)
 	//--------------------------------------------------------------------------------------
 	CloseWindow();        // Close window and OpenGL context
 	//--------------------------------------------------------------------------------------
-
-	return 0;
 }

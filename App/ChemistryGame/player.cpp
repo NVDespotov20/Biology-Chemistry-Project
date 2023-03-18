@@ -13,8 +13,6 @@ void Player::LoadSprites(int fps)
 	idleL = LoadTexture("../assets/images/heroSprite/leftIdle.png");
 	idleR = LoadTexture("../assets/images/heroSprite/rightIdle.png");
 
-	TableDrink = LoadTexture("../assets/images/backgrounds/grBackground.png");
-
 	playerSprites.push_back(l);
 	playerSprites.push_back(r);
 	playerSprites.push_back(u);
@@ -42,7 +40,6 @@ Player::Player()
 	speed.y = 100;
 	MoveBg = 1;
 	animationSpeed = 6;
-	renameMe = 0;
 	HeroDir = LEFT;
 }
 
@@ -70,8 +67,6 @@ void Player::CheckDir()
 		HeroDir = UP;
 
 		HorizotnalOrVertical[1] = 1;
-
-
 	}
 	else if ((IsKeyDown(KEY_DOWN) or IsKeyDown(KEY_S)) && !(playerCords.y >= GetScreenHeight() - playerSprite.height))
 	{
@@ -111,14 +106,11 @@ void Player::Movement()
 {
 	if (HorizotnalOrVertical[0] || HorizotnalOrVertical[1])
 	{
-		//cout << renameMe << "Jungle" << endl;
 		animationSpeed = 6;
-		//cout << speed.x << endl;
 		playerSprite = playerSprites.at(int(HeroDir));
 	}
 	else if (!HorizotnalOrVertical[0] && !HorizotnalOrVertical[1])
 	{
-		//cout << renameMe << "Forest" << endl;
 		animationSpeed = 4;
 		playerSprite = idleSprites.at(int(HeroDir));
 	}
@@ -188,6 +180,4 @@ void Player::UnLoadTextures()
 	UnloadTexture(idleL);
 	UnloadTexture(idleR);
 	UnloadTexture(idleU);
-
-	//UnloadTexture(background);
 }
