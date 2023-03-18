@@ -12,14 +12,14 @@ Teacher::Teacher()
 
 void Teacher::LoadSprites()
 {
-	l = LoadTexture("../src/sprites/heroSprite/left.png");
-	r = LoadTexture("../src/sprites/heroSprite/right.png");
-	l = LoadTexture("../src/sprites/rivalSprite/left.png");
-	r = LoadTexture("../src/sprites/rivalSprite/right.png");
+	l = LoadTexture("../assets/images/heroSprite/left.png");
+	r = LoadTexture("../assets/images/heroSprite/right.png");
+	l = LoadTexture("../assets/images/rivalSprite/left.png");
+	r = LoadTexture("../assets/images/rivalSprite/right.png");
 
 	SpasNPC = r;
 	SpasNPCView = { (float)SpasNPC.width / 4, 0, (float)SpasNPC.width / 4, (float)SpasNPC.height };
-	position = { 500, 900, (float)SpasNPC.width / 4, (float)SpasNPC.height };
+	positionRec = { 500, 900, (float)SpasNPC.width / 4, (float)SpasNPC.height };
 
 }
 
@@ -48,7 +48,7 @@ void Teacher::Update(Vector2 posHero, int xBg, int yBg, Rectangle heroRec)
 	{
 		position = { position.x + xBg, position.y + yBg };
 
-		if (CheckCollisionCircleRec(posHero, 100, position) && !isSeen) 
+		if (CheckCollisionCircleRec(posHero, 100, positionRec) && !isSeen) 
 		{
 			isSeen = 1;
 		}
@@ -59,7 +59,7 @@ void Teacher::Update(Vector2 posHero, int xBg, int yBg, Rectangle heroRec)
 				SpasNPC = l;
 				(position.x > posHero.x) ? SpasNPC = l : SpasNPC = r;
 
-				if (CheckCollisionRecs(position, heroRec))
+				if (CheckCollisionRecs(positionRec, heroRec))
 				{
 					std::cout << "exit the game" << std::endl;
 				}

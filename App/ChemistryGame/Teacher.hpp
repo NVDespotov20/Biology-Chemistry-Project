@@ -13,7 +13,7 @@ private:
     int counterFlip;
     int counterFrame;
     Vector2 position;
-    Rectangle position;
+    Rectangle positionRec;
     int speed;
     bool isSeen;
     Rectangle itemRec;
