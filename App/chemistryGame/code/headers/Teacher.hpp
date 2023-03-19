@@ -10,10 +10,10 @@ private:
     int counterFlip;
     int counterFrame;
     Vector2 position;
-    int speed;
     bool isSeen;
     Rectangle itemRec;
 public:
+    int speed;
     Teacher();
     void LoadSprites();
     void Update(Vector2 posHero, Rectangle heroRec);
