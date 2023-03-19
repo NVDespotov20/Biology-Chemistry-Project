@@ -1,6 +1,6 @@
 // chemistryGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
-#include <raylib.h>
+#include "pchGame.hpp"
 #include "Player.hpp"
 #include "Teacher.hpp"
 

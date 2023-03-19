@@ -1,6 +1,4 @@
 #pragma once
-#include"pch.hpp"
-
 class Teacher {
 private:
     Texture2D right;

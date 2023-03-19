@@ -27,18 +27,21 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pchGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.hpp">
+    <ClInclude Include="headers\Inventory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Teacher.hpp">
+    <ClInclude Include="headers\Player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inventory.hpp">
+    <ClInclude Include="headers\Teacher.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pch.hpp">
+    <ClInclude Include="headers\pchGame.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

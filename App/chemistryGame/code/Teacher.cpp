@@ -1,4 +1,5 @@
-#include"Teacher.hpp"
+#include "pchGame.hpp"
+#include "Teacher.hpp"
 
 Teacher::Teacher()
 {
@@ -12,8 +13,8 @@ Teacher::Teacher()
 
 void Teacher::LoadSprites()
 {
-	left = LoadTexture("../assets/images/heroSprite/left.png");
-	right = LoadTexture("../assets/images/heroSprite/right.png");
+	left = LoadTexture("../../assets/images/heroSprite/left.png");
+	right = LoadTexture("../../assets/images/heroSprite/right.png");
 
 	SpasNPC = right;
 	SpasNPCView = { (float)SpasNPC.width / 4, 0, (float)SpasNPC.width / 4, (float)SpasNPC.height };

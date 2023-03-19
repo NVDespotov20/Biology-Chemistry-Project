@@ -1,6 +1,4 @@
 #pragma once
-#include "pch.hpp"
-
 class InventorySystem
 { 
 public:

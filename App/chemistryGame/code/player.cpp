@@ -1,17 +1,18 @@
-#include"Player.hpp"
+#include "pchGame.hpp"
+#include "Player.hpp"
 
 void Player::LoadSprites(int fps)
 {
-	d = LoadTexture("../assets/images/heroSprite/down.png");
-	u = LoadTexture("../assets/images/heroSprite/up.png");
-	l = LoadTexture("../assets/images/heroSprite/left.png");
-	r = LoadTexture("../assets/images/heroSprite/right.png");
+	d = LoadTexture("../../assets/images/heroSprite/down.png");
+	u = LoadTexture("../../assets/images/heroSprite/up.png");
+	l = LoadTexture("../../assets/images/heroSprite/left.png");
+	r = LoadTexture("../../assets/images/heroSprite/right.png");
 
 	//idle source
-	idleD = LoadTexture("../assets/images/heroSprite/downIdle.png");
-	idleU = LoadTexture("../assets/images/heroSprite/upIdle.png");
-	idleL = LoadTexture("../assets/images/heroSprite/leftIdle.png");
-	idleR = LoadTexture("../assets/images/heroSprite/rightIdle.png");
+	idleD = LoadTexture("../../assets/images/heroSprite/downIdle.png");
+	idleU = LoadTexture("../../assets/images/heroSprite/upIdle.png");
+	idleL = LoadTexture("../../assets/images/heroSprite/leftIdle.png");
+	idleR = LoadTexture("../../assets/images/heroSprite/rightIdle.png");
 
 	playerSprites.push_back(l);
 	playerSprites.push_back(r);
