@@ -34,7 +34,11 @@ void Game::mainLoop()
 		DrawTexturePro(player->playerSprite, player->view, player->move, Vector2{ 10, 10 }, 0, WHITE);
 		teacher->Update(player->playerCords, player->move);
 		teacher->Draw(1);
-
+		player->drawItems();
+		if (IsKeyDown(KEY_E))
+		{
+			player->drawInventory();
+		}
 		EndDrawing();
 
 	}

@@ -14,6 +14,7 @@ public:
 	Vector2 itemPos;
 
 	void drawInventory();
+	void drawItems();
 private:
 	bool isPickedUp(Vector2 heroPos);
 };

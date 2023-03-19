@@ -1,5 +1,6 @@
 #pragma once
-class Player
+#include "Inventory.hpp"
+class Player : public InventorySystem
 {
 private:
 	Texture2D u;
