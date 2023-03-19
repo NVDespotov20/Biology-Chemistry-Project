@@ -7,8 +7,8 @@ public:
 	Game();
 	~Game();
 	void mainLoop();
-	Player*player;
-	Teacher*teacher;
+	std::shared_ptr<Player>player;
+	std::shared_ptr<Teacher>teacher;
 private:
 
 };

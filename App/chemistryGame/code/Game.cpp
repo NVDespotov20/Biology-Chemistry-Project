@@ -9,8 +9,8 @@ Game::Game()
 	ToggleFullscreen();
 	SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 	
-	player = new Player();
-	teacher = new Teacher();
+	player = std::make_shared<Player>();
+	teacher = std::make_shared<Teacher>();
 	player->LoadSprites(60);
 	teacher->LoadSprites();
 }
