@@ -3,12 +3,16 @@
 class InventorySystem
 { 
 public:
+	//constructor initialization
 	InventorySystem();
+	//destructor intialization
 	~InventorySystem();
 
+	//initialization of textures
 	Texture2D inventory;
 	Texture2D item;
 
+	//initialization of rectangles
 	Rectangle inventoryRect;
 
 	//seed that we make different every time
@@ -25,15 +29,15 @@ public:
 	std::vector<float> v1;
 	std::vector<float> v2;
 
-	//Vector2 itemPos;
+	//vectors for the position of the items
 	std::vector<Vector2> itemsInInventoryPos;
 	std::vector<Vector2> normalItemsPos;
 
+	//only the position IN the inventory
 	Vector2 positionOfItemsInInventory;
 
 	void drawInventory();
 	void drawnormalItems();
-	void drawItemsInInventory();
 	bool isPickedUp(Vector2 heroPos);
 private:
 	int WIDTH;

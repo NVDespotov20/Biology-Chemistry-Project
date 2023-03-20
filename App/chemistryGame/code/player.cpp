@@ -3,10 +3,10 @@
 
 void Player::LoadSprites(int fps)
 {
-	d = LoadTexture("../../assets/images/heroSprite/down.png");
-	u = LoadTexture("../../assets/images/heroSprite/up.png");
-	l = LoadTexture("../../assets/images/heroSprite/left.png");
-	r = LoadTexture("../../assets/images/heroSprite/right.png");
+	down = LoadTexture("../../assets/images/heroSprite/down.png");
+	up = LoadTexture("../../assets/images/heroSprite/up.png");
+	left = LoadTexture("../../assets/images/heroSprite/left.png");
+	right = LoadTexture("../../assets/images/heroSprite/right.png");
 
 	//idle source
 	idleD = LoadTexture("../../assets/images/heroSprite/downIdle.png");
@@ -14,10 +14,10 @@ void Player::LoadSprites(int fps)
 	idleL = LoadTexture("../../assets/images/heroSprite/leftIdle.png");
 	idleR = LoadTexture("../../assets/images/heroSprite/rightIdle.png");
 
-	playerSprites.push_back(l);
-	playerSprites.push_back(r);
-	playerSprites.push_back(u);
-	playerSprites.push_back(d);
+	playerSprites.push_back(left);
+	playerSprites.push_back(right);
+	playerSprites.push_back(up);
+	playerSprites.push_back(down);
 
 	idleSprites.push_back(idleL);
 	idleSprites.push_back(idleR);
@@ -172,10 +172,10 @@ void Player::CheckWalls()
 }
 void Player::UnLoadTextures()
 {
-	UnloadTexture(d);
-	UnloadTexture(l);
-	UnloadTexture(r);
-	UnloadTexture(u);
+	UnloadTexture(down);
+	UnloadTexture(left);
+	UnloadTexture(right);
+	UnloadTexture(up);
 
 	UnloadTexture(idleD);
 	UnloadTexture(idleL);

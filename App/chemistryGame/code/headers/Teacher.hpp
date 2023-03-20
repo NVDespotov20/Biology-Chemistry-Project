@@ -6,16 +6,20 @@ private:
     Texture2D up;
     Texture2D down;
     Texture2D SpasNPC;
+
     Rectangle SpasNPCView;
+    Rectangle itemRec;
+
     int counterFlip;
     int counterFrame;
+
     Vector2 position;
+
     bool isSeen;
-    Rectangle itemRec;
 public:
     int speed;
     Teacher();
     void LoadSprites();
     void Update(Vector2 posHero, Rectangle heroRec);
-    void Draw(bool check);
+    void Draw();
 };

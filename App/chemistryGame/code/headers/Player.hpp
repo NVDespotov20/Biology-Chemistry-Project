@@ -1,18 +1,21 @@
-#pragma once
 #include "Inventory.hpp"
+
 class Player : public InventorySystem
 {
 private:
-	Texture2D u;
-	Texture2D d;
-	Texture2D r;
-	Texture2D l;
-
+	//set textures for the moving player
+	Texture2D up;
+	Texture2D down;
+	Texture2D right;
+	Texture2D left;
+	
+	//set idle animationfor the player
 	Texture2D idleU;
 	Texture2D idleD;
 	Texture2D idleR;
 	Texture2D idleL;
 
+	//initialization of vectors
 	std::vector<Texture2D> playerSprites;
 	std::vector<Texture2D> idleSprites;
 

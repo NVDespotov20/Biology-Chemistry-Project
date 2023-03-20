@@ -20,7 +20,7 @@ void Teacher::LoadSprites()
 	SpasNPCView = { (float)SpasNPC.width / 4, 0, (float)SpasNPC.width / 4, (float)SpasNPC.height };
 }
 
-void Teacher::Draw(bool check)
+void Teacher::Draw()
 {
 	if (counterFrame >= 20)
 	{
