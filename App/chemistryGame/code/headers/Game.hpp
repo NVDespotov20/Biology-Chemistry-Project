@@ -1,7 +1,6 @@
 #pragma once
 #include "Player.hpp"
 #include "Teacher.hpp"
-#include "pchGame.hpp"
 
 class Game
 {

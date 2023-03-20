@@ -166,6 +166,9 @@
     <ClCompile Include="chemistryGame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="pchGame.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Teacher.cpp" />
   </ItemGroup>
