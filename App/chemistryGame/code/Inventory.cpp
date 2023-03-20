@@ -19,6 +19,8 @@ InventorySystem::InventorySystem()
 
 	gen.seed(seed);
 
+	positionOfItemsInInventory = { float(WIDTH / 5), float(HEIGHT - HEIGHT / 1.75) };
+
 	range = std::uniform_int_distribution<int>(1, WIDTH - WIDTH / 17);
 	range2 = std::uniform_int_distribution<int>(1, HEIGHT - HEIGHT / 15);
 
@@ -53,30 +55,33 @@ bool InventorySystem::isPickedUp(Vector2 heroPosition)
 			DrawTextureV(item, normalItemsPos[i], Fade(WHITE, 1));
 			if (IsKeyPressed(KEY_Q))
 			{
-				itemsInInventoryPos.push_back(normalItemsPos[i]);
+				itemsInInventoryPos.push_back(positionOfItemsInInventory);
+				positionOfItemsInInventory.x = positionOfItemsInInventory.x + WIDTH / 10;
 				normalItemsPos.erase(normalItemsPos.begin() + i);
 			}
 		}
 	}
 	return true;
 }
+
 void InventorySystem::drawInventory()
 {
 	DrawTextureRec(inventory, inventoryRect, { 200, 100 }, WHITE);
 }
+
 void InventorySystem::drawnormalItems()
 {
 	for (auto& position : normalItemsPos)
 	{
-
 		DrawTextureV(item, position, Fade(WHITE, 0.5f));
 	}
 }
+
 void InventorySystem::drawItemsInInventory()
 {
-	for (auto& position : itemsInInventoryPos)
+	for (int i=0;i<itemsInInventoryPos.size();i++)
 	{
-		DrawTextureV(item, position, WHITE);
+		DrawTextureV(item, itemsInInventoryPos[i], WHITE);
 	}
 
 }

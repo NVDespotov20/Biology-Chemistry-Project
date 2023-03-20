@@ -11,6 +11,7 @@ public:
 
 	Rectangle inventoryRect;
 
+	//seed that we make different every time
 	unsigned seed;
 
 	//random engine from random library
@@ -20,12 +21,15 @@ public:
 	std::uniform_int_distribution<int> range;
 	std::uniform_int_distribution<int> range2;
 
+	//vectors that hold the random positions of the items
 	std::vector<float> v1;
 	std::vector<float> v2;
 
 	//Vector2 itemPos;
 	std::vector<Vector2> itemsInInventoryPos;
 	std::vector<Vector2> normalItemsPos;
+
+	Vector2 positionOfItemsInInventory;
 
 	void drawInventory();
 	void drawnormalItems();

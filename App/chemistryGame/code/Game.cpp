@@ -44,6 +44,7 @@ void Game::mainLoop()
 		if (IsKeyDown(KEY_E))
 		{
 			player->drawInventory();
+			player->drawItemsInInventory();
 		}
 		EndDrawing();
 
