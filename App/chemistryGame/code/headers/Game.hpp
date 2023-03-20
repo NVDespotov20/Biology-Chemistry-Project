@@ -1,6 +1,7 @@
 #pragma once
 #include "Player.hpp"
 #include "Teacher.hpp"
+#include "SplitElements.hpp"
 
 class Game
 {

@@ -1,8 +1,8 @@
 #include "pchGame.hpp"
 #include "Game.hpp"
+
 Game::Game()
 {
-
 	// Initialization of the window and setting name and starting coordinates of the window
 	InitWindow(0, 0, "Chemistry game");
 
@@ -34,11 +34,12 @@ void Game::mainLoop()
 {
 	while (!WindowShouldClose())
 	{
+		
 		BeginDrawing();
-
+		
 		//set background
 		ClearBackground(RAYWHITE);
-
+		
 		//set the speed of the teacher
 		if (!IsWindowFocused())
 		{
@@ -64,6 +65,7 @@ void Game::mainLoop()
 		{
 			player->drawInventory();
 		}
+		//player->drawElementsAndHolders();
 		EndDrawing();
 	}
 }

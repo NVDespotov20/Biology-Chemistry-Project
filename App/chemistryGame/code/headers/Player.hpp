@@ -1,6 +1,7 @@
 #include "Inventory.hpp"
+#include "SplitElements.hpp"
 
-class Player : public InventorySystem
+class Player : public InventorySystem, public SplitElements 
 {
 private:
 	//set textures for the moving player
