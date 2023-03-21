@@ -7,8 +7,9 @@ AppManager::AppManager()
 {
     // Initialize window and settings
     InitWindow(0, 0, "Human muscles");
-    ToggleFullscreen();
     SetTargetFPS(60);
+    ToggleFullscreen();
+    shouldQuit = 1;
 }
 
 AppManager::~AppManager()
@@ -26,16 +27,19 @@ AppManager* AppManager::getInstantiation()
 
 void AppManager::drawMainLoop()
 {
-    while (!WindowShouldClose())
+    
+    while (!WindowShouldClose() && shouldQuit)
     {
+        
         BeginDrawing();
         ClearBackground(LIGHTGRAY);
-        manageApp();
+        shouldQuit = manageApp();
+        std::cout << manageApp() << std::endl;
         EndDrawing();
     }
 }
 
-void AppManager::manageApp()
+bool AppManager::manageApp()
 {
     //create pch instance
     std::shared_ptr<pch> manager = pch::getInstantiation();
@@ -44,8 +48,9 @@ void AppManager::manageApp()
         case pch::Direction::MENU:
         {
 
-            std::shared_ptr<Menu> menu = Menu::getInstantiation();
+            menu = Menu::getInstantiation();
             menu->drawMainMenu();
+            return true;
             break;
         }
         case pch::Direction::APP:
@@ -53,17 +58,19 @@ void AppManager::manageApp()
 
             std::shared_ptr<App> app = App::getInstantiation();
             app->drawHumanAndButtons();
+            return true;
             break;
         }
         case pch::Direction::OPTIONS:
         {
-            std::shared_ptr<Options> opt = Options::getInstantiation();
+            opt = Options::getInstantiation();
             opt->drawOptions();
+            return true;
             break;
         }
         case pch::Direction::QUIT:
         {
-            delete this;
+            return false;
             break;
         }
     }
