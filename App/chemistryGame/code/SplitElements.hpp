@@ -6,15 +6,16 @@ class SplitElements
 public:
 	SplitElements();
 	~SplitElements();
-	
-	std::string elementsInTheBox[8];
 
 	int positionOfMetalsHolder[4];
 	int positionOfNonMetalsHolder[4];
 
 	Rectangle holders[2];
 	Rectangle box;
-	Rectangle elementsInTheBoxRec[8];
+	Rectangle elementsInTheBoxRec[4];
+	Rectangle elementsInTheBoxRec2[4];
+
+	Texture2D naElement;
 
 	void drawElementsAndHolders();
 	void moveElements();
