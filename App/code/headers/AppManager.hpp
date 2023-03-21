@@ -7,10 +7,13 @@ class AppManager
 {
 public:
     ~AppManager();
-    void manageApp();
+    bool manageApp();
     void drawMainLoop();
     static AppManager* getInstantiation();
 private:
+    bool shouldQuit;
+    std::shared_ptr<Options> opt;
+    std::shared_ptr<Menu> menu;
     static AppManager* instantiate_;
 
     AppManager();

@@ -54,9 +54,9 @@ void Menu::drawMainMenu()
 {
     mousePoint = GetMousePosition();
 
-    // Fix unable to alt-tab
-    if (!IsWindowFocused())
-        MinimizeWindow();
+    //// Fix unable to alt-tab
+    //if (!IsWindowFocused())
+    //    MinimizeWindow();
 
     for (auto& button : buttonsRecs)
     {
