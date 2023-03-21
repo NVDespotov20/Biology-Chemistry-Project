@@ -39,7 +39,7 @@ void Game::mainLoop()
 		
 		//set background
 		ClearBackground(RAYWHITE);
-		/*
+		
 		//set the speed of the teacher
 		if (!IsWindowFocused())
 		{
@@ -64,8 +64,8 @@ void Game::mainLoop()
 		if (IsKeyDown(KEY_E))
 		{
 			player->drawInventory();
-		}*/
-		player->drawElementsAndHolders();
+		}
+		//player->drawElementsAndHolders();
 		EndDrawing();
 	}
 }

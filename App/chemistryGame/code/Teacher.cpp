@@ -41,50 +41,53 @@ void Teacher::Draw()
 
 void Teacher::Update(Vector2 posHero, Rectangle heroRec)
 {
-	
-		if (CheckCollisionPointCircle(posHero, position, 1100) && !isSeen) {
+
+	if (CheckCollisionPointCircle(posHero, position, 1100) && !isSeen) {
+		isSeen = 1;
+	}
+
+	if (isSeen)
+	{
+		(position.x > posHero.x) ? SpasNPC = left : SpasNPC = right;
+
+		if (CheckCollisionPointCircle(position, posHero, 50))
+		{
+			std::cout << "exit the game" << std::endl;
+		}
+		else {
 			isSeen = 1;
 		}
-
-		if (isSeen)
+		if (GetFrameTime() < 1)
 		{
-			(position.x > posHero.x) ? SpasNPC = left : SpasNPC = right;
-
-			if (CheckCollisionPointCircle(position, posHero, 50))
-			{
-				std::cout << "exit the game" << std::endl;
-			}
-			else {
-				isSeen = 1;
-			}
 			float rotation = atan2(posHero.y - position.y, posHero.x - position.x);
 			position.x += cos(rotation) * speed * GetFrameTime();
 			position.y += sin(rotation) * speed * GetFrameTime();
 		}
-		else
-		{
-			isSeen = 0;
-			if (position.x > 800) {
-				if (counterFlip > 60) {
-					SpasNPC = left;
-					speed = -100;
-				}
-				else {
-					speed *= 0;
-				}
-				counterFlip++;
+	}
+	else
+	{
+		isSeen = 0;
+		if (position.x > 800) {
+			if (counterFlip > 60) {
+				SpasNPC = left;
+				speed = -100;
 			}
-			else if (position.x < 450) {
-				if (counterFlip > 60) {
-					SpasNPC = right;
-					speed = 100;
-				}
-				else {
-					speed *= 0;
-				}
-				counterFlip++;
+			else {
+				speed *= 0;
 			}
-			position.x += speed * GetFrameTime();
-
+			counterFlip++;
 		}
+		else if (position.x < 450) {
+			if (counterFlip > 60) {
+				SpasNPC = right;
+				speed = 100;
+			}
+			else {
+				speed *= 0;
+			}
+			counterFlip++;
+		}
+		position.x += speed * GetFrameTime();
+
+	}
 }
