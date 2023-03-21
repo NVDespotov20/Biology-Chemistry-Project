@@ -10,9 +10,13 @@ public:
 	int positionOfMetalsHolder[4];
 	int positionOfNonMetalsHolder[4];
 
-	Rectangle holders[2];
 	Rectangle elementsInTheBoxRec[4];
 	Rectangle elementsInTheBoxRec2[4];
+	Rectangle elementsInTheHolders[4];
+	Rectangle elementsInTheHolders2[4];
+	Rectangle submitAnswer;
+
+	Texture2D isSelected;
 
 	Texture2D naElement;
 	Texture2D cElement;
@@ -42,7 +46,6 @@ public:
 	//random engine from random library
 	std::mt19937 gen;
 
-
 	void drawElementsAndHolders();
 	void moveElements();
 	bool checkForSubmission();
@@ -51,4 +54,6 @@ public:
 private:
 	int WIDTH;
 	int HEIGHT;
+
+	Vector2 mousepoint;
 };

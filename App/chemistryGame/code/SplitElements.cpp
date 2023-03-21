@@ -16,9 +16,6 @@ SplitElements::SplitElements()
 	positionOfNonMetalsHolder[2] = HEIGHT - HEIGHT / 2;
 	positionOfNonMetalsHolder[3] = HEIGHT - HEIGHT / 2.25;
 
-	holders[0] = { WIDTH / 17.5f,WIDTH / 10.f,WIDTH / 6.75f,WIDTH / 2.f - WIDTH / 5 };
-	holders[1] = { WIDTH/1.25f,WIDTH / 10.f,WIDTH / 6.75f,WIDTH / 2.f - WIDTH / 5 };
-
 	naElement = LoadTexture("../../assets/images/chemistry/Soldium(Na).png");
 	sElement = LoadTexture("../../assets/images/chemistry/Sulfur(S).png");
 	agElement = LoadTexture("../../assets/images/chemistry/Silver(Ag).png");
@@ -41,6 +38,8 @@ SplitElements::SplitElements()
 	nonmetalElementsTextures.push_back(sElement);
 	nonmetalElementsTextures.push_back(cElement);
 	nonmetalElementsTextures.push_back(pElement);
+
+	mousepoint = GetMousePosition();
 
 	backgroundOfTable = LoadTexture("../../assets/images/chemistry/ArrangeTableBackground.png");
 
@@ -84,6 +83,9 @@ SplitElements::SplitElements()
 	{
 		elementsInTheBoxRec[i] = { WIDTH / 3.80f + i * 250, HEIGHT / 4.f + (HEIGHT / 4), WIDTH/12.f, HEIGHT/7.f};
 		elementsInTheBoxRec2[i] = { WIDTH / 3.80f + i * 250, HEIGHT / 4.5f + (HEIGHT / 40), WIDTH / 12.f, HEIGHT / 7.f };
+
+		elementsInTheHolders[i] = { WIDTH / 15.f,HEIGHT / 6.f + i * 200,WIDTH / 12.2f,HEIGHT / 7.f };
+		elementsInTheHolders2[i] = { WIDTH - WIDTH / 6.5f,HEIGHT / 6.f + i * 200,WIDTH / 12.f,HEIGHT / 7.f };
 	}
 }
 
@@ -94,17 +96,41 @@ SplitElements::~SplitElements()
 
 void SplitElements::drawElementsAndHolders()
 {
+	mousepoint = GetMousePosition();
+
 	DrawTexture(backgroundOfTable, 0, 0, WHITE);
 
-	DrawRectangleRec(holders[0], RED);
-	DrawRectangleRec(holders[1], RED);
+	DrawText("Metals", WIDTH / 12.9, HEIGHT / 10, 35, BLACK);
+	DrawText("Nonmetals", WIDTH - WIDTH / 6.4, HEIGHT / 10, 35, BLACK);
 
-	for (int i = 0; i <4; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		DrawRectangleRec(elementsInTheBoxRec2[i], BLANK);
-		DrawRectangleRec(elementsInTheBoxRec[i], BLANK);
+		DrawRectangleRec(elementsInTheBoxRec2[i], RED);
+		DrawRectangleRec(elementsInTheBoxRec[i], ORANGE);
+
+		DrawRectangleRec(elementsInTheHolders[i], GREEN);
+		DrawRectangleRec(elementsInTheHolders2[i], BLUE);
 
 		DrawTexture(elementsTextures[i], WIDTH / 3.92 + i * 250, HEIGHT / 4, WHITE);
-		DrawTexture(elementsTextures[i+4], WIDTH / 3.92 + i * 250, HEIGHT / 4 + (HEIGHT / 4), WHITE);
+		DrawTexture(elementsTextures[i + 4], WIDTH / 3.92 + i * 250, HEIGHT / 4 + (HEIGHT / 4), WHITE);
+	}
+
+	for (int i = 0; i < 8; i++)
+	{
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, elementsInTheBoxRec2[i]))
+		{
+			isSelected = elementsTextures[i];
+		}
+
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, elementsInTheHolders2[i]))
+		{
+			DrawRectangleRec(elementsInTheBoxRec2[i], DARKGRAY);
+			DrawTexture(elementsTextures[i], elementsInTheHolders2[i].x + WIDTH / 100, elementsInTheHolders2[i].y + HEIGHT / 50, WHITE);
+		}
+
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, elementsInTheBoxRec[i]))
+		{
+
+		}
 	}
 }
