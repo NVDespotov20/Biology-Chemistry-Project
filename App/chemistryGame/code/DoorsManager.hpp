@@ -8,6 +8,6 @@ public:
 	DoorsManager();
 	~DoorsManager();
 	void drawDoors();
-	int isNearDoor(Vector2 heroPosition);
-	void enterDoor(int index);
+	int isNearDoor(Rectangle heroPosition);
+	void enterDoor(int& index);
 };

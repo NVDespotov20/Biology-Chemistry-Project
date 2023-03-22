@@ -57,12 +57,12 @@ InventorySystem::~InventorySystem()
 	UnloadTexture(item);
 }
 
-bool InventorySystem::isPickedUp(Vector2 heroPosition)
+bool InventorySystem::isPickedUp(Rectangle heroPosition)
 {
 	for (int i = 0; i < normalItemsPos.size(); i++)
 	{
 		//checks if you are close to the items
-		if (CheckCollisionPointCircle(heroPosition, normalItemsPos[i], WIDTH/13))
+		if (CheckCollisionCircleRec(normalItemsPos[i], WIDTH / 15, heroPosition))
 		{
 			//draw items that you are close and you can pick up without any opacity 
 			DrawTextureV(item, normalItemsPos[i], Fade(WHITE, 1));
@@ -71,7 +71,7 @@ bool InventorySystem::isPickedUp(Vector2 heroPosition)
 				//transfer items into inventory 
 				itemsInInventoryPos.push_back(positionOfItemsInInventory);
 				//make the next item position to move 150 on right 
-				positionOfItemsInInventory.x = positionOfItemsInInventory.x + WIDTH / 13;
+				positionOfItemsInInventory.x = positionOfItemsInInventory.x + WIDTH / 15;
 				//remove items from the ground
 				normalItemsPos.erase(normalItemsPos.begin() + i);
 			}

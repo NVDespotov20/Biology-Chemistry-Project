@@ -37,15 +37,8 @@ void Game::mainLoop()
 		
 		BeginDrawing();
 		
-		//set background
+		////set background
 		ClearBackground(RAYWHITE);
-		
-		//set the speed of the teacher
-		if (!IsWindowFocused())
-		{
-			teacher->speed = 0;
-
-		}
 
 		player->CheckDir();
 		player->Movement();
@@ -58,7 +51,7 @@ void Game::mainLoop()
 		player->drawnormalItems();
 
 		//takes parameters for the coordinates of the player
-		player->isPickedUp(Vector2{ player->move.x, player->move.y });
+		player->isPickedUp(player->move);
 
 		//draws inventory when you click E
 		if (IsKeyDown(KEY_E))
@@ -66,6 +59,8 @@ void Game::mainLoop()
 			player->drawInventory();
 		}
 		//player->drawElementsAndHolders();
+		player->drawDoors();
+		player->isNearDoor(player->move);
 		EndDrawing();
 	}
 }

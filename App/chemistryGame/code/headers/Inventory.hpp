@@ -38,7 +38,7 @@ public:
 
 	void drawInventory();
 	void drawnormalItems();
-	bool isPickedUp(Vector2 heroPos);
+	bool isPickedUp(Rectangle heroPos);
 private:
 	int WIDTH;
 	int HEIGHT;
