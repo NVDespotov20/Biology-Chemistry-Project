@@ -8,8 +8,8 @@ InventorySystem::InventorySystem()
 	HEIGHT = GetScreenHeight();
 
 	//loading textures
-	inventory = LoadTexture("../../assets/images/UI elements/inventory.png");
-	item = LoadTexture("../../assets/images/UI elements/item.png");
+	inventory = LoadTexture("../assets/images/UI elements/inventory.png");
+	item = LoadTexture("../assets/images/chemistry/item.png");
 
 	//setting sizes of variables
 	item.width = 50;

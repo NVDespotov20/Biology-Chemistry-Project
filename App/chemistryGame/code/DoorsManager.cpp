@@ -3,7 +3,7 @@
 
 DoorsManager::DoorsManager()
 {
-	door = LoadTexture("../../assets/images/UI elements/door.png");
+	door = LoadTexture("../assets/images/UI elements/door.png");
 	positions = {
 		{0, GetScreenHeight() / 2.f},
 		{GetScreenWidth() / 2.f, (float)GetScreenHeight()},

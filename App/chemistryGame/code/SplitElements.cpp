@@ -16,17 +16,17 @@ SplitElements::SplitElements()
 	positionOfNonMetalsHolder[2] = HEIGHT - HEIGHT / 2;
 	positionOfNonMetalsHolder[3] = HEIGHT - HEIGHT / 2.25;
 
-	naElement = LoadTexture("../../assets/images/chemistry/Soldium(Na).png");
-	sElement = LoadTexture("../../assets/images/chemistry/Sulfur(S).png");
-	agElement = LoadTexture("../../assets/images/chemistry/Silver(Ag).png");
-	pElement = LoadTexture("../../assets/images/chemistry/Phosphorus(P).png");
-	cElement = LoadTexture("../../assets/images/chemistry/Carbon(C).png");
-	auElement = LoadTexture("../../assets/images/chemistry/Gold(Au).png");
-	clElement = LoadTexture("../../assets/images/chemistry/Chlorine(Cl2).png");
-	cuElement = LoadTexture("../../assets/images/chemistry/Copper(Cu).png");
-	znElement = LoadTexture("../../assets/images/chemistry/Zinc(Zn).png");	/*
-	naElement = LoadTexture("../../assets/images/chemistry/Na.png");
-	naElement = LoadTexture("../../assets/images/chemistry/Na.png");*/
+	naElement = LoadTexture("../assets/images/chemistry/Soldium(Na).png");
+	sElement = LoadTexture("../assets/images/chemistry/Sulfur(S).png");
+	agElement = LoadTexture("../assets/images/chemistry/Silver(Ag).png");
+	pElement = LoadTexture("../assets/images/chemistry/Phosphorus(P).png");
+	cElement = LoadTexture("../assets/images/chemistry/Carbon(C).png");
+	auElement = LoadTexture("../assets/images/chemistry/Gold(Au).png");
+	clElement = LoadTexture("../assets/images/chemistry/Chlorine(Cl2).png");
+	cuElement = LoadTexture("../assets/images/chemistry/Copper(Cu).png");
+	znElement = LoadTexture("../assets/images/chemistry/Zinc(Zn).png");	/*
+	naElement = LoadTexture("../assets/images/chemistry/Na.png");
+	naElement = LoadTexture("../assets/images/chemistry/Na.png");*/
 
 	metalElementsTextures.push_back(naElement);
 	metalElementsTextures.push_back(agElement);
@@ -41,7 +41,7 @@ SplitElements::SplitElements()
 
 	mousepoint = GetMousePosition();
 
-	backgroundOfTable = LoadTexture("../../assets/images/chemistry/ArrangeTableBackground.png");
+	backgroundOfTable = LoadTexture("../assets/images/chemistry/ArrangeTableBackground.png");
 
 	backgroundOfTable.width = GetScreenWidth();
 	backgroundOfTable.height = GetScreenHeight();

@@ -3,16 +3,16 @@
 
 void Player::LoadSprites(int fps)
 {
-	down = LoadTexture("../../assets/images/heroSprite/down.png");
-	up = LoadTexture("../../assets/images/heroSprite/up.png");
-	left = LoadTexture("../../assets/images/heroSprite/left.png");
-	right = LoadTexture("../../assets/images/heroSprite/right.png");
+	down = LoadTexture("../assets/images/heroSprite/down.png");
+	up = LoadTexture("../assets/images/heroSprite/up.png");
+	left = LoadTexture("../assets/images/heroSprite/left.png");
+	right = LoadTexture("../assets/images/heroSprite/right.png");
 
 	//idle source
-	idleD = LoadTexture("../../assets/images/heroSprite/downIdle.png");
-	idleU = LoadTexture("../../assets/images/heroSprite/upIdle.png");
-	idleL = LoadTexture("../../assets/images/heroSprite/leftIdle.png");
-	idleR = LoadTexture("../../assets/images/heroSprite/rightIdle.png");
+	idleD = LoadTexture("../assets/images/heroSprite/downIdle.png");
+	idleU = LoadTexture("../assets/images/heroSprite/upIdle.png");
+	idleL = LoadTexture("../assets/images/heroSprite/leftIdle.png");
+	idleR = LoadTexture("../assets/images/heroSprite/rightIdle.png");
 
 	playerSprites.push_back(left);
 	playerSprites.push_back(right);
