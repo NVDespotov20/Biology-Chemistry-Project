@@ -39,7 +39,7 @@ void Game::mainLoop()
 		
 		////set background
 		ClearBackground(RAYWHITE);
-
+		/*
 		player->CheckDir();
 		player->Movement();
 
@@ -57,10 +57,10 @@ void Game::mainLoop()
 		if (IsKeyDown(KEY_E))
 		{
 			player->drawInventory();
-		}
-		//player->drawElementsAndHolders();
-		player->drawDoors();
-		player->isNearDoor(player->move);
+		}*/
+		player->drawAndMoveElementsAndHolders();
+		//player->drawDoors();
+		//player->isNearDoor(player->move);
 		EndDrawing();
 	}
 }

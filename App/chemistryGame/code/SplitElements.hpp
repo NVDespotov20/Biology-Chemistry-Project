@@ -14,9 +14,8 @@ public:
 	Rectangle elementsInTheBoxRec2[4];
 	Rectangle elementsInTheHolders[4];
 	Rectangle elementsInTheHolders2[4];
+	Rectangle choice[2];
 	Rectangle submitAnswer;
-
-	Texture2D isSelected;
 
 	Texture2D naElement;
 	Texture2D cElement;
@@ -31,8 +30,11 @@ public:
 	Texture2D auElement;
 	Texture2D agElement;
 	Texture2D sElement;
-
 	Texture2D backgroundOfTable;
+	
+	int saverForIndexOfElement;
+
+	bool chooseMetalOrNonmetal;
 
 	std::vector<Texture2D> elementsTextures;
 
@@ -40,17 +42,20 @@ public:
 
 	std::vector<Texture2D> nonmetalElementsTextures;
 
+	std::vector<Texture2D> metalsHolders;
+
+	std::vector<Texture2D> nonmetalsHolders;
+
 	//seed that we make different every time
 	unsigned seed;
 
 	//random engine from random library
 	std::mt19937 gen;
 
-	void drawElementsAndHolders();
-	void moveElements();
+	void drawAndMoveElementsAndHolders();
 	bool checkForSubmission();
 	bool checkForCorection();
-
+	void unload();
 private:
 	int WIDTH;
 	int HEIGHT;
