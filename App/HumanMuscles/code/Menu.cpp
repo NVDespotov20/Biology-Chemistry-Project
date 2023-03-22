@@ -58,13 +58,17 @@ void Menu::drawMainMenu()
     //if (!IsWindowFocused())
     //    MinimizeWindow();
 
-    for (auto& button : buttonsRecs)
+    if (isClicked(mousePoint, buttonsRecs[0].getBoundingBox()))
     {
-        if (isClicked(mousePoint, button.getBoundingBox()))
-        {
-            auto manager = pch::getInstantiation();
-            manager->dir = pch::Direction::APP;
-        }
-        button.draw(0.5f, 15, RED, BLACK);
+        auto manager = pch::getInstantiation();
+        manager->dir = pch::Direction::APP;
     }
+    if (isClicked(mousePoint, buttonsRecs[3].getBoundingBox()))
+    {
+        auto manager = pch::getInstantiation();
+        manager->dir = pch::Direction::QUIT;
+    }
+
+    for (auto& button : buttonsRecs)
+        button.draw(0.5f, 15, RED, BLACK);
 }
