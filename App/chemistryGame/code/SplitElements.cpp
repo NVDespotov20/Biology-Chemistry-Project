@@ -16,28 +16,34 @@ SplitElements::SplitElements()
 	positionOfNonMetalsHolder[2] = HEIGHT - HEIGHT / 2;
 	positionOfNonMetalsHolder[3] = HEIGHT - HEIGHT / 2.25;
 
-	naElement = LoadTexture("../assets/images/chemistry/Soldium(Na).png");
-	sElement = LoadTexture("../assets/images/chemistry/Sulfur(S).png");
-	agElement = LoadTexture("../assets/images/chemistry/Silver(Ag).png");
-	pElement = LoadTexture("../assets/images/chemistry/Phosphorus(P).png");
-	cElement = LoadTexture("../assets/images/chemistry/Carbon(C).png");
-	auElement = LoadTexture("../assets/images/chemistry/Gold(Au).png");
-	clElement = LoadTexture("../assets/images/chemistry/Chlorine(Cl2).png");
-	cuElement = LoadTexture("../assets/images/chemistry/Copper(Cu).png");
-	znElement = LoadTexture("../assets/images/chemistry/Zinc(Zn).png");	/*
-	naElement = LoadTexture("../assets/images/chemistry/Na.png");
-	naElement = LoadTexture("../assets/images/chemistry/Na.png");*/
+	elementsTexturesStrings = {
+	"../assets/images/chemistry/Zinc(Zn).png",
+	"../assets/images/chemistry/Copper(Cu).png",
+	"../assets/images/chemistry/Silver(Ag).png",
+	"../assets/images/chemistry/Gold(Au).png",
+	"../assets/images/chemistry/Soldium(Na).png",
+	"../assets/images/chemistry/Sulfur(S).png",
+	"../assets/images/chemistry/Phosphorus(P).png",
+	"../assets/images/chemistry/Carbon(C).png",
+	"../assets/images/chemistry/Chlorine(Cl2).png"
+	};
 
-	metalElementsTextures.push_back(naElement);
-	metalElementsTextures.push_back(agElement);
-	metalElementsTextures.push_back(cuElement);
-	metalElementsTextures.push_back(auElement);
-	metalElementsTextures.push_back(znElement);
+	seed = std::chrono::steady_clock::now().time_since_epoch().count();
 
-	nonmetalElementsTextures.push_back(clElement);
-	nonmetalElementsTextures.push_back(sElement);
-	nonmetalElementsTextures.push_back(cElement);
-	nonmetalElementsTextures.push_back(pElement);
+	gen.seed(seed);
+
+	for (int i = 0; i < 5; i++)
+	{
+		metalElementsStrings.push_back(elementsTexturesStrings[i]);
+	}
+
+	for (int i = 5; i < 9; i++)
+	{
+		nonmetalElementsStrings.push_back(elementsTexturesStrings[i]);
+	}
+
+	std::shuffle(metalElementsStrings.begin(), metalElementsStrings.end(), gen);
+	std::shuffle(nonmetalElementsStrings.begin(), nonmetalElementsStrings.end(), gen);
 
 	mousepoint = GetMousePosition();
 
@@ -46,41 +52,20 @@ SplitElements::SplitElements()
 	backgroundOfTable.width = GetScreenWidth();
 	backgroundOfTable.height = GetScreenHeight();
 
-	seed = std::chrono::steady_clock::now().time_since_epoch().count();
-
-	gen.seed(seed);
-
 	chooseMetalOrNonmetal = false;
 
-	for (int i = 0; i < metalElementsTextures.size(); i++)
+	for (int i = 0; i < 4; i++)
 	{
-		metalElementsTextures[i].width = WIDTH / 10;
-		metalElementsTextures[i].height = HEIGHT / 7;
-	}
-	
-	for (int i = 0; i < nonmetalElementsTextures.size(); i++)
-	{
-		nonmetalElementsTextures[i].width = WIDTH / 10;
-		nonmetalElementsTextures[i].height = HEIGHT / 7;
+		elementsStrings.push_back(nonmetalElementsStrings[i]);
+		elementsStrings.push_back(metalElementsStrings[i]);
 	}
 
-	std::shuffle(metalElementsTextures.begin(), metalElementsTextures.end(), gen);
-	std::shuffle(nonmetalElementsTextures.begin(), nonmetalElementsTextures.end(), gen);
+	std::shuffle(elementsStrings.begin(), elementsStrings.end(), gen);
 
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < elementsStrings.size(); i++)
 	{
-		if (i < 4)
-		{
-			elementsTextures.push_back(metalElementsTextures[i]);
-		}
-		else
-		{
-			elementsTextures.push_back(nonmetalElementsTextures[i-4]);
-		}
+		elementsTextures.push_back(LoadTexture(elementsStrings[i].c_str()));
 	}
-
-	std::shuffle(elementsTextures.begin(), elementsTextures.end(), gen);
-
 	for (int i = 0; i < 4; i++)
 	{
 		elementsInTheBoxRec[i] = { WIDTH / 3.80f + i * 250, HEIGHT / 4.f + (HEIGHT / 4), WIDTH/12.f, HEIGHT/7.f};
@@ -92,8 +77,15 @@ SplitElements::SplitElements()
 
 	for (int i = 0; i < 2; i++)
 	{
-		choice[i] = {WIDTH/15.f + i*900,HEIGHT/6.f,WIDTH/2-WIDTH/9.46f,HEIGHT/1.367f};
+		choice[i] = { WIDTH / 15.f + i * 900,HEIGHT / 6.f,WIDTH / 2 - WIDTH / 9.46f,HEIGHT / 1.367f };
 	}
+
+	for (int i = 0; i < elementsTextures.size(); i++)
+	{
+		elementsTextures[i].width = WIDTH / 10;
+		elementsTextures[i].height = HEIGHT / 7;
+	}
+	
 }
 
 SplitElements::~SplitElements()
@@ -103,15 +95,6 @@ SplitElements::~SplitElements()
 
 void SplitElements::unload()
 {
-	UnloadTexture(naElement);
-	UnloadTexture(sElement);
-	UnloadTexture(agElement);
-	UnloadTexture(pElement);
-	UnloadTexture(cElement);
-	UnloadTexture(auElement);
-	UnloadTexture(clElement);
-	UnloadTexture(cuElement);
-	UnloadTexture(znElement);
 	UnloadTexture(backgroundOfTable);
 	//UnloadTexture();
 }
@@ -156,18 +139,21 @@ void SplitElements::drawAndMoveElementsAndHolders()
 		DrawTexture(nonmetalsHolders[i], elementsInTheHolders2[i].x, elementsInTheHolders2[i].y, WHITE);
 	}
 
-	for (int i = 0; i < 4; i++)
+	if (!chooseMetalOrNonmetal)
 	{
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, elementsInTheBoxRec2[i]))
+		for (int i = 0; i < 4; i++)
 		{
-			saverForIndexOfElement = i;
-			chooseMetalOrNonmetal = true;
-		}
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, elementsInTheBoxRec2[i]))
+			{
+				saverForIndexOfElement = i;
+				chooseMetalOrNonmetal = true;
+			}
 
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, elementsInTheBoxRec[i]))
-		{
-			saverForIndexOfElement = i+4;
-			chooseMetalOrNonmetal = true;
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, elementsInTheBoxRec[i]))
+			{
+				saverForIndexOfElement = i + 4;
+				chooseMetalOrNonmetal = true;
+			}
 		}
 	}
 
@@ -180,13 +166,14 @@ void SplitElements::drawAndMoveElementsAndHolders()
 		}
 		DrawText("Metal", WIDTH / 5.15, HEIGHT / 2.15, 110, PURPLE);
 		DrawText("Nonmetal", WIDTH / 1.64, HEIGHT / 2.15, 110, PURPLE);
-
 		if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && CheckCollisionPointRec(mousepoint, choice[0]))
 		{
 			if (metalsHolders.size() < 4)
 			{
 				metalsHolders.push_back(elementsTextures[saverForIndexOfElement]);
-				elementsTextures.erase(elementsTextures.begin() + saverForIndexOfElement);
+				checkerForMetals.push_back(elementsStrings[saverForIndexOfElement]);
+				elementsTextures[saverForIndexOfElement] = Texture2D();
+				//elementsTextures.erase(elementsTextures.begin() + saverForIndexOfElement);
 			}
 			chooseMetalOrNonmetal = false;
 		}
@@ -196,9 +183,34 @@ void SplitElements::drawAndMoveElementsAndHolders()
 			if (nonmetalsHolders.size() < 4)
 			{
 				nonmetalsHolders.push_back(elementsTextures[saverForIndexOfElement]);
-				elementsTextures.erase(elementsTextures.begin() + saverForIndexOfElement);
+				elementsTextures[saverForIndexOfElement] = Texture2D();
+				//elementsTextures.erase(elementsTextures.begin() + saverForIndexOfElement);
 			}
 			chooseMetalOrNonmetal = false;
 		}
 	}
+
+	if (checkerForMetals.size() == 4)
+		checkElements();
+}
+
+void SplitElements::checkElements()
+{
+	int counter = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			// Compare the file paths using the == operator
+			if (checkerForMetals[i] == metalElementsStrings[j])
+			{
+				++counter;
+				break;
+			}
+		}
+	}
+	if (counter == 4)
+		std::cout << "Congrats\n";
+	else
+		std::cout << "Too bad\n";
 }

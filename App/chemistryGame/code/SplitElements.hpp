@@ -17,30 +17,23 @@ public:
 	Rectangle choice[2];
 	Rectangle submitAnswer;
 
-	Texture2D naElement;
-	Texture2D cElement;
-	Texture2D nElement;
-	Texture2D oElement;
-	Texture2D fElement;
-	Texture2D pElement;
-	Texture2D clElement;
-	Texture2D hElement;
-	Texture2D znElement;
-	Texture2D cuElement;
-	Texture2D auElement;
-	Texture2D agElement;
-	Texture2D sElement;
 	Texture2D backgroundOfTable;
 	
+	std::vector<std::string> elementsTexturesStrings;
+
 	int saverForIndexOfElement;
 
 	bool chooseMetalOrNonmetal;
 
+	std::vector<std::string> checkerForMetals;
+
 	std::vector<Texture2D> elementsTextures;
 
-	std::vector<Texture2D> metalElementsTextures;
+	std::vector<std::string> elementsStrings;
 
-	std::vector<Texture2D> nonmetalElementsTextures;
+	std::vector<std::string> metalElementsStrings;
+
+	std::vector<std::string> nonmetalElementsStrings;
 
 	std::vector<Texture2D> metalsHolders;
 
@@ -61,4 +54,6 @@ private:
 	int HEIGHT;
 
 	Vector2 mousepoint;
+
+	void checkElements();
 };
