@@ -1,18 +1,16 @@
 #pragma once
-#include "Player.hpp"
-#include "Teacher.hpp"
 #include "SplitElements.hpp"
+#include "RunningRoom.hpp"
+#include "RoomManager.hpp"
 
 class Game
 {
 public:
 	Game();
 	~Game();
-
+	std::shared_ptr<RunningRoom>runningRoom;
+	std::shared_ptr<RoomManager>manager;
 	void mainLoop();
-
-	std::shared_ptr<Player>player;
-	std::shared_ptr<Teacher>teacher;
 private:
 
 };
