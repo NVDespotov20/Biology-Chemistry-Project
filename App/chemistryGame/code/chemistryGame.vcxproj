@@ -186,6 +186,9 @@
     <ClInclude Include="headers\mixElements.hpp" />
     <ClInclude Include="headers\pchGame.hpp" />
     <ClInclude Include="headers\Player.hpp" />
+    <ClInclude Include="headers\RoomManager.hpp" />
+    <ClInclude Include="headers\Rooms.hpp" />
+    <ClInclude Include="headers\RunningRoom.hpp" />
     <ClInclude Include="headers\SplitElements.hpp" />
     <ClInclude Include="headers\Teacher.hpp" />
   </ItemGroup>

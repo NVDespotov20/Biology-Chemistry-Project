@@ -74,5 +74,14 @@
     <ClInclude Include="headers\mixElements.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\RoomManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\RunningRoom.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Rooms.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
