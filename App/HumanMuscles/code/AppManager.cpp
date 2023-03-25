@@ -34,7 +34,6 @@ void AppManager::drawMainLoop()
         BeginDrawing();
         ClearBackground(LIGHTGRAY);
         shouldQuit = manageApp();
-        std::cout << manageApp() << std::endl;
         EndDrawing();
     }
 }

@@ -18,6 +18,7 @@ private:
 
     void load();
     void unload();
+    void switchViews();
 
     int indexOfButtons;
     int fontSize = 20;

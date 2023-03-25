@@ -164,9 +164,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.hpp" />
     <ClInclude Include="headers\App.hpp" />
     <ClInclude Include="headers\AppManager.hpp" />
+    <ClInclude Include="headers\Button.hpp" />
     <ClInclude Include="headers\Menu.hpp" />
     <ClInclude Include="headers\Options.hpp" />
     <ClInclude Include="headers\pch.hpp" />

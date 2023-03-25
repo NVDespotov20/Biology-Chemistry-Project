@@ -27,10 +27,6 @@ void Options::drawOptions()
 
     ClearBackground(LIGHTGRAY);
 
-    // Fix unable to alt-tab
-    if (!IsWindowFocused())
-        MinimizeWindow();
-
     DrawText("Options", GetScreenWidth() / 2, GetScreenHeight() / 2, 40, BLACK);
 }
 

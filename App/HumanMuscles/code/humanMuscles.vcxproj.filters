@@ -30,7 +30,7 @@
     <ClInclude Include="headers\pch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Button.hpp">
+    <ClInclude Include="headers\Button.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

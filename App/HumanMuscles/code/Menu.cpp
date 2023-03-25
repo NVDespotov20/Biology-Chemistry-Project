@@ -54,10 +54,6 @@ void Menu::drawMainMenu()
 {
     mousePoint = GetMousePosition();
 
-    //// Fix unable to alt-tab
-    //if (!IsWindowFocused())
-    //    MinimizeWindow();
-
     if (isClicked(mousePoint, buttonsRecs[0].getBoundingBox()))
     {
         auto manager = pch::getInstantiation();
