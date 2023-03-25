@@ -4,10 +4,11 @@
 DoorsManager::DoorsManager()
 {
 	door = LoadTexture("../assets/images/UI elements/door.png");
-	positions = {
-		{0, GetScreenHeight() / 2.f},
-		{GetScreenWidth() / 2.f, (float)GetScreenHeight()},
-		{(float)GetScreenWidth(), GetScreenHeight() / 2.f}
+	dir = Direction::getInstantiation();
+	positionsOfDoors = {
+		{"left", {0, GetScreenHeight() / 2.f}},
+		{"down", {GetScreenWidth() / 2.f, (float)GetScreenHeight()}},
+		{"right", {(float)GetScreenWidth(), GetScreenHeight() / 2.f}}
 	};
 }
 
@@ -18,49 +19,60 @@ DoorsManager::~DoorsManager()
 
 void DoorsManager::drawDoors()
 {
-	for (auto& position : positions)
+	for (const auto& [key, position] : positionsOfDoors)
 	{
 		//DrawTextureV(door, position, WHITE);
 		DrawCircleV(position, 200, Fade(PURPLE, 0.5f));
 	}
 }
 
-int DoorsManager::isNearDoor(Rectangle heroPos)
+std::string DoorsManager::isNearDoor(Rectangle& heroPos)
 {
-	for (auto i = 0;i<positions.size();i++)
+	for (const auto& [key, position] : positionsOfDoors)
 	{
-		if(CheckCollisionCircleRec(positions[i], 200, heroPos))
+		if (CheckCollisionCircleRec(position, 200, heroPos))
 		{
-			DrawCircleV(positions[i], 200, Fade(PURPLE, 1));
-			return i;
+			DrawCircleV(position, 200, Fade(PURPLE, 1));
+			return key;
 		}
+
 	}
+	return "";
 }
 
-void DoorsManager::enterDoor(int&inx)
+void DoorsManager::enterDoor(std::string& inx)
 {
-	if(IsKeyPressed(KEY_W))
+	if (IsKeyPressed(KEY_Q))
 	{
 		//Draw array of levels of index = inx
-		switch (inx)
+		switch (inx[0])
 		{
-			case 0:
-			{
-				//Load level 1
-				break;
-			}
-			case 1:
-			{
-				//Load level 2
-				break;
-			}
-			case 2:
-			{
-				//Load level 3
-				break;
-			}
-			default:
-				break;
+		case 'u':
+		{
+			//Load level 1
+			dir->i--;
+			dir->j = 2;
+			break;
+		}
+		case 'd':
+		{
+			//Load level 2
+			dir->i++;
+			dir->j = 2;
+			break;
+		}
+		case 'l':
+		{
+			//Load level 3
+			dir->j--;
+			break;
+		}
+		case 'r':
+		{
+			//Load level 3
+			dir->j++;
+			break;
+		}
 		}
 	}
 }

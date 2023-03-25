@@ -1,8 +1,9 @@
 #include "Inventory.hpp"
 #include "SplitElements.hpp"
 #include "DoorsManager.hpp"
+#include "Inventory.hpp"
 
-class Player : public InventorySystem, public SplitElements, public DoorsManager
+class Player : public DoorsManager, public InventorySystem
 {
 private:
 	//set textures for the moving player
@@ -10,7 +11,7 @@ private:
 	Texture2D down;
 	Texture2D right;
 	Texture2D left;
-	
+
 	//set idle animationfor the player
 	Texture2D idleU;
 	Texture2D idleD;

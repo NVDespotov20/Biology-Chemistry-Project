@@ -39,6 +39,15 @@
     <ClCompile Include="DoorsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RoomManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rooms.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RunningRoom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Inventory.hpp">
@@ -56,10 +65,13 @@
     <ClInclude Include="headers\Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SplitElements.hpp">
+    <ClInclude Include="headers\DoorsManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DoorsManager.hpp">
+    <ClInclude Include="headers\SplitElements.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\mixElements.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
