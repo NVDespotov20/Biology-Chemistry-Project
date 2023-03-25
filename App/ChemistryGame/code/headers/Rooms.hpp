@@ -1,7 +1,8 @@
 #pragma once
 #include "RunningRoom.hpp"
 #include "LastRoom.hpp"
-class Rooms: public RunningRoom, public LastRoom
+#include "Magazine.hpp"
+class Rooms: public RunningRoom, public LastRoom, public Magazine
 {
 	public:
 	Rooms();
