@@ -4,14 +4,13 @@
 Game::Game()
 {
 	// Initialization of the window and setting name and starting coordinates of the window
-	InitWindow(0, 0, "Chemistry game");
+	InitWindow(1000, 1000, "Chemistry game");
 
 	// Set our game to run at 60 frames-per-second
 	SetTargetFPS(60);
 
 	//Set our game to be on fullscreen
-	ToggleFullscreen();
-	runningRoom = std::make_shared<RunningRoom>();
+	//ToggleFullscreen();
 	manager = std::make_shared<RoomManager>();
 
 }
@@ -35,7 +34,7 @@ void Game::mainLoop()
 		ClearBackground(RAYWHITE);
 
 		//player->drawAndMoveElementsAndHolders();
-		manager->manageAndDrawDoors();
+		manager->manageAndDrawRooms();
 
 		EndDrawing();
 	}

@@ -3,20 +3,12 @@
 
 void Player::join()
 {
-	this->CheckDir();
-	this->Movement();
+	CheckDir();
+	Movement();
 
 	//draw player
-	DrawTexturePro(this->playerSprite, this->view, this->move, Vector2{ 10, 10 }, 0, WHITE);
-
-	this->drawnormalItems();
-	this->isPickedUp(this->move);
-
-	//draws inventory when you click E
-	if (IsKeyDown(KEY_E))
-	{
-		this->drawInventory();
-	}
+	DrawTexturePro(playerSprite, view, move, Vector2{ 10, 10 }, 0, WHITE);
+	
 }
 void Player::LoadSprites(int fps)
 {

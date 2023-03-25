@@ -38,6 +38,7 @@ public:
 
 	void drawInventory();
 	void drawnormalItems();
+	void use();
 	bool isPickedUp(Rectangle heroPos);
 private:
 	int WIDTH;

@@ -30,7 +30,7 @@ void RoomManager::manageAndDrawRooms()
 		if (dir->i == rooms.size() - 1)
 			rooms[dir->i][0]->drawLastRoom();
 		else if (dir->j == 0 || dir->j == rooms[0].size() - 1)
-			rooms[dir->i][0]->drawMagazine();
+			rooms[dir->i][dir->j]->drawMagazine();
 		else
 			rooms[dir->i][dir->j]->drawRunningRoom();
 	}

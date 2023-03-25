@@ -10,7 +10,7 @@ Rooms::~Rooms()
 {
 }
 
-Rooms::Rooms(int other) : RunningRoom(other), LastRoom(other)
+Rooms::Rooms(int door) : RunningRoom(door), LastRoom(door), Magazine(door)
 {
 	std::cout << "Copy" << std::endl;
 }

@@ -7,6 +7,6 @@ class Rooms: public RunningRoom, public LastRoom, public Magazine
 	public:
 	Rooms();
 	~Rooms();
-	Rooms(int other);
+	Rooms(int door);
 };
 
