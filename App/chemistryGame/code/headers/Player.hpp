@@ -46,5 +46,6 @@ public:
 	void Movement();
 	void CheckDir();
 	void CheckWalls();
+	void join();
 	void UnLoadTextures();
 };

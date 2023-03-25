@@ -11,6 +11,13 @@ Teacher::Teacher()
 	isSeen = 0;
 }
 
+Teacher::~Teacher()
+{
+	UnloadTexture(left);
+	UnloadTexture(right);
+}
+
+
 void Teacher::LoadSprites()
 {
 	left = LoadTexture("../assets/images/heroSprite/left.png");
@@ -20,7 +27,7 @@ void Teacher::LoadSprites()
 	SpasNPCView = { (float)SpasNPC.width / 4, 0, (float)SpasNPC.width / 4, (float)SpasNPC.height };
 }
 
-void Teacher::Draw()
+void Teacher::draw()
 {
 	if (counterFrame >= 20)
 	{
@@ -39,7 +46,7 @@ void Teacher::Draw()
 	}
 }
 
-void Teacher::Update(Vector2 posHero, Rectangle heroRec)
+void Teacher::update(Vector2 posHero, Rectangle heroRec)
 {
 
 	if (CheckCollisionPointCircle(posHero, position, 1100) && !isSeen) {

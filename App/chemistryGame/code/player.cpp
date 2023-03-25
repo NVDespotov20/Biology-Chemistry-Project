@@ -1,6 +1,23 @@
 #include "pchGame.hpp"
 #include "Player.hpp"
 
+void Player::join()
+{
+	this->CheckDir();
+	this->Movement();
+
+	//draw player
+	DrawTexturePro(this->playerSprite, this->view, this->move, Vector2{ 10, 10 }, 0, WHITE);
+
+	this->drawnormalItems();
+	this->isPickedUp(this->move);
+
+	//draws inventory when you click E
+	if (IsKeyDown(KEY_E))
+	{
+		this->drawInventory();
+	}
+}
 void Player::LoadSprites(int fps)
 {
 	down = LoadTexture("../assets/images/heroSprite/down.png");
