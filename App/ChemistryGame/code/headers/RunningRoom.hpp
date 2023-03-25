@@ -12,7 +12,7 @@ class RunningRoom
 	RunningRoom();
 	RunningRoom(int doors);
 	~RunningRoom();
-	void draw();
+	void drawRunningRoom();
 	void checkDoors();
 };
 

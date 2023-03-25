@@ -31,7 +31,7 @@ RunningRoom::~RunningRoom()
 
 }
 
-void RunningRoom::draw()
+void RunningRoom::drawRunningRoom()
 {
 
 	teacher->update(player->playerCords, player->move);
