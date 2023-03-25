@@ -165,12 +165,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="chemistryGame.cpp" />
     <ClCompile Include="DoorsManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="LastRoom.cpp" />
     <ClCompile Include="Magazine.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="pchGame.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>

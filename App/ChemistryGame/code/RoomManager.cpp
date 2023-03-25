@@ -10,7 +10,7 @@ RoomManager::RoomManager()
 	};
 	dir = Direction::getInstantiation();
 }
-void RoomManager::manageAndDrawDoors()
+void RoomManager::manageAndDrawRooms()
 {
 	if (dir->i != rooms.size() - 1 && rooms[dir->i][dir->j] == nullptr)
 	{

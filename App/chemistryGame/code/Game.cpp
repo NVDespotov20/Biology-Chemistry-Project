@@ -34,35 +34,9 @@ void Game::mainLoop()
 		////set background
 		ClearBackground(RAYWHITE);
 
-		//player->CheckDir();
-		//player->Movement();
-
-		////draw player
-		//DrawTexturePro(player->playerSprite, player->view, player->move, Vector2{ 10, 10 }, 0, WHITE);
-
-		//teacher->Update(player->playerCords, player->move);
-		//teacher->Draw();
-		//player->drawnormalItems();
-
-		////takes parameters for the coordinates of the player
-		//player->isPickedUp(player->move);
-		////draws inventory when you click E
-		//if (IsKeyDown(KEY_E))
-		//{
-		//	player->drawInventory();
-		//}
 		//player->drawAndMoveElementsAndHolders();
-
-		////draws inventory when you click E
-		//if (IsKeyDown(KEY_E))
-		//{
-		//	player->drawInventory();
-		//}
-		//player->drawAndMoveElementsAndHolders();
-		//player->drawDoors();
-		//player->isNearDoor(player->move);
 		manager->manageAndDrawDoors();
-		//runningRoom->draw();
+
 		EndDrawing();
 	}
 }
