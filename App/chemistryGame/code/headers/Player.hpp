@@ -1,9 +1,8 @@
-#include "Inventory.hpp"
+#pragma once
 #include "SplitElements.hpp"
 #include "DoorsManager.hpp"
-#include "Inventory.hpp"
 
-class Player : public DoorsManager, public InventorySystem
+class Player : public DoorsManager
 {
 private:
 	//set textures for the moving player
@@ -42,9 +41,11 @@ public:
 	Rectangle view;
 
 	Player();
+	~Player();
 	void LoadSprites(int fps);
 	void Movement();
 	void CheckDir();
 	void CheckWalls();
+	void join();
 	void UnLoadTextures();
 };

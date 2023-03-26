@@ -56,7 +56,15 @@ InventorySystem::~InventorySystem()
 	UnloadTexture(inventory);
 	UnloadTexture(item);
 }
-
+void InventorySystem::use()
+{
+	drawnormalItems();
+	//draws inventory when you click E
+	if (IsKeyDown(KEY_E))
+	{
+		drawInventory();
+	}
+}
 bool InventorySystem::isPickedUp(Rectangle heroPosition)
 {
 	for (int i = 0; i < normalItemsPos.size(); i++)

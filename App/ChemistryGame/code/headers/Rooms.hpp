@@ -1,10 +1,12 @@
 #pragma once
 #include "RunningRoom.hpp"
-class Rooms: public RunningRoom
+#include "LastRoom.hpp"
+#include "Magazine.hpp"
+class Rooms: public RunningRoom, public LastRoom, public Magazine
 {
 	public:
 	Rooms();
 	~Rooms();
-	Rooms(int other);
+	Rooms(int door);
 };
 

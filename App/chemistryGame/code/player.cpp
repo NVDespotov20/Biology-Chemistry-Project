@@ -1,6 +1,15 @@
 #include "pchGame.hpp"
 #include "Player.hpp"
 
+void Player::join()
+{
+	CheckDir();
+	Movement();
+
+	//draw player
+	DrawTexturePro(playerSprite, view, move, Vector2{ 10, 10 }, 0, WHITE);
+	
+}
 void Player::LoadSprites(int fps)
 {
 	down = LoadTexture("../assets/images/heroSprite/down.png");
@@ -44,6 +53,10 @@ Player::Player()
 	HeroDir = LEFT;
 }
 
+Player::~Player()
+{
+	UnLoadTextures();
+}
 ////find if the player is colliding item
 //bool findDistance(Player& player, int posX, int posY)
 //{

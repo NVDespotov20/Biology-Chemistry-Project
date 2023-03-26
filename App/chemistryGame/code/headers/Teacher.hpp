@@ -19,7 +19,8 @@ private:
 public:
     int speed;
     Teacher();
+    ~Teacher();
     void LoadSprites();
-    void Update(Vector2 posHero, Rectangle heroRec);
-    void Draw();
+    void update(Vector2 posHero, Rectangle heroRec);
+    void draw();
 };
