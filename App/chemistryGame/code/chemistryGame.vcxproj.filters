@@ -42,7 +42,7 @@
     <ClCompile Include="Rooms.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RunningRoom.cpp">
+    <ClCompile Include="ChasingRoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LastRoom.cpp">
@@ -83,7 +83,7 @@
     <ClInclude Include="headers\RoomManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\RunningRoom.hpp">
+    <ClInclude Include="headers\ChasingRoom.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Rooms.hpp">

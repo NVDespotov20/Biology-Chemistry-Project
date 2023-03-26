@@ -2,12 +2,14 @@
 #include "Player.hpp"
 #include "Teacher.hpp"
 #include "Inventory.hpp"
-class RunningRoom
+#include "SplitElements.hpp"
+class ChasingRoom
 {
 	int WIDTH;
 	int HEIGHT;
 	std::shared_ptr<Teacher>teacher;
 	std::shared_ptr<InventorySystem>inventory;
+	std::shared_ptr<SplitElements>splitElements;
 	std::string stringDirHolder;
 	std::shared_ptr<Player>player;
 	std::shared_ptr<Direction>dir;
@@ -31,15 +33,15 @@ class RunningRoom
 
 	//setting random values to the the items position
 	std::vector<Vector2> normalItemsPos;
-	void drawnormalItems();
-	int doors;
+	void drawNormalItems();
+	int doors;	
 	bool loadMiniGame;
 	Vector2 positionOfMiniGamePlace;
 public:
-	RunningRoom();
-	RunningRoom(int doors);
-	~RunningRoom();
-	void drawRunningRoom();
+	ChasingRoom();
+	ChasingRoom(int doors);
+	~ChasingRoom();
+	void drawChasingRoom();
 	void checkDoors();
 };
 

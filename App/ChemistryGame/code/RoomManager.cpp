@@ -14,8 +14,11 @@ void RoomManager::manageAndDrawRooms()
 {
 	if (dir->i != rooms.size() - 1 && rooms[dir->i][dir->j] == nullptr)
 	{
-		//fill the rooms
-		
+		if (dir->j == 3 && dir->i == 0) {
+
+			ClearBackground(LIGHTGRAY);
+			DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), RED);
+		}
 			
 		if (dir->j > 2)
 			rooms[dir->i][dir->j] = std::make_shared<Rooms>(5 - dir->j);
@@ -23,7 +26,7 @@ void RoomManager::manageAndDrawRooms()
 			rooms[dir->i][dir->j] = std::make_shared<Rooms>(dir->j + 1);
 
 		
-		rooms[dir->i][dir->j]->drawRunningRoom();
+		rooms[dir->i][dir->j]->drawChasingRoom();
 		
 	}
 	else
@@ -34,7 +37,7 @@ void RoomManager::manageAndDrawRooms()
 		else if (dir->j == 0 || dir->j == rooms[0].size() - 1)
 			rooms[dir->i][dir->j]->drawShop();
 		else
-			rooms[dir->i][dir->j]->drawRunningRoom();
+			rooms[dir->i][dir->j]->drawChasingRoom();
 	}
 }
 RoomManager::~RoomManager()

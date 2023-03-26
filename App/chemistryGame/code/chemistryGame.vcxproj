@@ -177,7 +177,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RoomManager.cpp" />
     <ClCompile Include="Rooms.cpp" />
-    <ClCompile Include="RunningRoom.cpp" />
+    <ClCompile Include="ChasingRoom.cpp" />
     <ClCompile Include="SplitElements.cpp" />
     <ClCompile Include="Teacher.cpp" />
   </ItemGroup>
@@ -192,7 +192,7 @@
     <ClInclude Include="headers\Player.hpp" />
     <ClInclude Include="headers\RoomManager.hpp" />
     <ClInclude Include="headers\Rooms.hpp" />
-    <ClInclude Include="headers\RunningRoom.hpp" />
+    <ClInclude Include="headers\ChasingRoom.hpp" />
     <ClInclude Include="headers\SplitElements.hpp" />
     <ClInclude Include="headers\Teacher.hpp" />
   </ItemGroup>

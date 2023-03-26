@@ -24,7 +24,6 @@ public:
 	
 	
 	void drawInventory(Texture2D& item);
-	void use();
 	bool isPickedUp(Rectangle heroPos, Texture2D& item, std::vector<Vector2>& normalItemsPos);
 
 	static std::shared_ptr<InventorySystem> getInstantiation();

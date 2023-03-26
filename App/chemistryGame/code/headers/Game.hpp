@@ -1,6 +1,6 @@
 #pragma once
 #include "SplitElements.hpp"
-#include "RunningRoom.hpp"
+#include "ChasingRoom.hpp"
 #include "RoomManager.hpp"
 
 class Game
@@ -8,7 +8,7 @@ class Game
 public:
 	Game();
 	~Game();
-	std::shared_ptr<RunningRoom>runningRoom;
+	std::shared_ptr<ChasingRoom>ChasingRoom;
 	std::shared_ptr<RoomManager>manager;
 	void mainLoop();
 private:

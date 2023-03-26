@@ -1,7 +1,7 @@
 #include "pchGame.hpp"
-#include "RunningRoom.hpp"
+#include "ChasingRoom.hpp"
 
-RunningRoom::RunningRoom()
+ChasingRoom::ChasingRoom()
 {
 	////make them smart and delete by themselve
 	//player = std::make_shared<Player>();
@@ -13,7 +13,7 @@ RunningRoom::RunningRoom()
 	//teacher->LoadSprites();
 }
 
-RunningRoom::RunningRoom(int doors)
+ChasingRoom::ChasingRoom(int doors)
 {
 	//variables that we use to make everything responsive
 	WIDTH = GetScreenWidth();
@@ -28,8 +28,10 @@ RunningRoom::RunningRoom(int doors)
 	player->LoadSprites(60);
 	teacher->LoadSprites();
 	this->doors = doors;
-	positionOfMiniGamePlace = { 0,0 };
 	loadMiniGame = 0;
+	positionOfMiniGamePlace = { 0,0 };
+
+	//things for items
 
 	item = LoadTexture("../assets/images/chemistry/item.png");
 	//setting sizes of variables
@@ -66,12 +68,14 @@ RunningRoom::RunningRoom(int doors)
 	};
 }
 
-RunningRoom::~RunningRoom()
+ChasingRoom::~ChasingRoom()
 {
 	UnloadTexture(item);
+
+
 }
 
-void RunningRoom::drawRunningRoom()
+void ChasingRoom::drawChasingRoom()
 {
 	if (dir->j == 3 && dir->i == 0)
 	{
@@ -79,11 +83,14 @@ void RunningRoom::drawRunningRoom()
 		DrawCircleV(positionOfMiniGamePlace, 100, RED);
 
 	}
-	if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_Q)) {
+	if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_Q)) 
+	{
+		splitElements = std::make_shared<SplitElements>();
 		loadMiniGame = true;
 	}
-	if (loadMiniGame) {
-		player->drawAndMoveElementsAndHolders();
+	if (loadMiniGame) 
+	{
+		splitElements->drawAndMoveElementsAndHolders();
 	}
 	else
 	{
@@ -102,7 +109,7 @@ void RunningRoom::drawRunningRoom()
 	}
 }
 
-void RunningRoom::drawNormalItems()
+void ChasingRoom::drawNormalItems()
 {
 	//draw the items but on 50% opacity
 	for (auto& position : normalItemsPos)
@@ -110,57 +117,56 @@ void RunningRoom::drawNormalItems()
 		DrawTextureV(item, position, Fade(WHITE, 0.5f));
 	}
 }
-void RunningRoom::checkDoors()
+void ChasingRoom::checkDoors()
 {
 	switch (this->doors)
 	{
-	case 1:
-	{
-		//remove unneeded doors
-		if (dir->j > 2) {
+		case 1:
+		{
+			//remove unneeded doors
+			if (dir->j > 2) {
+				player->positionsOfDoors.erase("down");
+				player->positionsOfDoors.erase("right");
+			}
+			else {
+				player->positionsOfDoors.erase("down");
+				player->positionsOfDoors.erase("left");
+			}
+
+
+			//draw and check if player is near door
+			player->drawDoors();
+			stringDirHolder = player->isNearDoor(player->move);
+			player->enterDoor(stringDirHolder);
+		
+		}break;
+		case 2:
+		{
 			player->positionsOfDoors.erase("down");
-			player->positionsOfDoors.erase("right");
-		}
-		else {
-			player->positionsOfDoors.erase("down");
-			player->positionsOfDoors.erase("left");
-		}
 
+			//draw and check if player is near door
+			player->drawDoors();
+			stringDirHolder = player->isNearDoor(player->move);
+			player->enterDoor(stringDirHolder);
+		}break;
+		case 3:
+		{
+			//draw and check if player is near door
+			player->drawDoors();
+			stringDirHolder = player->isNearDoor(player->move);
+			player->enterDoor(stringDirHolder);
+		
+		}break;
+		case 4:
+		{
+			player->positionsOfDoors.insert({ "up", {GetScreenWidth() / 2.f, 0} });
 
-		//draw and check if player is near door
-		player->drawDoors();
-		stringDirHolder = player->isNearDoor(player->move);
-		player->enterDoor(stringDirHolder);
-		break;
-	}
-	case 2:
-	{
-		player->positionsOfDoors.erase("down");
-
-		//draw and check if player is near door
-		player->drawDoors();
-		stringDirHolder = player->isNearDoor(player->move);
-		player->enterDoor(stringDirHolder);
-		break;
-	}
-	case 3:
-	{
-		//draw and check if player is near door
-		player->drawDoors();
-		stringDirHolder = player->isNearDoor(player->move);
-		player->enterDoor(stringDirHolder);
-		break;
-	}
-	case 4:
-	{
-		player->positionsOfDoors.insert({ "up", {GetScreenWidth() / 2.f, 0} });
-
-		//draw and check if player is near door
-		player->drawDoors();
-		stringDirHolder = player->isNearDoor(player->move);
-		player->enterDoor(stringDirHolder);
-		break;
-	}
+			//draw and check if player is near door
+			player->drawDoors();
+			stringDirHolder = player->isNearDoor(player->move);
+			player->enterDoor(stringDirHolder);
+		
+		}break;
 	}
 }
 

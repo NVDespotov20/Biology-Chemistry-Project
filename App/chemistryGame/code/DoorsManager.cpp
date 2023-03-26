@@ -47,32 +47,32 @@ void DoorsManager::enterDoor(std::string& inx)
 		//Draw array of levels of index = inx
 		switch (inx[0])
 		{
-		case 'u':
-		{
-			//Load level 1
-			dir->i--;
-			dir->j = 2;
-			break;
-		}
-		case 'd':
-		{
-			//Load level 2
-			dir->i++;
-			dir->j = 2;
-			break;
-		}
-		case 'l':
-		{
-			//Load level 3
-			dir->j--;
-			break;
-		}
-		case 'r':
-		{
-			//Load level 3
-			dir->j++;
-			break;
-		}
+			case 'u':
+			{
+				//Load level 1
+				dir->i--;
+				dir->j = 2;
+				break;
+			}
+			case 'd':
+			{
+				//Load level 2
+				dir->i++;
+				dir->j = 2;
+				break;
+			}
+			case 'l':
+			{
+				//Load level 3
+				dir->j--;
+				break;
+			}
+			case 'r':
+			{
+				//Load level 3
+				dir->j++;
+				break;
+			}
 		}
 	}
 }
