@@ -48,7 +48,7 @@
     <ClCompile Include="LastRoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Magazine.cpp">
+    <ClCompile Include="Shop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -92,7 +92,7 @@
     <ClInclude Include="headers\LastRoom.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Magazine.hpp">
+    <ClInclude Include="headers\Shop.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

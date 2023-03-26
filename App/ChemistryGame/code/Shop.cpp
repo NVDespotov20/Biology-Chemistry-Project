@@ -1,28 +1,28 @@
 #include "pchGame.hpp"
-#include "Magazine.hpp"
+#include "Shop.hpp"
 
-Magazine::Magazine()
+Shop::Shop()
 {
 }
-Magazine::Magazine(int door)
+Shop::Shop(int door)
 {
 	this->door = door;
 	player = std::make_shared<Player>();
 	dir = Direction::getInstantiation();
 	player->LoadSprites(60);
 }
-Magazine::~Magazine()
+Shop::~Shop()
 {
 	player->UnLoadTextures();
 }
 
-void Magazine::drawMagazine()
+void Shop::drawShop()
 {
 	player->join();
-	checkMagazineDoors();
+	checkShopDoors();
 }
 
-void Magazine::checkMagazineDoors()
+void Shop::checkShopDoors()
 {
 	switch (door)
 	{

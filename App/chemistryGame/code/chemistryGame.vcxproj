@@ -169,7 +169,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="LastRoom.cpp" />
-    <ClCompile Include="Magazine.cpp" />
+    <ClCompile Include="Shop.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pchGame.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -186,7 +186,7 @@
     <ClInclude Include="headers\Game.hpp" />
     <ClInclude Include="headers\Inventory.hpp" />
     <ClInclude Include="headers\LastRoom.hpp" />
-    <ClInclude Include="headers\Magazine.hpp" />
+    <ClInclude Include="headers\Shop.hpp" />
     <ClInclude Include="headers\mixElements.hpp" />
     <ClInclude Include="headers\pchGame.hpp" />
     <ClInclude Include="headers\Player.hpp" />

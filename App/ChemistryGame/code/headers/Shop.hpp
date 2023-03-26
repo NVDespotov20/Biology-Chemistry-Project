@@ -1,15 +1,15 @@
 #pragma once
 #include "Player.hpp"
-class Magazine
+class Shop
 {
 	std::shared_ptr<Player>player;
 	std::shared_ptr<Direction>dir;
 	int door;
 	public:
-	Magazine(int door);
-	Magazine();
-	~Magazine();
-	void drawMagazine();
-	void checkMagazineDoors();
+	Shop(int door);
+	Shop();
+	~Shop();
+	void drawShop();
+	void checkShopDoors();
 };
 
