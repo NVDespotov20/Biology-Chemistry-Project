@@ -22,7 +22,7 @@ private:
 
     int indexOfButtons;
     int fontSize = 20;
-
+    int sizeOfmuscleButtons;
     float WIDTH;
     float HEIGHT;
 
@@ -31,7 +31,7 @@ private:
     Texture2D previousButton;
 
     Button backButton;
-    Button muscles[8];
+    Button muscles[11];
 
     Rectangle nextButtonRec;
     Rectangle previousButtonRec;
