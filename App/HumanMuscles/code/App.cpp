@@ -98,14 +98,15 @@ void App::setSizes()
 	muscles[0].setLabel("Chest");
 	muscles[1].setLabel("Core");
 	muscles[2].setLabel("Forearms");
-	muscles[3].setLabel("Calves");
-	muscles[4].setLabel("Shoulders");
-	muscles[5].setLabel("Biceps");
-	muscles[6].setLabel("Triceps");
-	muscles[7].setLabel("Traps");
-	muscles[8].setLabel("Lats");
-	muscles[9].setLabel("Glutes");
-	muscles[10].setLabel("Hamstrings");
+	muscles[3].setLabel("Quads");
+	muscles[4].setLabel("Calves");
+	muscles[5].setLabel("Shoulders");
+	muscles[6].setLabel("Biceps");
+	muscles[7].setLabel("Triceps");
+	muscles[8].setLabel("Traps");
+	muscles[9].setLabel("Lats");
+	muscles[10].setLabel("Glutes");
+	muscles[11].setLabel("Hamstrings");
 }
 
 void App::drawHumanAndButtons()
@@ -145,24 +146,28 @@ void App::showVideosAndInfo(int indexOfMuscle)
 	/*
 		LEGEND:
 		
-		0 == Biceps
-		1 == Traps
-		2 == Legs
-		3 == Triceps
-		4 == Shoulders
-		5 == Back
-		6 == Chest
-		7 == Core
+		0	==	Chest
+		1	==	Core
+		2	==	Forearms
+		3	==	Quads
+		4	==	Calves
+		5	==	Shoulders
+		6	==	Biceps
+		7	==	Triceps
+		8	==	Traps
+		9	==	Lats
+		10	==	Glutes
+		11	==	Hamstrings
 	*/
-	if (indexOfMuscle == 0 || indexOfMuscle == 3 || indexOfMuscle == 4)
+	if (indexOfMuscle == 0 || indexOfMuscle == 1 || indexOfMuscle == 2 || indexOfMuscle == 3 || indexOfMuscle == 4)
 	{
-		sideOfHumanRec.x = WIDTH / 1.5f; // Side view
+		sideOfHumanRec.x = 0; // Front view
 		return;
 	}
 
-	if (indexOfMuscle == 1 || indexOfMuscle == 2 || indexOfMuscle == 6 || indexOfMuscle == 7)
+	if (indexOfMuscle == 5 || indexOfMuscle == 6 || indexOfMuscle == 7)
 	{
-		sideOfHumanRec.x = 0; // Front view
+		sideOfHumanRec.x = WIDTH / 1.5f; // Side view
 		return;
 	}
 

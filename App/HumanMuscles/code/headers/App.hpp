@@ -31,7 +31,7 @@ private:
     Texture2D previousButton;
 
     Button backButton;
-    Button muscles[11];
+    Button muscles[12];
 
     Rectangle nextButtonRec;
     Rectangle previousButtonRec;
