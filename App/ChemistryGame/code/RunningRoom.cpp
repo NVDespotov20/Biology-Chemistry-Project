@@ -3,14 +3,14 @@
 
 RunningRoom::RunningRoom()
 {
-	//make them smart and delete by themselve
-	player = std::make_shared<Player>();
-	teacher = std::make_shared<Teacher>();
-	
+	////make them smart and delete by themselve
+	//player = std::make_shared<Player>();
+	//teacher = std::make_shared<Teacher>();
+	//
 
-	//loads sprites of the moving people
-	player->LoadSprites(60);
-	teacher->LoadSprites();
+	////loads sprites of the moving people
+	//player->LoadSprites(60);
+	//teacher->LoadSprites();
 }
 
 RunningRoom::RunningRoom(int doors)
@@ -29,9 +29,6 @@ RunningRoom::RunningRoom(int doors)
 
 RunningRoom::~RunningRoom()
 {
-	player->UnLoadTextures();
-	//teacher->UnLoadTextures();
-
 }
 
 void RunningRoom::drawRunningRoom()

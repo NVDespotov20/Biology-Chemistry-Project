@@ -37,12 +37,12 @@ std::shared_ptr<Menu> Menu::getInstantiation()
 
 inline void Menu::load()
 {
-
+    menuBackground = LoadTexture("../assets/images/UI elements/bg.png");
 }
 
 inline void Menu::unload()
 {
-
+    UnloadTexture(menuBackground);
 }
 
 inline bool Menu::isClicked(const Vector2& mPos, const Rectangle& rec)
@@ -52,6 +52,8 @@ inline bool Menu::isClicked(const Vector2& mPos, const Rectangle& rec)
 
 void Menu::drawMainMenu()
 {
+    DrawTexture(menuBackground, 0, 0, WHITE);
+
     mousePoint = GetMousePosition();
 
     if (isClicked(mousePoint, buttonsRecs[0].getBoundingBox()))

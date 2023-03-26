@@ -53,6 +53,10 @@ Player::Player()
 	HeroDir = LEFT;
 }
 
+Player::~Player()
+{
+	UnLoadTextures();
+}
 ////find if the player is colliding item
 //bool findDistance(Player& player, int posX, int posY)
 //{

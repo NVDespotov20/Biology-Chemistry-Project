@@ -21,8 +21,6 @@ private:
 
     Texture2D menuBackground;
 
-    Rectangle menuBackgroundRec;
-
     Vector2 mousePoint;
 
     std::vector<Button> buttonsRecs;

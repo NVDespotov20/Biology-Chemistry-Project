@@ -41,6 +41,7 @@ public:
 	Rectangle view;
 
 	Player();
+	~Player();
 	void LoadSprites(int fps);
 	void Movement();
 	void CheckDir();
