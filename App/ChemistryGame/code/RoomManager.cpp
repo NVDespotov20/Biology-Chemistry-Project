@@ -14,11 +14,6 @@ void RoomManager::manageAndDrawRooms()
 {
 	if (dir->i != rooms.size() - 1 && rooms[dir->i][dir->j] == nullptr)
 	{
-		if (dir->j == 3 && dir->i == 0) {
-
-			ClearBackground(LIGHTGRAY);
-			DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), RED);
-		}
 			
 		if (dir->j > 2)
 			rooms[dir->i][dir->j] = std::make_shared<Rooms>(5 - dir->j);
