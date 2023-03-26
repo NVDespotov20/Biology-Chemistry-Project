@@ -7,6 +7,7 @@ public:
     ~App();
     void drawHumanAndButtons();
     void setSizes();
+    void setButtons();
     void showVideosAndInfo(int indexOfMuscle);
 
     static std::shared_ptr<App> getInstantiation();
@@ -23,15 +24,20 @@ private:
     int indexOfButtons;
     int fontSize = 20;
     int sizeOfmuscleButtons;
+
     float WIDTH;
     float HEIGHT;
 
-    Texture2D humanBody;
     Texture2D nextButton;
     Texture2D previousButton;
 
-    Button backButton;
+    Texture2D humanBody;
+    Texture2D *selectedMuscle;
+    Texture2D muscleTextures[12];
+    std::string muscleNames[12];
+
     Button muscles[12];
+    Button backButton;
 
     Rectangle nextButtonRec;
     Rectangle previousButtonRec;
