@@ -3,6 +3,7 @@
 #include<iostream>
 #include<vector>
 #include<raylib.h>
+#include<raymath.h>
 #include <random>
 #include <chrono>
 #include <string>

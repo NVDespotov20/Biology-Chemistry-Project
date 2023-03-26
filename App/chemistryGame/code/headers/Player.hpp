@@ -1,8 +1,8 @@
 #pragma once
-#include "SplitElements.hpp"
 #include "DoorsManager.hpp"
+#include "SplitElements.hpp"
 
-class Player : public DoorsManager
+class Player : public DoorsManager, public SplitElements
 {
 private:
 	//set textures for the moving player

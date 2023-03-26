@@ -96,6 +96,10 @@ SplitElements::~SplitElements()
 void SplitElements::unload()
 {
 	UnloadTexture(backgroundOfTable);
+	for (int i = 0; i < elementsStrings.size(); i++)
+	{
+		UnloadTexture(elementsTextures[i]);
+	}
 	//UnloadTexture();
 }
 

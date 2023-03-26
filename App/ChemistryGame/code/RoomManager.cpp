@@ -15,6 +15,8 @@ void RoomManager::manageAndDrawRooms()
 	if (dir->i != rooms.size() - 1 && rooms[dir->i][dir->j] == nullptr)
 	{
 		//fill the rooms
+		
+			
 		if (dir->j > 2)
 			rooms[dir->i][dir->j] = std::make_shared<Rooms>(5 - dir->j);
 		else
