@@ -34,7 +34,7 @@ inline void App::load()
 {
 	nextButton = LoadTexture("../assets/images/UI elements/next.png");
 	previousButton = LoadTexture("../assets/images/UI elements/previous.png");
-	humanBody = LoadTexture("../assets/images/muscles/Human_body.png");
+	humanBody = LoadTexture("../assets/images/muscles/body.png");
 }
 
 inline void App::unload()
