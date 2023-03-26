@@ -20,7 +20,6 @@ void RoomManager::manageAndDrawRooms()
 		else
 			rooms[dir->i][dir->j] = std::make_shared<Rooms>(dir->j + 1);
 
-		
 		rooms[dir->i][dir->j]->drawChasingRoom();
 		
 	}
