@@ -61,7 +61,7 @@ void App::switchViews()
 	if (CheckCollisionPointRec(mousePoint, backButton.getBoundingBox()) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 	{
 		auto manager = pch::getInstantiation();
-		manager->dir = pch::Direction::MENU;
+		manager->dir = pch::Direction::QUIT;
 	}
 }
 

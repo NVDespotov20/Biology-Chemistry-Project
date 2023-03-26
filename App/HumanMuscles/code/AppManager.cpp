@@ -9,7 +9,7 @@ AppManager::AppManager()
     InitWindow(0, 0, "Human muscles");
     SetTargetFPS(60);
     ToggleFullscreen();
-    shouldQuit = 1;
+    shouldQuit = false;
 }
 
 AppManager::~AppManager()
@@ -28,7 +28,7 @@ AppManager* AppManager::getInstantiation()
 void AppManager::drawMainLoop()
 {
     
-    while (!WindowShouldClose() && shouldQuit)
+    while (!WindowShouldClose() && !shouldQuit)
     {
         
         BeginDrawing();
@@ -44,33 +44,15 @@ bool AppManager::manageApp()
     std::shared_ptr<pch> manager = pch::getInstantiation();
     switch (manager->dir)
     {
-        case pch::Direction::MENU:
-        {
-
-            menu = Menu::getInstantiation();
-            menu->drawMainMenu();
-            return true;
-            break;
-        }
         case pch::Direction::APP:
         {
-
             std::shared_ptr<App> app = App::getInstantiation();
             app->drawHumanAndButtons();
-            return true;
-            break;
-        }
-        case pch::Direction::OPTIONS:
-        {
-            opt = Options::getInstantiation();
-            opt->drawOptions();
-            return true;
-            break;
+            return false;
         }
         case pch::Direction::QUIT:
         {
-            return false;
-            break;
+            return true;
         }
     }
 }

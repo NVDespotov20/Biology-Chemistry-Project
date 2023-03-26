@@ -8,11 +8,9 @@ class pch
 public:
     enum class Direction
     {
-        MENU,
         APP,
-        OPTIONS,
         QUIT
-    } dir = Direction::MENU;
+    } dir = Direction::APP;
 
     static std::shared_ptr<pch> getInstantiation();
 

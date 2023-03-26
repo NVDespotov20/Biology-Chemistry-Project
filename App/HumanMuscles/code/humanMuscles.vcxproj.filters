@@ -3,8 +3,6 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Options.cpp" />
     <ClCompile Include="AppManager.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -16,12 +14,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\App.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\Menu.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\Options.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\AppManager.hpp">
