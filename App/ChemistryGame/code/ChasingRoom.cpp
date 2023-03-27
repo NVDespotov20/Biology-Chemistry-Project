@@ -83,7 +83,7 @@ void ChasingRoom::drawChasingRoom()
 		positionOfMiniGamePlace = { 1000, 200 };
 		DrawCircleV(positionOfMiniGamePlace, 100, RED);
 
-		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_Q))
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P))
 		{
 			splitElements = std::make_shared<SplitElements>();
 			loadMiniGame = true;
@@ -101,7 +101,7 @@ void ChasingRoom::drawChasingRoom()
 		player->join();
 		inventory->isPickedUp(player->move, item, normalItemsPos);
 		drawNormalItems();
-		if (IsKeyDown(KEY_E))
+		if (IsKeyDown(KEY_TAB))
 		{
 			inventory->drawInventory(item);
 		}

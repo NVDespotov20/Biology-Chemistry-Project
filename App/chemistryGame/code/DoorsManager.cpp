@@ -42,7 +42,7 @@ std::string DoorsManager::isNearDoor(Rectangle& heroPos)
 
 void DoorsManager::enterDoor(std::string& inx)
 {
-	if (IsKeyPressed(KEY_Q))
+	if (IsKeyPressed(KEY_E))
 	{
 		//Draw array of levels of index = inx
 		switch (inx[0])

@@ -7,23 +7,28 @@ public:
 	SplitElements();
 	~SplitElements();
 
+	//int arrays for holders
 	int positionOfMetalsHolder[4];
 	int positionOfNonMetalsHolder[4];
 
+	//rectangles initialization
 	Rectangle elementsInTheBoxRec[4];
 	Rectangle elementsInTheBoxRec2[4];
 	Rectangle elementsInTheHolders[4];
 	Rectangle elementsInTheHolders2[4];
 	Rectangle choice[2];
-	Rectangle submitAnswer;
+	Rectangle backButton;
 
+	//texture initialization
 	Texture2D backgroundOfTable;
-	
-	std::vector<std::string> elementsTexturesStrings;
 
+	//normal vars initialization
 	int saverForIndexOfElement;
 
 	bool chooseMetalOrNonmetal;
+
+	//vectors initialization
+	std::vector<std::string> elementsTexturesStrings;
 
 	std::vector<std::string> checkerForMetals;
 
@@ -45,11 +50,11 @@ public:
 	//random engine from random library
 	std::mt19937 gen;
 
+	//function initialization
 	void drawAndMoveElementsAndHolders();
-	bool checkForSubmission();
-	bool checkForCorection();
 	void unload();
 private:
+	//not accessable from other places vars
 	int WIDTH;
 	int HEIGHT;
 
