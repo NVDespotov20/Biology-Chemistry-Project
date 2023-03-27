@@ -90,7 +90,7 @@ void ChasingRoom::drawChasingRoom()
 		}
 	}
 
-	//draw needed things
+	//draw mini game
 	if (loadMiniGame)
 		splitElements->drawAndMoveElementsAndHolders();
 	else

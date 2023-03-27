@@ -58,7 +58,7 @@ bool InventorySystem::isPickedUp(Rectangle heroPosition,Texture2D&item, std::vec
 void InventorySystem::drawInventory(Texture2D&item)
 {
 	//draw inventory background
-	DrawTextureRec(inventory, inventoryRect, { 200, 100 }, WHITE);
+	DrawTextureRec(inventory, inventoryRect, { WIDTH / 3.5f, HEIGHT / 5.f}, Fade(WHITE, 0.8f));
 
 	//draw items in inventory
 	for (int i = 0; i < itemsInInventoryPos.size(); i++)
