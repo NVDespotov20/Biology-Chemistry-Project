@@ -1,5 +1,5 @@
-#include<pch.hpp>
-#include<AppManager.hpp>
+#include"headers/pch.hpp"
+#include"headers/AppManager.hpp"
 int main()
 {
     AppManager* manager = AppManager::getInstantiation();
