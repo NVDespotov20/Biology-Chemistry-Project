@@ -1,6 +1,15 @@
 #include "pchGame.hpp"
 #include "SplitElements.hpp"
 
+std::shared_ptr<SplitElements> SplitElements::instantiate_ = nullptr;
+
+std::shared_ptr<SplitElements> SplitElements::getInstantiation()
+{
+	if (instantiate_ == nullptr) {
+		instantiate_ = std::shared_ptr<SplitElements>(new SplitElements);
+	}
+	return instantiate_;
+}
 SplitElements::SplitElements()
 {
 	WIDTH = GetScreenWidth();
@@ -117,24 +126,36 @@ SplitElements::~SplitElements()
 //unloads everything
 void SplitElements::unload()
 {
+	//UnloadTexture();
 	UnloadTexture(backgroundOfTable);
 	for (int i = 0; i < elementsStrings.size(); i++)
 	{
 		UnloadTexture(elementsTextures[i]);
 	}
-	//UnloadTexture();
+	for (int i = 0; i < metalsHolders.size(); i++)
+	{
+		UnloadTexture(metalsHolders[i]);
+	}
+	for (int i = 0; i < nonmetalsHolders.size(); i++)
+	{
+		UnloadTexture(nonmetalsHolders[i]);
+	}
 }
 
-void SplitElements::drawAndMoveElementsAndHolders()
+void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 {
 	mousepoint = GetMousePosition();
+
+	
+	if (CheckCollisionPointRec(mousepoint, backButton))
+		loadMiniGame = false;
+
 
 	DrawTexture(backgroundOfTable, 0, 0, WHITE);
 
 	DrawText("Metals", WIDTH / 12.9, HEIGHT / 10, 35, BLACK);
 	DrawText("Nonmetals", WIDTH - WIDTH / 6.4, HEIGHT / 10, 35, BLACK);
 
-	DrawRectangleRec(backButton, GREEN);
 
 	//draw the boxes of the elements
 	for (int i = 0; i < 4; i++)
@@ -234,6 +255,8 @@ void SplitElements::drawAndMoveElementsAndHolders()
 	//chercker when we submit the task
 	if (checkerForMetals.size() == 4)
 		checkElements();
+
+	DrawRectangleRec(backButton, GREEN);
 }
 
 //checks if they are actually metals and nonmetals

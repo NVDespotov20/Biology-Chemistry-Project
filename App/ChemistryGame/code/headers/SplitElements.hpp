@@ -4,7 +4,6 @@ class SplitElements
 {
 
 public:
-	SplitElements();
 	~SplitElements();
 
 	//int arrays for holders
@@ -51,9 +50,14 @@ public:
 	std::mt19937 gen;
 
 	//function initialization
-	void drawAndMoveElementsAndHolders();
+	void drawAndMoveElementsAndHolders(bool& loadMiniGame);
 	void unload();
+	static std::shared_ptr<SplitElements> getInstantiation();
+
+
 private:
+	SplitElements();
+	static std::shared_ptr<SplitElements> instantiate_;
 	//not accessable from other places vars
 	int WIDTH;
 	int HEIGHT;

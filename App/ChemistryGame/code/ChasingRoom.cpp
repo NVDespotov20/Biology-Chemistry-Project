@@ -85,14 +85,16 @@ void ChasingRoom::drawChasingRoom()
 
 		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P))
 		{
-			splitElements = std::make_shared<SplitElements>();
+			splitElements = SplitElements::getInstantiation();
 			loadMiniGame = true;
 		}
 	}
 
 	//draw mini game
-	if (loadMiniGame)
-		splitElements->drawAndMoveElementsAndHolders();
+	if (loadMiniGame) {
+		splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
+		
+	}
 	else
 	{
 		teacher->update(player->playerCords, player->move);
