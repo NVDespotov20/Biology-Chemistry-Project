@@ -3,21 +3,21 @@ class Teacher {
 private:
     Texture2D right;
     Texture2D left;
-    Texture2D up;
-    Texture2D down;
-    Texture2D SpasNPC;
+    Texture2D idle;
+    Texture2D teacherTextureChasing;
+    Texture2D teacherTextureIdle;
 
-    Rectangle SpasNPCView;
+    Rectangle SpasNPCViewChasing;
+    Rectangle SpasNPCViewIdle;
     Rectangle itemRec;
 
-    int counterFlip;
-    int counterFrame;
-
+    int counterFrameIdle;
+    int counterFrameChasing;
     Vector2 position;
 
     bool isSeen;
-public:
     int speed;
+public:
     Teacher();
     ~Teacher();
     void LoadSprites();

@@ -3,8 +3,8 @@
 
 Teacher::Teacher()
 {
-	counterFlip = 0;
-	counterFrame = 0;
+	counterFrameIdle = 0;
+	counterFrameChasing = 0;
 	speed = 100;
 	position.x = 500;
 	position.y = 800;
@@ -22,48 +22,62 @@ void Teacher::LoadSprites()
 {
 	left = LoadTexture("../assets/images/heroSprite/left.png");
 	right = LoadTexture("../assets/images/heroSprite/right.png");
+	idle = LoadTexture("../assets/images/heroSprite/downIdle.png");
 
-	SpasNPC = right;
-	SpasNPCView = { (float)SpasNPC.width / 4, 0, (float)SpasNPC.width / 4, (float)SpasNPC.height };
+	teacherTextureIdle = idle;
+	teacherTextureChasing = right;
+
+	SpasNPCViewChasing = { (float)teacherTextureChasing.width / 4, 0, (float)teacherTextureChasing.width / 4, (float)teacherTextureChasing.height };
+	SpasNPCViewIdle = { (float)teacherTextureIdle.width / 2, 0, (float)teacherTextureIdle.width / 2, (float)teacherTextureIdle.height };
 }
 
 void Teacher::draw()
 {
-	if (counterFrame >= 20)
+	//chasing animation
+	if (counterFrameChasing >= 20)
 	{
-		SpasNPCView.x += SpasNPC.width / 4;
-		counterFrame = 0;
+		SpasNPCViewChasing.x += teacherTextureChasing.width / 4;
+		counterFrameChasing = 0;
 	}
-	if (abs(SpasNPCView.x) > SpasNPC.width)
+	if (abs(SpasNPCViewChasing.x) > teacherTextureChasing.width)
 	{
-		SpasNPCView.x = SpasNPC.width / 4;
+		SpasNPCViewChasing.x = teacherTextureChasing.width / 4;
 	}
-	counterFrame++;
+	counterFrameChasing++;
+
+	//idle
+	if (counterFrameIdle >= 20)
+	{
+		SpasNPCViewIdle.x += teacherTextureIdle.width / 2;
+		counterFrameIdle = 0;
+	}
+	if (abs(SpasNPCViewIdle.x) > teacherTextureIdle.width)
+	{
+		SpasNPCViewIdle.x = teacherTextureIdle.width / 2;
+	}
+	counterFrameIdle++;
 
 	if (isSeen)
-	{
-		DrawTextureRec(SpasNPC, SpasNPCView, Vector2{ position.x, position.y }, WHITE);
-	}
+		DrawTextureRec(teacherTextureChasing, SpasNPCViewChasing, Vector2{ position.x, position.y }, WHITE);
+	else
+		DrawTextureRec(teacherTextureIdle, SpasNPCViewIdle, Vector2{ position.x, position.y }, WHITE);
+
 }
 
 void Teacher::update(Vector2 posHero, Rectangle heroRec)
 {
-
-	if (CheckCollisionPointCircle(posHero, position, 1100) && !isSeen) {
-		isSeen = 1;
-	}
+	//check if a player is near teacher
+	(CheckCollisionPointCircle(posHero, position, 300)) ? isSeen = 1 : isSeen = 0;
 
 	if (isSeen)
 	{
-		(position.x > posHero.x) ? SpasNPC = left : SpasNPC = right;
+		(position.x > posHero.x) ? teacherTextureChasing = left : teacherTextureChasing = right;
 
 		if (CheckCollisionPointCircle(position, posHero, 50))
 		{
 			std::cout << "exit the game" << std::endl;
 		}
-		else {
-			isSeen = 1;
-		}
+
 		if (GetFrameTime() < 1)
 		{
 			float rotation = atan2(posHero.y - position.y, posHero.x - position.x);
@@ -73,28 +87,6 @@ void Teacher::update(Vector2 posHero, Rectangle heroRec)
 	}
 	else
 	{
-		isSeen = 0;
-		if (position.x > 800) {
-			if (counterFlip > 60) {
-				SpasNPC = left;
-				speed = -100;
-			}
-			else {
-				speed *= 0;
-			}
-			counterFlip++;
-		}
-		else if (position.x < 450) {
-			if (counterFlip > 60) {
-				SpasNPC = right;
-				speed = 100;
-			}
-			else {
-				speed *= 0;
-			}
-			counterFlip++;
-		}
-		position.x += speed * GetFrameTime();
-
+		teacherTextureIdle = idle;
 	}
 }
