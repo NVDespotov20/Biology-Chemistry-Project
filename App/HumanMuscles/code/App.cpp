@@ -1,6 +1,6 @@
-#include"headers/pch.hpp"
-#include "headers/App.hpp"
-#include "headers/Button.hpp"
+#include "pch.hpp"
+#include "App.hpp"
+#include "Button.hpp"
 
 std::shared_ptr<App> App::instantiate_ = nullptr;
 
