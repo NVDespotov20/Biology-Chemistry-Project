@@ -68,11 +68,11 @@ SplitElements::SplitElements()
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		elementsInTheBoxRec[i] = { WIDTH / 3.80f + i * 250, HEIGHT / 4.f + (HEIGHT / 4), WIDTH/12.f, HEIGHT/7.f};
-		elementsInTheBoxRec2[i] = { WIDTH / 3.80f + i * 250, HEIGHT / 4.5f + (HEIGHT / 40), WIDTH / 12.f, HEIGHT / 7.f };
+		elementsInTheBoxRec[i] = { WIDTH / 3.80f + i * 250 - WIDTH / 25 - WIDTH / 550, HEIGHT / 4.f + (HEIGHT / 4), WIDTH/12.f, HEIGHT/7.f};
+		elementsInTheBoxRec2[i] = { WIDTH / 3.80f + i * 250 - WIDTH / 25 - WIDTH / 550, HEIGHT / 4.5f + (HEIGHT / 40), WIDTH / 12.f, HEIGHT / 7.f };
 
-		elementsInTheHolders[i] = { WIDTH / 15.f,HEIGHT / 6.f + i * 200,WIDTH / 12.2f,HEIGHT / 7.f };
-		elementsInTheHolders2[i] = { WIDTH - WIDTH / 6.5f,HEIGHT / 6.f + i * 200,WIDTH / 12.f,HEIGHT / 7.f };
+		elementsInTheHolders[i] = { WIDTH / 15.f,HEIGHT / 6.f + i * 175,WIDTH / 12.2f,HEIGHT / 7.f };
+		elementsInTheHolders2[i] = { WIDTH - WIDTH / 6.5f,HEIGHT / 6.f + i * 175,WIDTH / 12.f,HEIGHT / 7.f };
 	}
 
 	for (int i = 0; i < 2; i++)
@@ -114,33 +114,33 @@ void SplitElements::drawAndMoveElementsAndHolders()
 
 	for (int i = 0; i < 4; i++)
 	{
-		DrawRectangleRec(elementsInTheBoxRec2[i], RED);
-		DrawRectangleRec(elementsInTheBoxRec[i], ORANGE);
+		DrawRectangleRec(elementsInTheBoxRec2[i], BLANK);
+		DrawRectangleRec(elementsInTheBoxRec[i], BLANK);
 
-		DrawRectangleRec(elementsInTheHolders[i], GREEN);
-		DrawRectangleRec(elementsInTheHolders2[i], BLUE);
+		DrawRectangleRec(elementsInTheHolders[i], BLANK);
+		DrawRectangleRec(elementsInTheHolders2[i], BLANK);
 	}
 
 	for (int i = 0; i < elementsTextures.size(); i++)
 	{
 		if (i < 4)
 		{
-			DrawTexture(elementsTextures[i], elementsInTheBoxRec2[i].x, elementsInTheBoxRec2[i].y, WHITE);
+			DrawTexture(elementsTextures[i], elementsInTheBoxRec2[i].x - WIDTH / 100, elementsInTheBoxRec2[i].y, WHITE);
 		}
 		else
 		{
-			DrawTexture(elementsTextures[i], elementsInTheBoxRec[i-4].x, elementsInTheBoxRec[i-4].y, WHITE);
+			DrawTexture(elementsTextures[i], elementsInTheBoxRec[i-4].x - WIDTH/100, elementsInTheBoxRec[i-4].y, WHITE);
 		}
 	}
 
 	for (int i = 0; i < metalsHolders.size(); i++)
 	{
-		DrawTexture(metalsHolders[i], elementsInTheHolders[i].x, elementsInTheHolders[i].y, WHITE);
+		DrawTexture(metalsHolders[i], elementsInTheHolders[i].x-WIDTH / 115, elementsInTheHolders[i].y-HEIGHT/150, WHITE);
 	}
 
 	for (int i = 0; i < nonmetalsHolders.size(); i++)
 	{
-		DrawTexture(nonmetalsHolders[i], elementsInTheHolders2[i].x, elementsInTheHolders2[i].y, WHITE);
+		DrawTexture(nonmetalsHolders[i], elementsInTheHolders2[i].x - WIDTH / 135, elementsInTheHolders2[i].y, WHITE);
 	}
 
 	if (!chooseMetalOrNonmetal)
@@ -172,23 +172,23 @@ void SplitElements::drawAndMoveElementsAndHolders()
 		DrawText("Nonmetal", WIDTH / 1.64, HEIGHT / 2.15, 110, PURPLE);
 		if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && CheckCollisionPointRec(mousepoint, choice[0]))
 		{
-			if (metalsHolders.size() < 4)
+			if (metalsHolders.size() < 4 && elementsStrings[saverForIndexOfElement] != "")
 			{
 				metalsHolders.push_back(elementsTextures[saverForIndexOfElement]);
 				checkerForMetals.push_back(elementsStrings[saverForIndexOfElement]);
 				elementsTextures[saverForIndexOfElement] = Texture2D();
-				//elementsTextures.erase(elementsTextures.begin() + saverForIndexOfElement);
+				elementsStrings[saverForIndexOfElement] = "";
 			}
 			chooseMetalOrNonmetal = false;
 		}
 
 		if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && CheckCollisionPointRec(mousepoint, choice[1]))
 		{
-			if (nonmetalsHolders.size() < 4)
+			if (nonmetalsHolders.size() < 4 && elementsStrings[saverForIndexOfElement] != "")
 			{
 				nonmetalsHolders.push_back(elementsTextures[saverForIndexOfElement]);
 				elementsTextures[saverForIndexOfElement] = Texture2D();
-				//elementsTextures.erase(elementsTextures.begin() + saverForIndexOfElement);
+				elementsStrings[saverForIndexOfElement] = "";
 			}
 			chooseMetalOrNonmetal = false;
 		}
@@ -201,6 +201,7 @@ void SplitElements::drawAndMoveElementsAndHolders()
 void SplitElements::checkElements()
 {
 	int counter = 0;
+
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)
@@ -213,6 +214,7 @@ void SplitElements::checkElements()
 			}
 		}
 	}
+
 	if (counter == 4)
 		std::cout << "Congrats\n";
 	else
