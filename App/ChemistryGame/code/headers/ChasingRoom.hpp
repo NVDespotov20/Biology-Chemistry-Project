@@ -3,6 +3,7 @@
 #include "Teacher.hpp"
 #include "Inventory.hpp"
 #include "SplitElements.hpp"
+#include "Navigator.hpp"
 class ChasingRoom
 {
 	int WIDTH;
@@ -12,7 +13,7 @@ class ChasingRoom
 	std::shared_ptr<SplitElements>splitElements;
 	std::string stringDirHolder;
 	std::shared_ptr<Player>player;
-	std::shared_ptr<Direction>dir;
+	std::shared_ptr<Navigator>dir;
 
 
 	//seed that we make different every time

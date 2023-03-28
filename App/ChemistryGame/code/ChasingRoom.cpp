@@ -23,7 +23,7 @@ ChasingRoom::ChasingRoom(int doors)
 	player = std::make_shared<Player>();
 	teacher = std::make_shared<Teacher>();
 	inventory = InventorySystem::getInstantiation();
-	dir = Direction::getInstantiation();
+	dir = Navigator::getInstantiation();
 	//loads sprites of the moving people
 	player->LoadSprites(60);
 	teacher->LoadSprites();

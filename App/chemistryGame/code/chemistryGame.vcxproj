@@ -165,14 +165,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="DoorsManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="LastRoom.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Navigator.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pchGame.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RoomManager.cpp" />
@@ -182,10 +190,14 @@
     <ClCompile Include="Teacher.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.hpp" />
     <ClInclude Include="headers\DoorsManager.hpp" />
     <ClInclude Include="headers\Game.hpp" />
+    <ClInclude Include="headers\GameManager.hpp" />
     <ClInclude Include="headers\Inventory.hpp" />
     <ClInclude Include="headers\LastRoom.hpp" />
+    <ClInclude Include="headers\Menu.hpp" />
+    <ClInclude Include="headers\Navigator.hpp" />
     <ClInclude Include="headers\Shop.hpp" />
     <ClInclude Include="headers\mixElements.hpp" />
     <ClInclude Include="headers\pchGame.hpp" />

@@ -4,7 +4,7 @@
 DoorsManager::DoorsManager()
 {
 	door = LoadTexture("../assets/images/UI elements/door.png");
-	dir = Direction::getInstantiation();
+	dir = Navigator::getInstantiation();
 	positionsOfDoors = {
 		{"left", {0, GetScreenHeight() / 2.f}},
 		{"down", {GetScreenWidth() / 2.f, (float)GetScreenHeight()}},

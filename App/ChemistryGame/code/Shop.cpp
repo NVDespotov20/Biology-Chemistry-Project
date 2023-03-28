@@ -8,7 +8,7 @@ Shop::Shop(int door)
 {
 	this->door = door;
 	player = std::make_shared<Player>();
-	dir = Direction::getInstantiation();
+	dir = Navigator::getInstantiation();
 	player->LoadSprites(60);
 }
 Shop::~Shop()

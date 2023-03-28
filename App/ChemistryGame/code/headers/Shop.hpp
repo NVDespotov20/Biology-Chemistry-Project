@@ -1,9 +1,10 @@
 #pragma once
 #include "Player.hpp"
+#include "Navigator.hpp"
 class Shop
 {
 	std::shared_ptr<Player>player;
-	std::shared_ptr<Direction>dir;
+	std::shared_ptr<Navigator>dir;
 
 	int door;
 

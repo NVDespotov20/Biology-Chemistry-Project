@@ -8,7 +8,7 @@ RoomManager::RoomManager()
 	   {nullptr, nullptr, std::make_shared<Rooms>(4), nullptr, nullptr},
 	   {std::make_shared<Rooms>(1)}
 	};
-	dir = Direction::getInstantiation();
+	dir = Navigator::getInstantiation();
 }
 void RoomManager::manageAndDrawRooms()
 {

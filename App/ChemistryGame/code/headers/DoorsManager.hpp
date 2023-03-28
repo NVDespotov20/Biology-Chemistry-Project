@@ -1,8 +1,9 @@
 #pragma once
+#include "Navigator.hpp"
 class DoorsManager
 {
 	Texture2D door;
-	std::shared_ptr<Direction> dir;
+	std::shared_ptr<Navigator> dir;
 public:
 	std::unordered_map<std::string, Vector2>positionsOfDoors;
 	DoorsManager();

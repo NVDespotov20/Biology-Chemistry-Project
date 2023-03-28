@@ -14,7 +14,7 @@ InventorySystem::InventorySystem()
 	
 
 	//the position where the first item is placed in the inventory
-	positionOfItemsInInventory = { float(WIDTH / 5), float(HEIGHT - HEIGHT / 1.75) };
+	positionOfItemsInInventory = { float(WIDTH / 3), float(HEIGHT - HEIGHT / 1.75) };
 	
 }
 std::shared_ptr<InventorySystem> InventorySystem::instantiate_ = nullptr;
