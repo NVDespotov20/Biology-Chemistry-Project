@@ -74,7 +74,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)</OutDir>
     <IntDir>$(SolutionDir)lib\VSFiles\</IntDir>
-    <IncludePath>$(SolutionDir)HumanMuscles/code/headers</IncludePath>
+    <IncludePath>$(SolutionDir)lib/include;$(SolutionDir)humanMuscles/code/headers</IncludePath>
     <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -86,7 +86,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)</OutDir>
     <IntDir>$(SolutionDir)lib\VSFiles\</IntDir>
-    <IncludePath>$(SolutionDir)HumanMuscles/code/headers</IncludePath>
+    <IncludePath>$(SolutionDir)lib/include;$(SolutionDir)humanMuscles/code/headers</IncludePath>
     <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

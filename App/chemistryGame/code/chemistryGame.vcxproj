@@ -85,13 +85,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)</OutDir>
     <IntDir>$(SolutionDir)lib/gamefiles</IntDir>
-    <IncludePath>$(SolutionDir)chemistryGame/code/headers;$(SolutionDir)humanMuscles/code/headers;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)lib/include;$(SolutionDir)chemistryGame/code/headers</IncludePath>
     <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)</OutDir>
     <IntDir>$(SolutionDir)lib/gamefiles</IntDir>
-    <IncludePath>$(SolutionDir)chemistryGame/code/headers;$(SolutionDir)humanMuscles/code/headers;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)lib/include;$(SolutionDir)chemistryGame/code/headers</IncludePath>
     <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
