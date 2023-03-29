@@ -173,6 +173,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Items.cpp" />
     <ClCompile Include="LastRoom.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Navigator.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="headers\Game.hpp" />
     <ClInclude Include="headers\GameManager.hpp" />
     <ClInclude Include="headers\Inventory.hpp" />
+    <ClInclude Include="headers\Items.hpp" />
     <ClInclude Include="headers\LastRoom.hpp" />
     <ClInclude Include="headers\Menu.hpp" />
     <ClInclude Include="headers\Navigator.hpp" />

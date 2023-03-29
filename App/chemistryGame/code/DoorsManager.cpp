@@ -10,6 +10,30 @@ DoorsManager::DoorsManager()
 		{"down", {GetScreenWidth() / 2.f, (float)GetScreenHeight()}},
 		{"right", {(float)GetScreenWidth(), GetScreenHeight() / 2.f}}
 	};
+
+	randomDoorsLabelsStrings = {
+	"../assets/images/chemistry/Zinc(Zn).png",
+	"../assets/images/chemistry/Copper(Cu).png",
+	"../assets/images/chemistry/Silver(Ag).png",
+	"../assets/images/chemistry/Gold(Au).png",
+	"../assets/images/chemistry/Soldium(Na).png",
+	"../assets/images/chemistry/Sulfur(S).png",
+	"../assets/images/chemistry/Phosphorus(P).png",
+	"../assets/images/chemistry/Carbon(C).png",
+	"../assets/images/chemistry/Chlorine(Cl2).png"
+	};
+
+	seed = std::chrono::steady_clock::now().time_since_epoch().count();
+
+	//generator of new random number with the seed
+	gen.seed(seed);
+
+	std::shuffle(randomDoorsLabelsStrings.begin(), randomDoorsLabelsStrings.end(), gen);
+
+	for (int i = 0; i < 5; i++)
+	{
+		randomizedLabelsStrings.push_back(randomDoorsLabelsStrings[i]);
+	}
 }
 
 DoorsManager::~DoorsManager()
