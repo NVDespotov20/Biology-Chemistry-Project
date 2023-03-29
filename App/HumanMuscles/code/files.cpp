@@ -4,21 +4,11 @@
 
 FileReader::FileReader()
 {
-	lenght = 0;
 }
 
 FileReader::FileReader(std::string path)
 {
-	lenght = 0;
-	file.open(path);
-	if (!file.is_open())
-	{
-		std::cout << "File not loaded path: " << path;
-		return;
-	}
-	file.seekg(0, file.end);
-	lenght = file.tellg();
-	file.seekg(0, file.beg);
+	openFile(path);
 }
 
 FileReader::~FileReader()

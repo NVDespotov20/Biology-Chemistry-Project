@@ -12,7 +12,5 @@ public:
 	std::string getText();
 
 private:
-
 	std::ifstream file;
-	int lenght;
 };
