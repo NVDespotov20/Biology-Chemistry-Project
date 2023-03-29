@@ -1,7 +1,7 @@
 #pragma once
-#include<iostream>
-#include<raylib.h>
-#include<vector>
+#include <iostream>
+#include <raylib.h>
+#include <vector>
 #include <string>
 
 class pch

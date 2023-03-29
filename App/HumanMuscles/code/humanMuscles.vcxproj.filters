@@ -6,7 +6,7 @@
     <ClCompile Include="AppManager.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="files.cpp" />
+    <ClCompile Include="FileReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -26,7 +26,7 @@
     <ClInclude Include="headers\Button.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\files.hpp">
+    <ClInclude Include="headers\FileReader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

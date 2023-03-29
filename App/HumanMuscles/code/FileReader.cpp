@@ -1,6 +1,5 @@
 #include <pch.hpp>
-#include "files.hpp"
-#include "files.hpp"
+#include "FileReader.hpp"
 
 FileReader::FileReader()
 {
@@ -18,14 +17,12 @@ FileReader::~FileReader()
 
 void FileReader::openFile(std::string path)
 {
-	if (file.is_open())
-		closeFile();
+	closeFile();
 
 	file.open(path);
 	if (!file.is_open())
 	{
 		std::cout << "File not loaded path: " << path;
-		return;
 	}
 }
 

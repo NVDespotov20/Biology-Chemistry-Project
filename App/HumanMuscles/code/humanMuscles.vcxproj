@@ -155,7 +155,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AppManager.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="files.cpp" />
+    <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -168,7 +168,7 @@
     <ClInclude Include="headers\App.hpp" />
     <ClInclude Include="headers\AppManager.hpp" />
     <ClInclude Include="headers\Button.hpp" />
-    <ClInclude Include="headers\files.hpp" />
+    <ClInclude Include="headers\FileReader.hpp" />
     <ClInclude Include="headers\pch.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
