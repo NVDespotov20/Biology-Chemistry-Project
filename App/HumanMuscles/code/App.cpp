@@ -75,6 +75,9 @@ void App::switchViews()
 
 		if (selectedMuscle)
 			selectedMuscle = nullptr;
+
+		if (!muscleInfo.empty())
+			muscleInfo = "";
 		return;
 	}
 
@@ -84,6 +87,9 @@ void App::switchViews()
 
 		if (selectedMuscle)
 			selectedMuscle = nullptr;
+
+		if (!muscleInfo.empty())
+			muscleInfo = "";
 		return;
 	}
 
@@ -174,7 +180,8 @@ void App::drawHumanAndButtons()
 	}
 
 	DrawLineEx(lineOfButtons[0], lineOfButtons[1], 5, BLACK);
-
+	if (!muscleInfo.empty())
+		DrawText(muscleInfo.c_str(), 10, 100, fontSize, BLACK);
 }
 
 
@@ -196,6 +203,11 @@ void App::showInfo(int indexOfMuscle)
 		10	==	Glutes
 		11	==	Hamstrings
 	*/
+
+	fReader.openFile("../assets/textFiles/" + muscleNames[indexOfMuscle] + ".txt");
+	muscleInfo = fReader.getText();
+	fReader.closeFile();
+
 	selectedMuscle = &muscleTextures[indexOfMuscle];
 
 	if (indexOfMuscle == 0 || indexOfMuscle == 1 || indexOfMuscle == 2 || indexOfMuscle == 3 || indexOfMuscle == 4)

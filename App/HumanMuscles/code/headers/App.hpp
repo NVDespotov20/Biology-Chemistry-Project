@@ -1,5 +1,6 @@
 #pragma once
 #include "Button.hpp"
+#include "files.hpp"
 
 class App
 {
@@ -47,4 +48,6 @@ private:
     Vector2 sideOfHumanVec;
     Vector2 lineOfButtons[2];
 
+    FileReader fReader;
+    std::string muscleInfo;
 };
