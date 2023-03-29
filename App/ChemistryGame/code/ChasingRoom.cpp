@@ -60,10 +60,7 @@ void ChasingRoom::drawChasingRoom()
 	{
 		inventory->isPickedUp(player->move, items->item, items->normalItemsPos);
 		items->drawNormalItems();
-		if (IsKeyDown(KEY_TAB))
-		{
-			inventory->drawInventory(items->item);
-		}
+		
 	}
 	//draw mini game
 	if (loadMiniGame) {
@@ -72,11 +69,15 @@ void ChasingRoom::drawChasingRoom()
 	}
 	else
 	{
+		//update teacher
 		teacher->update(player->playerCords, player->move);
 		teacher->draw();
+
 		//update player
 		player->join();
-		
+
+		if (IsKeyDown(KEY_TAB))
+			inventory->drawInventory(items->item);
 		//check doors
 		checkDoors();
 	}
@@ -87,52 +88,52 @@ void ChasingRoom::checkDoors()
 {
 	switch (this->doors)
 	{
-	case 1:
-	{
-		//remove unneeded doors
-		if (dir->j > 2) {
+		case 1:
+		{
+			//remove unneeded doors
+			if (dir->j > 2) {
+				player->positionsOfDoors.erase("down");
+				player->positionsOfDoors.erase("right");
+			}
+			else {
+				player->positionsOfDoors.erase("down");
+				player->positionsOfDoors.erase("left");
+			}
+
+
+			//draw and check if player is near door
+			player->drawDoors();
+			stringDirHolder = player->isNearDoor(player->move);
+			player->enterDoor(stringDirHolder);
+
+		}break;
+		case 2:
+		{
 			player->positionsOfDoors.erase("down");
-			player->positionsOfDoors.erase("right");
-		}
-		else {
-			player->positionsOfDoors.erase("down");
-			player->positionsOfDoors.erase("left");
-		}
 
+			//draw and check if player is near door
+			player->drawDoors();
+			stringDirHolder = player->isNearDoor(player->move);
+			player->enterDoor(stringDirHolder);
+		}break;
+		case 3:
+		{
+			//draw and check if player is near door
+			player->drawDoors();
+			stringDirHolder = player->isNearDoor(player->move);
+			player->enterDoor(stringDirHolder);
 
-		//draw and check if player is near door
-		player->drawDoors();
-		stringDirHolder = player->isNearDoor(player->move);
-		player->enterDoor(stringDirHolder);
+		}break;
+		case 4:
+		{
+			player->positionsOfDoors.insert({ "up", {GetScreenWidth() / 2.f, 0} });
 
-	}break;
-	case 2:
-	{
-		player->positionsOfDoors.erase("down");
+			//draw and check if player is near door
+			player->drawDoors();
+			stringDirHolder = player->isNearDoor(player->move);
+			player->enterDoor(stringDirHolder);
 
-		//draw and check if player is near door
-		player->drawDoors();
-		stringDirHolder = player->isNearDoor(player->move);
-		player->enterDoor(stringDirHolder);
-	}break;
-	case 3:
-	{
-		//draw and check if player is near door
-		player->drawDoors();
-		stringDirHolder = player->isNearDoor(player->move);
-		player->enterDoor(stringDirHolder);
-
-	}break;
-	case 4:
-	{
-		player->positionsOfDoors.insert({ "up", {GetScreenWidth() / 2.f, 0} });
-
-		//draw and check if player is near door
-		player->drawDoors();
-		stringDirHolder = player->isNearDoor(player->move);
-		player->enterDoor(stringDirHolder);
-
-	}break;
+		}break;
 	}
 }
 
