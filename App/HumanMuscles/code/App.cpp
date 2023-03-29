@@ -169,7 +169,7 @@ void App::drawHumanAndButtons()
 		{
 			muscles[i].draw(0.4f, 10, SKYBLUE, BLACK);
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-				showVideosAndInfo(i);
+				showInfo(i);
 		}
 	}
 
@@ -178,7 +178,7 @@ void App::drawHumanAndButtons()
 }
 
 
-void App::showVideosAndInfo(int indexOfMuscle)
+void App::showInfo(int indexOfMuscle)
 {
 	/*
 		LEGEND:

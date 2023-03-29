@@ -8,7 +8,7 @@ public:
     void drawHumanAndButtons();
     void setSizes();
     void setButtons();
-    void showVideosAndInfo(int indexOfMuscle);
+    void showInfo(int indexOfMuscle);
 
     static std::shared_ptr<App> getInstantiation();
 
