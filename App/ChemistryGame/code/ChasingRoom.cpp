@@ -65,7 +65,8 @@ void ChasingRoom::drawChasingRoom()
 	//draw mini game
 	if (loadMiniGame) {
 		splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
-		
+		if (player->checkerForMetals.size() == 4)
+			splitElements->checkElements();
 	}
 	else
 	{

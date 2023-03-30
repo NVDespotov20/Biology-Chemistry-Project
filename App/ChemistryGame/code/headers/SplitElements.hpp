@@ -55,6 +55,7 @@ public:
 	static std::shared_ptr<SplitElements> getInstantiation();
 
 
+	bool checkElements();
 private:
 	SplitElements();
 	static std::shared_ptr<SplitElements> instantiate_;
@@ -64,5 +65,4 @@ private:
 
 	Vector2 mousepoint;
 
-	void checkElements();
 };

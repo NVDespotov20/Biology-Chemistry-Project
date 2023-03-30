@@ -260,7 +260,7 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 }
 
 //checks if they are actually metals and nonmetals
-void SplitElements::checkElements()
+bool SplitElements::checkElements()
 {
 	int counter = 0;
 
@@ -278,8 +278,6 @@ void SplitElements::checkElements()
 	}
 
 	//if you did right you earn money if not then RUN the teacher starts to chase you
-	if (counter == 4)
-		std::cout << "Congrats\n";
-	else
-		std::cout << "Too bad\n";
+	return (counter == 4);
+	
 }
