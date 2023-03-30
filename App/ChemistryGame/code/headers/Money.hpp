@@ -3,10 +3,14 @@ class Money
 {
 	Money();
 	~Money();
-	void drawMoney();;
-	
+	void addMoney();
+
 	int money;
 	int allMoney, allMoneyCopy, moneySpent;
 	std::string printMoney;
+public:
+	void drawMoney();
+	bool insertMoney;
+
 };
 

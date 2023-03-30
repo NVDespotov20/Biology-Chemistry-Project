@@ -43,6 +43,8 @@ public:
 
 	std::vector<Texture2D> nonmetalsHolders;
 
+	int counter;
+
 	//seed that we make different every time
 	unsigned seed;
 

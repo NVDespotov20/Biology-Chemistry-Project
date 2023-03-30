@@ -44,6 +44,7 @@ ChasingRoom::~ChasingRoom()
 
 void ChasingRoom::drawChasingRoom()
 {
+	money->drawMoney();
 	//check if a map elemts have to draw mini game
 	if (dir->j == 3 && dir->i == 0)
 	{
@@ -65,8 +66,10 @@ void ChasingRoom::drawChasingRoom()
 	//draw mini game
 	if (loadMiniGame) {
 		splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
-		if (player->checkerForMetals.size() == 4)
-			splitElements->checkElements();
+		
+		if (splitElements->checkerForMetals.size() == 4)
+			teacher->isSeen = splitElements->checkElements();
+			money->insertMoney = splitElements->checkElements();
 	}
 	else
 	{

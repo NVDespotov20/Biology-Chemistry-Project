@@ -15,9 +15,9 @@ private:
     int counterFrameChasing;
     Vector2 position;
 
-    bool isSeen;
     int speed;
 public:
+    bool isSeen;
     Teacher();
     ~Teacher();
     void LoadSprites();

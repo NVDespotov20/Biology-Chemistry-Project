@@ -26,6 +26,8 @@ SplitElements::SplitElements()
 	positionOfNonMetalsHolder[2] = HEIGHT - HEIGHT / 2;
 	positionOfNonMetalsHolder[3] = HEIGHT - HEIGHT / 2.25;
 
+	counter = 0;
+
 	//strings of all elements
 	elementsTexturesStrings = {
 	"../assets/images/chemistry/Zinc(Zn).png",
@@ -252,9 +254,7 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 			}
 		}
 	}
-	//chercker when we submit the task
-	if (checkerForMetals.size() == 4)
-		checkElements();
+	
 
 	DrawRectangleRec(backButton, GREEN);
 }
@@ -262,7 +262,6 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 //checks if they are actually metals and nonmetals
 bool SplitElements::checkElements()
 {
-	int counter = 0;
 
 	for (int i = 0; i < 4; i++)
 	{

@@ -5,6 +5,7 @@
 #include "SplitElements.hpp"
 #include "Navigator.hpp"
 #include "Items.hpp"
+#include "Money.hpp"
 class ChasingRoom
 {
 	int WIDTH;
@@ -12,6 +13,8 @@ class ChasingRoom
 	std::shared_ptr<Teacher>teacher;
 	std::shared_ptr<InventorySystem>inventory;
 	std::shared_ptr<Items>items;
+	std::shared_ptr<Money>money;
+
 	std::shared_ptr<SplitElements>splitElements;
 	std::string stringDirHolder;
 	std::shared_ptr<Player>player;
