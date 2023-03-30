@@ -33,18 +33,16 @@ private:
 		DOWN
 	}HeroDir;
 public:
-	bool MoveBg;
 	Vector2 playerCords;
 	Rectangle move;
 	Texture2D playerSprite;
 	Rectangle view;
-
 	Player();
 	~Player();
 	void LoadSprites(int fps);
 	void Movement();
 	void CheckDir();
 	void CheckWalls();
-	void join();
+	void joinInRoom();
 	void UnLoadTextures();
 };

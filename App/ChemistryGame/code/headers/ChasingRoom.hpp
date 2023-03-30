@@ -20,8 +20,7 @@ class ChasingRoom
     std::shared_ptr<Player>player;
     std::shared_ptr<Navigator>dir;
 
-
-
+    std::vector<const char*> stringsBackgroundName;
     int doors;
     bool loadMiniGame;
     bool miniGamePlayed;

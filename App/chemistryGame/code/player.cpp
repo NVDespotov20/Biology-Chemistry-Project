@@ -1,7 +1,7 @@
 #include "pchGame.hpp"
 #include "Player.hpp"
 
-void Player::join()
+void Player::joinInRoom()
 {
 	CheckDir();
 	Movement();
@@ -12,17 +12,6 @@ void Player::join()
 }
 void Player::LoadSprites(int fps)
 {
-	//player textures
-	/*down = LoadTexture("../assets/images/heroSprite/WalkDown.png");
-	up = LoadTexture("../assets/images/heroSprite/WalkUp.png");
-	left = LoadTexture("../assets/images/heroSprite/walkLeft.png");
-	right = LoadTexture("../assets/images/heroSprite/walkRight.png");*/
-
-	//idle textures
-	/*idleD = LoadTexture("../assets/images/heroSprite/IdleFront.png");
-	idleU = LoadTexture("../assets/images/heroSprite/IdleUp.png");
-	idleL = LoadTexture("../assets/images/heroSprite/IdleLeft.png");
-	idleR = LoadTexture("../assets/images/heroSprite/IdleRight.png");*/
 
 	playerSprites = {
 		 LoadTexture("../assets/images/heroSprite/walkLeft.png"),
@@ -31,18 +20,18 @@ void Player::LoadSprites(int fps)
 		 LoadTexture("../assets/images/heroSprite/WalkDown.png"),
 	};
 
-	for (auto& sprites : playerSprites)
-	{
-		sprites.width = 390;
-		sprites.height = 143;
-	}
-
 	idleSprites = {
 		LoadTexture("../assets/images/heroSprite/IdleLeft.png"),
 		LoadTexture("../assets/images/heroSprite/IdleRight.png"),
 		LoadTexture("../assets/images/heroSprite/IdleUp.png"),
 		LoadTexture("../assets/images/heroSprite/IdleFront.png")
 	};
+
+	for (auto& sprites : playerSprites)
+	{
+		sprites.width = 390;
+		sprites.height = 143;
+	}
 
 	for (auto& sprites : idleSprites)
 	{
@@ -63,8 +52,7 @@ Player::Player()
 	playerCords.y = GetScreenHeight() / 2;
 	HorizotnalOrVertical[0] = 0;
 	HorizotnalOrVertical[1] = 0;
-	speed.x = 100;
-	speed.y = 100;
+	speed = { 100, 100 };
 	animationSpeed = 6;
 	HeroDir = LEFT;
 }
@@ -73,18 +61,6 @@ Player::~Player()
 {
 	UnLoadTextures();
 }
-////find if the player is colliding item
-//bool findDistance(Player& player, int posX, int posY)
-//{
-//
-//	if (abs(player.playerCords.x - (posX + player.XBg)) <= player.enemyDistance && abs(player.playerCords.y - (posY + player.YBg)) <= player.enemyDistance)
-//	{
-//		return 1;
-//	}
-//	else {
-//		return 0;
-//	}
-//}
 
 //switch sprite when button is clicked
 void Player::CheckDir()
