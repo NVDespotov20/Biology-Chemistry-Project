@@ -8,17 +8,15 @@ std::shared_ptr<Money> Money::instantiate_ = nullptr;
 
 std::shared_ptr<Money> Money::getInstantiation()
 {
-	if (instantiate_ == nullptr)
-	{
-		instantiate_ = std::shared_ptr<Money>(new Money);
-	}
-	return instantiate_;
+    if (instantiate_ == nullptr)
+    {
+        instantiate_ = std::shared_ptr<Money>(new Money);
+    }
+    return instantiate_;
 }
 Money::Money()
 {
-	money = 0;
-	allMoney = 0;
-	allMoneyCopy = 500;
+    money = 0;
 }
 
 Money::~Money()
@@ -28,11 +26,10 @@ Money::~Money()
 
 void Money::addMoney()
 {
-	allMoney += 500;
+    money += 500;
 }
 
 void Money::drawMoney()
 {
-	printMoney = std::to_string(allMoney);
-	DrawText(printMoney.c_str(), 85, 50, 50, GOLD);
+    DrawText(std::to_string(money).c_str(), 85, 50, 50, GOLD);
 }

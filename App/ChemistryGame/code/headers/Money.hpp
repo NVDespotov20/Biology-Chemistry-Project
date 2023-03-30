@@ -1,21 +1,19 @@
 #pragma once
 class Money
 {
-	//singleton
+    //singleton
 
-	static std::shared_ptr<Money> instantiate_;
-	public:
-	Money();
-	~Money();
+    static std::shared_ptr<Money> instantiate_;
 
 public:
-	static std::shared_ptr<Money> getInstantiation();
-	bool insertMoney;
-	int money;
-	int allMoney, allMoneyCopy, moneySpent;
-	std::string printMoney;
-	void addMoney();
-	void drawMoney();
+    Money();
+    ~Money();
 
+    static std::shared_ptr<Money> getInstantiation();
+
+    void addMoney();
+    void drawMoney();
+
+private:
+    int money;
 };
-

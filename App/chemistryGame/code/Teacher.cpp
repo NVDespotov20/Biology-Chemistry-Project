@@ -67,7 +67,7 @@ void Teacher::draw()
 void Teacher::update(Vector2 posHero, Rectangle heroRec)
 {
 	//check if a player is near teacher
-	(CheckCollisionPointCircle(posHero, position, 300)) ? isSeen = 1 : isSeen = 0;
+	//(CheckCollisionPointCircle(posHero, position, 300)) ? isSeen = 1 : isSeen = 0;
 
 	if (isSeen)
 	{
@@ -75,7 +75,7 @@ void Teacher::update(Vector2 posHero, Rectangle heroRec)
 
 		if (CheckCollisionPointCircle(position, posHero, 50))
 		{
-			std::cout << "exit the game" << std::endl;
+			// Insert among us kill animation here
 		}
 
 		if (GetFrameTime() < 1)
