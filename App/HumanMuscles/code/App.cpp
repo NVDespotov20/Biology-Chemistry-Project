@@ -7,9 +7,11 @@ std::shared_ptr<App> App::instantiate_ = nullptr;
 App::App()
 {
 	// Initialize members
-	WIDTH = GetScreenWidth();
-	HEIGHT = GetScreenHeight();
+	WIDTH = GetScreenWidth() * 0.9f;
+	HEIGHT = GetScreenHeight() * 0.9f;
 
+	offsetX = GetScreenWidth() * 0.1f;
+	offsetY = GetScreenHeight() * 0.1f;
 	mousePoint = { 0,0 };
 
 	selectedMuscle = nullptr;
@@ -103,8 +105,8 @@ void App::switchViews()
 void App::setSizes()
 {
 	fontSize = HEIGHT / 36;
-	
-	backButton = Button ("Exit", 0, 0, HEIGHT / 8, HEIGHT / 21.6, fontSize); //size of back button
+
+	backButton = Button("Exit", offsetX, offsetY, HEIGHT / 8, HEIGHT / 21.6, fontSize); //size of back button
 
 	nextButton.width = WIDTH / 38.4f;
 	nextButton.height = HEIGHT / 14.4f;
@@ -112,36 +114,36 @@ void App::setSizes()
 	previousButton.width = WIDTH / 38.4f;
 	previousButton.height = HEIGHT / 14.4f;
 
-	nextButtonRec = { WIDTH / 1.5f, HEIGHT / 2.f, (float)nextButton.width ,(float)nextButton.height };
-	previousButtonRec = { WIDTH / 3.8f, HEIGHT / 2.f, (float)nextButton.width ,(float)nextButton.height };
+	nextButtonRec =		{ offsetX + WIDTH / 1.5f, offsetY + HEIGHT / 2.f, (float)nextButton.width ,(float)nextButton.height };
+	previousButtonRec = { offsetX + WIDTH / 3.8f, offsetY + HEIGHT / 2.f, (float)nextButton.width ,(float)nextButton.height };
 
 	humanBody.width = WIDTH / 2.f;
 	humanBody.height = HEIGHT / 2.f;
 
-	for (int i = 0; i < sizeOfmuscleButtons; ++i) 
+	for (int i = 0; i < sizeOfmuscleButtons; ++i)
 	{
 		muscleTextures[i].width = humanBody.width;
 		muscleTextures[i].height = humanBody.height;
 	}
 
-	lineOfButtons[0] = { WIDTH - WIDTH / 4.f, 0.f };
-	lineOfButtons[1] = { WIDTH - WIDTH / 4.f, HEIGHT };
+	lineOfButtons[0] = { offsetX + WIDTH - WIDTH / 4.f, offsetY + 0.f };
+	lineOfButtons[1] = { offsetX + WIDTH - WIDTH / 4.f, offsetY + HEIGHT };
 
 	sideOfHumanRec = { 0, 0, (float)humanBody.width / 3.f, (float)humanBody.height };
-	sideOfHumanVec = { WIDTH / 2.5f, HEIGHT / 4.f };
+	sideOfHumanVec = { offsetX + WIDTH / 2.5f, offsetY + HEIGHT / 4.f };
 
-	
+
 }
 
 void App::setButtons()
 {
 	float	buttonHeight = HEIGHT / 21.6f,
-			spaceBetweenButtons = HEIGHT / 36.f,
-			buttonY = (HEIGHT - (sizeOfmuscleButtons * buttonHeight + (sizeOfmuscleButtons - 1) * spaceBetweenButtons)) / 2;
+		spaceBetweenButtons = HEIGHT / 36.f,
+		buttonY = (HEIGHT - (sizeOfmuscleButtons * buttonHeight + (sizeOfmuscleButtons - 1) * spaceBetweenButtons)) / 2;
 
-	for (int i = 0; i < sizeOfmuscleButtons; ++i, buttonY += buttonHeight + spaceBetweenButtons) 
+	for (int i = 0; i < sizeOfmuscleButtons; ++i, buttonY += buttonHeight + spaceBetweenButtons)
 	{
-		muscles[i] = Button("BUTTON", WIDTH - WIDTH / 5.f, buttonY, WIDTH / 6.f, HEIGHT / 21.6f, fontSize);
+		muscles[i] = Button("BUTTON", offsetX + WIDTH - WIDTH / 5.f, offsetY + buttonY, WIDTH / 6.f, HEIGHT / 21.6f, fontSize);
 		muscles[i].setLabel(muscleNames[i].c_str());
 	}
 
@@ -156,7 +158,7 @@ void App::drawHumanAndButtons()
 
 	backButton.draw(0.4f, 1, RED, BLACK);
 
-	
+
 	if (selectedMuscle)
 	{
 		DrawTextureRec(humanBody, sideOfHumanRec, sideOfHumanVec, Fade(GRAY, 0.6f));
@@ -164,9 +166,9 @@ void App::drawHumanAndButtons()
 	}
 	else
 		DrawTextureRec(humanBody, sideOfHumanRec, sideOfHumanVec, WHITE);
-	
-	DrawTexture(nextButton, WIDTH / 1.5f, HEIGHT / 2.f, WHITE);
-	DrawTexture(previousButton, WIDTH / 3.8f, HEIGHT / 2.f, WHITE);
+
+	DrawTexture(nextButton, nextButtonRec.x, nextButtonRec.y, WHITE);
+	DrawTexture(previousButton, previousButtonRec.x, previousButtonRec.y, WHITE);
 
 	for (int i = 0; i < sizeOfmuscleButtons; ++i)
 	{
@@ -189,7 +191,7 @@ void App::showInfo(int indexOfMuscle)
 {
 	/*
 		LEGEND:
-		
+
 		0	==	Chest
 		1	==	Core
 		2	==	Forearms

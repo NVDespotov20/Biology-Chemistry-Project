@@ -26,8 +26,8 @@ private:
     int fontSize = 20;
     int sizeOfmuscleButtons;
 
-    float WIDTH;
-    float HEIGHT;
+    float WIDTH, offsetX;
+    float HEIGHT, offsetY;
 
     Texture2D nextButton;
     Texture2D previousButton;
