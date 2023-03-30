@@ -23,7 +23,9 @@ ChasingRoom::ChasingRoom(int doors)
 	//make them smart and delete by themselve
 	player = std::make_shared<Player>();
 	teacher = std::make_shared<Teacher>();
+	//singleton Instantiation
 	inventory = InventorySystem::getInstantiation();
+	money = Money::getInstantiation();
 	items = Items::getInstantiation();
 	dir = Navigator::getInstantiation();
 	//loads sprites of the moving people
