@@ -6,6 +6,7 @@
 #include "Navigator.hpp"
 #include "Items.hpp"
 #include "Money.hpp"
+#include "CheckValency.hpp"
 class ChasingRoom
 {
     int WIDTH;
@@ -19,6 +20,7 @@ class ChasingRoom
     std::string stringDirHolder;
     std::shared_ptr<Player>player;
     std::shared_ptr<Navigator>dir;
+    std::shared_ptr<CheckValency> checkValency;
 
     std::vector<const char*> stringsBackgroundName;
     int doors;

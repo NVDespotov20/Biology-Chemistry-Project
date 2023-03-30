@@ -3,7 +3,9 @@
 
 Shop::Shop()
 {
+
 }
+
 Shop::Shop(int door)
 {
 	this->door = door;
@@ -11,6 +13,7 @@ Shop::Shop(int door)
 	dir = Navigator::getInstantiation();
 	player->LoadSprites(60);
 }
+
 Shop::~Shop()
 {
 	player->UnLoadTextures();
@@ -18,7 +21,7 @@ Shop::~Shop()
 
 void Shop::drawShop()
 {
-	player->join();
+	//player->join();
 	checkShopDoors();
 }
 

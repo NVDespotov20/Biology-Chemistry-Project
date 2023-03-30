@@ -30,15 +30,17 @@ SplitElements::SplitElements()
 
 	//strings of all elements
 	elementsTexturesStrings = {
-	"../assets/images/chemistry/Zinc(Zn).png",
-	"../assets/images/chemistry/Copper(Cu).png",
-	"../assets/images/chemistry/Silver(Ag).png",
-	"../assets/images/chemistry/Gold(Au).png",
-	"../assets/images/chemistry/Soldium(Na).png",
-	"../assets/images/chemistry/Sulfur(S).png",
-	"../assets/images/chemistry/Phosphorus(P).png",
-	"../assets/images/chemistry/Carbon(C).png",
-	"../assets/images/chemistry/Chlorine(Cl2).png"
+	"Zinc(Zn)",
+	"Copper(Cu)",
+	"Silver(Ag)",
+	"Gold(Au)",
+	"Soldium(Na)",
+	"Sulfur(S)",
+	"Phosphorus(P)",
+	"Carbon(C)",
+	"Chlorine(Cl2)",
+	"Hydrogen(H2)",
+	"Oxygen(O2)"
 	};
 
 	//random seed for the numbers
@@ -47,15 +49,16 @@ SplitElements::SplitElements()
 	//generator of new random number with the seed
 	gen.seed(seed);
 
+
 	//push split metals and nonmetals
 	for (int i = 0; i < 5; i++)
 	{
-		metalElementsStrings.push_back(elementsTexturesStrings[i]);
+		metalElementsStrings.push_back("../assets/images/chemistry/" + elementsTexturesStrings[i] + ".png");
 	}
 
-	for (int i = 5; i < 9; i++)
+	for (int i = 5; i < 11; i++)
 	{
-		nonmetalElementsStrings.push_back(elementsTexturesStrings[i]);
+		nonmetalElementsStrings.push_back("../assets/images/chemistry/" + elementsTexturesStrings[i] + ".png");
 	}
 
 	//shuffle them to get ranodm only 4 of them
@@ -111,7 +114,7 @@ SplitElements::SplitElements()
 	for (int i = 0; i < elementsTextures.size(); i++)
 	{
 		elementsTextures[i].width = WIDTH / 10;
-		elementsTextures[i].height = HEIGHT / 7;
+		elementsTextures[i].height = HEIGHT / 5.5;
 	}
 
 	//set place and size for back button

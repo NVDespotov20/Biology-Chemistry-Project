@@ -13,16 +13,19 @@ DoorsManager::DoorsManager()
 	};
 
 	randomDoorsLabelsStrings = {
-	"../assets/images/chemistry/Zinc(Zn).png",
-	"../assets/images/chemistry/Copper(Cu).png",
-	"../assets/images/chemistry/Silver(Ag).png",
-	"../assets/images/chemistry/Gold(Au).png",
-	"../assets/images/chemistry/Soldium(Na).png",
-	"../assets/images/chemistry/Sulfur(S).png",
-	"../assets/images/chemistry/Phosphorus(P).png",
-	"../assets/images/chemistry/Carbon(C).png",
-	"../assets/images/chemistry/Chlorine(Cl2).png"
+	"Zinc(Zn)",
+	"Copper(Cu)",
+	"Silver(Ag)",
+	"Gold(Au)",
+	"Soldium(Na)",
+	"Sulfur(S)",
+	"Phosphorus(P)",
+	"Carbon(C)",
+	"Chlorine(Cl2)",
+	"Hydrogen(H2)",
+	"Oxygen(O2)"
 	};
+
 
 	seed = std::chrono::steady_clock::now().time_since_epoch().count();
 
@@ -33,7 +36,7 @@ DoorsManager::DoorsManager()
 
 	for (int i = 0; i < 5; i++)
 	{
-		randomizedLabelsStrings.push_back(randomDoorsLabelsStrings[i]);
+		randomizedLabelsStrings.push_back("../assets/images/chemistry/" + randomDoorsLabelsStrings[i] + ".png");
 	}
 }
 

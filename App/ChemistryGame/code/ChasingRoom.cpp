@@ -25,15 +25,18 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	money = Money::getInstantiation();
 	items = Items::getInstantiation();
 	dir = Navigator::getInstantiation();
+
 	//loads sprites of the moving people
 	player->LoadSprites(60);
 	teacher->LoadSprites();
+
 	stringsBackgroundName = {
-		"PGKPI Classroom.png",
-		"PGKPI_Classroom_Dark.png",
-		"PGKPI Room.png",
-		"PGKPI.png"
+		"../assets/images/chemistry/SpawnRoom.png",
+		"../assets/images/chemistry/RoomOne.png",
+		"../assets/images/chemistry/RoomTwo.png",
+		"../assets/images/chemistry/RoomThree.png"
 	};
+
 	loadMiniGame = 0;
 	miniGamePlayed = false;
 	positionOfMiniGamePlace = { 0,0 };
@@ -93,10 +96,14 @@ void ChasingRoom::drawMiniGame()
 {
 	splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
 
+	//checkValency->CheckValency::CheckValency();
+	//checkValency->saveValency();
+	//checkValency->drawAndCheckElementsAndHolders();
+
 	if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)
 	{
-		miniGamePlayed = false;
-		return;
+	miniGamePlayed = false;
+	return;
 	}
 	miniGamePlayed = true;
 	bool tmp = splitElements->checkElements();
