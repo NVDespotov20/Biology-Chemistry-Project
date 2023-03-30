@@ -14,15 +14,12 @@ ChasingRoom::ChasingRoom()
 	//teacher->LoadSprites();
 }
 
-ChasingRoom::ChasingRoom(int doors)
+ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenHeight()), doors(doors)
 {
-	//variables that we use to make everything responsive
-	WIDTH = GetScreenWidth();
-	HEIGHT = GetScreenHeight();
-
 	//make them smart and delete by themselve
 	player = std::make_shared<Player>();
 	teacher = Teacher::getInstantiation();
+
 	//singleton Instantiation
 	inventory = InventorySystem::getInstantiation();
 	money = Money::getInstantiation();
@@ -31,12 +28,15 @@ ChasingRoom::ChasingRoom(int doors)
 	//loads sprites of the moving people
 	player->LoadSprites(60);
 	teacher->LoadSprites();
-	this->doors = doors;
+	stringsBackgroundName = {
+		"PGKPI Classroom.png",
+		"PGKPI_Classroom_Dark.png",
+		"PGKPI Room.png",
+		"PGKPI.png"
+	};
 	loadMiniGame = 0;
 	miniGamePlayed = false;
 	positionOfMiniGamePlace = { 0,0 };
-
-
 }
 
 ChasingRoom::~ChasingRoom()
@@ -47,11 +47,13 @@ ChasingRoom::~ChasingRoom()
 
 void ChasingRoom::drawChasingRoom()
 {
+
 	money->drawMoney();
 	
 	//check if a map elemts have to draw mini game
 	if (dir->j == 3 && dir->i == 0)
 	{
+		//right up
 		positionOfMiniGamePlace = { 1000, 200 };
 		DrawCircleV(positionOfMiniGamePlace, 100, RED);
 
@@ -61,23 +63,25 @@ void ChasingRoom::drawChasingRoom()
 			loadMiniGame = true;
 		}
 	}
-	if (dir->j == 1 && dir->i == 1)
-	{
-		inventory->isPickedUp(player->move, items->item, items->normalItemsPos);
-		items->drawNormalItems();
-	}
-
+	//also for right
 	if (loadMiniGame)
 	{
 		drawMiniGame();
 		return;
+	}
+
+	//left down
+	if (dir->j == 1 && dir->i == 1)
+	{
+		inventory->isPickedUp(player->move, items->item, items->normalItemsPos);
+		items->drawNormalItems();
 	}
 	//update teacher
 	teacher->update(player->playerCords, player->move);
 	teacher->draw();
 
 	//update player
-	player->join();
+	player->joinInRoom();
 
 	if (IsKeyDown(KEY_TAB))
 		inventory->drawInventory(items->item);
