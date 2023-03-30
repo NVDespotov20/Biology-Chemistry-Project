@@ -8,33 +8,50 @@ void Player::join()
 
 	//draw player
 	DrawTexturePro(playerSprite, view, move, Vector2{ 10, 10 }, 0, WHITE);
-	
+
 }
 void Player::LoadSprites(int fps)
 {
-	down = LoadTexture("../assets/images/heroSprite/down.png");
-	up = LoadTexture("../assets/images/heroSprite/up.png");
-	left = LoadTexture("../assets/images/heroSprite/left.png");
-	right = LoadTexture("../assets/images/heroSprite/right.png");
+	//player textures
+	/*down = LoadTexture("../assets/images/heroSprite/WalkDown.png");
+	up = LoadTexture("../assets/images/heroSprite/WalkUp.png");
+	left = LoadTexture("../assets/images/heroSprite/walkLeft.png");
+	right = LoadTexture("../assets/images/heroSprite/walkRight.png");*/
 
-	//idle source
-	idleD = LoadTexture("../assets/images/heroSprite/downIdle.png");
-	idleU = LoadTexture("../assets/images/heroSprite/upIdle.png");
-	idleL = LoadTexture("../assets/images/heroSprite/leftIdle.png");
-	idleR = LoadTexture("../assets/images/heroSprite/rightIdle.png");
+	//idle textures
+	/*idleD = LoadTexture("../assets/images/heroSprite/IdleFront.png");
+	idleU = LoadTexture("../assets/images/heroSprite/IdleUp.png");
+	idleL = LoadTexture("../assets/images/heroSprite/IdleLeft.png");
+	idleR = LoadTexture("../assets/images/heroSprite/IdleRight.png");*/
 
-	playerSprites.push_back(left);
-	playerSprites.push_back(right);
-	playerSprites.push_back(up);
-	playerSprites.push_back(down);
+	playerSprites = {
+		 LoadTexture("../assets/images/heroSprite/walkLeft.png"),
+		 LoadTexture("../assets/images/heroSprite/walkRight.png"),
+		 LoadTexture("../assets/images/heroSprite/WalkUp.png"),
+		 LoadTexture("../assets/images/heroSprite/WalkDown.png"),
+	};
 
-	idleSprites.push_back(idleL);
-	idleSprites.push_back(idleR);
-	idleSprites.push_back(idleU);
-	idleSprites.push_back(idleD);
+	for (auto& sprites : playerSprites)
+	{
+		sprites.width = 390;
+		sprites.height = 143;
+	}
 
-	lim = (float)idleD.width / 2;
-	view = { lim, 0, (float)idleD.width / 2, (float)idleD.height };
+	idleSprites = {
+		LoadTexture("../assets/images/heroSprite/IdleLeft.png"),
+		LoadTexture("../assets/images/heroSprite/IdleRight.png"),
+		LoadTexture("../assets/images/heroSprite/IdleUp.png"),
+		LoadTexture("../assets/images/heroSprite/IdleFront.png")
+	};
+
+	for (auto& sprites : idleSprites)
+	{
+		sprites.width = 195;
+		sprites.height = 143;
+	}
+
+	lim = (float)idleSprites[0].width / 2;
+	view = { lim, 0, (float)idleSprites[0].width / 2, (float)idleSprites[0].height };
 
 	this->fps = fps;
 }
@@ -48,7 +65,6 @@ Player::Player()
 	HorizotnalOrVertical[1] = 0;
 	speed.x = 100;
 	speed.y = 100;
-	MoveBg = 1;
 	animationSpeed = 6;
 	HeroDir = LEFT;
 }

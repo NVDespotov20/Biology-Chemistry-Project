@@ -3,39 +3,28 @@
 
 Game::Game()
 {
-	// Initialization of the window and setting name and starting coordinates of the window
-	InitWindow(1000, 1000, "Chemistry game");
-
-	// Set our game to run at 60 frames-per-second
-	SetTargetFPS(60);
-
-	//Set our game to be on fullscreen
-	//ToggleFullscreen();
-	manager = std::make_shared<RoomManager>();
-
+	HEIGHT = GetScreenHeight();
+	WIDTH = GetScreenWidth();
+	roomManager = std::make_shared<RoomManager>();
+	fontSize = HEIGHT / 36;
+	backButton = Button("Menu", 0, 0, HEIGHT / 8, HEIGHT / 21.6, fontSize); //size of back button
 }
 
 //destructor - unloads and closes everything
 Game::~Game()
 {
 
-	CloseWindow();
 }
 
 //The main loop where we call all the functions
 void Game::mainLoop()
 {
-	while (!WindowShouldClose())
+	mousePoint = GetMousePosition();
+	if (CheckCollisionPointRec(mousePoint, backButton.getBoundingBox()) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 	{
-
-		BeginDrawing();
-
-		////set background
-		ClearBackground(RAYWHITE);
-
-		//player->drawAndMoveElementsAndHolders();
-		manager->manageAndDrawRooms();
-
-		EndDrawing();
+		auto manager = Navigator::getInstantiation();
+		manager->dir = Navigator::Navigate::MENU;
 	}
+	backButton.draw(0.4f, 1, RED, BLACK);
+	roomManager->manageAndDrawRooms();
 }

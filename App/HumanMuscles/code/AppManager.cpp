@@ -1,5 +1,5 @@
-#include<pch.hpp>  
-#include <AppManager.hpp>
+#include "pch.hpp"
+#include "AppManager.hpp"
 
 AppManager* AppManager::instantiate_ = nullptr;
 

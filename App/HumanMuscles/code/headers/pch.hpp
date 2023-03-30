@@ -1,7 +1,8 @@
 #pragma once
-#include<iostream>
-#include<raylib.h>
-#include<vector>
+#include <iostream>
+#include <raylib.h>
+#include <vector>
+#include <string>
 
 class pch
 {
@@ -13,6 +14,7 @@ public:
     } dir = Direction::APP;
 
     static std::shared_ptr<pch> getInstantiation();
+
 
 private:
     static std::shared_ptr<pch> instantiate_;

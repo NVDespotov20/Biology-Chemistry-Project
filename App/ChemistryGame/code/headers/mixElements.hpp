@@ -1,10 +1,10 @@
 #pragma once
-
 class mixElements
 {
 public:
 	mixElements();
 	~mixElements();
+
 
 	Texture2D water;
 	
