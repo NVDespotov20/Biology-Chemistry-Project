@@ -24,6 +24,7 @@ class ChasingRoom
 
     int doors;
     bool loadMiniGame;
+    bool miniGamePlayed;
     Vector2 positionOfMiniGamePlace;
 public:
     ChasingRoom();

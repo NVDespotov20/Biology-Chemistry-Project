@@ -1,5 +1,6 @@
 #pragma once
 #include "Navigator.hpp"
+#include "Teacher.hpp"
 class DoorsManager
 {
 	Texture2D door;
@@ -13,6 +14,7 @@ class DoorsManager
 	//implement random with <random>
 
 	std::shared_ptr<Navigator> dir;
+	std::shared_ptr<Teacher> teacher;
 public:
 	std::unordered_map<std::string, Vector2>positionsOfDoors;
 	DoorsManager();

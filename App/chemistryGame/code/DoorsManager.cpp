@@ -5,6 +5,7 @@ DoorsManager::DoorsManager()
 {
 	door = LoadTexture("../assets/images/UI elements/door.png");
 	dir = Navigator::getInstantiation();
+	teacher = Teacher::getInstantiation();
 	positionsOfDoors = {
 		{"left", {0, GetScreenHeight() / 2.f}},
 		{"down", {GetScreenWidth() / 2.f, (float)GetScreenHeight()}},
@@ -73,6 +74,8 @@ void DoorsManager::enterDoor(std::string& inx)
 		{
 			case 'u':
 			{
+				teacher->changePosition(Vector2{500, 800});
+				teacher->setActive(false);
 				//Load level 1
 				dir->i--;
 				dir->j = 2;
@@ -80,6 +83,8 @@ void DoorsManager::enterDoor(std::string& inx)
 			}
 			case 'd':
 			{
+				teacher->changePosition(Vector2{500, 800});
+				teacher->setActive(false);
 				//Load level 2
 				dir->i++;
 				dir->j = 2;
@@ -87,12 +92,16 @@ void DoorsManager::enterDoor(std::string& inx)
 			}
 			case 'l':
 			{
+				teacher->changePosition(Vector2{500, 800});
+				teacher->setActive(false);
 				//Load level 3
 				dir->j--;
 				break;
 			}
 			case 'r':
 			{
+				teacher->changePosition(Vector2{500, 800});
+				teacher->setActive(false);
 				//Load level 3
 				dir->j++;
 				break;

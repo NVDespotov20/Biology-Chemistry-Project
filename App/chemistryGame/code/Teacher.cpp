@@ -6,8 +6,7 @@ Teacher::Teacher()
 	counterFrameIdle = 0;
 	counterFrameChasing = 0;
 	speed = 100;
-	position.x = 500;
-	position.y = 800;
+	position = { 500, 800 };
 	isSeen = 0;
 }
 
@@ -16,8 +15,20 @@ Teacher::~Teacher()
 	UnloadTexture(left);
 	UnloadTexture(right);
 }
+//implement singleton
+std::shared_ptr<Teacher> Teacher::instantiate_ = nullptr;
 
-
+std::shared_ptr<Teacher> Teacher::getInstantiation()
+{
+	if (instantiate_ == nullptr) {
+		instantiate_ = std::shared_ptr<Teacher>(new Teacher);
+	}
+	return instantiate_;
+}
+void Teacher::setActive(bool state)
+{
+	isSeen = state;
+}
 void Teacher::LoadSprites()
 {
 	left = LoadTexture("../assets/images/heroSprite/left.png");
@@ -63,7 +74,10 @@ void Teacher::draw()
 		DrawTextureRec(teacherTextureIdle, SpasNPCViewIdle, Vector2{ position.x, position.y }, WHITE);
 
 }
-
+void Teacher::changePosition(Vector2 newPos)
+{
+	position = newPos;
+}
 void Teacher::update(Vector2 posHero, Rectangle heroRec)
 {
 	//check if a player is near teacher

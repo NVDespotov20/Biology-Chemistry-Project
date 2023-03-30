@@ -4,13 +4,13 @@
 GameManager::GameManager()
 {
     // Initialization of the window and setting name and starting coordinates of the window
-    InitWindow(0, 0, "Chemistry GameManager");
+    InitWindow(2000, 1000, "Chemistry GameManager");
 
     // Set our GameManager to run at 60 frames-per-second
     SetTargetFPS(60);
 
     //Set our GameManager to be on fullscreen
-    ToggleFullscreen();
+    //ToggleFullscreen();
     game = std::make_shared<Game>();
     menu = std::make_shared<Menu>();
 

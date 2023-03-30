@@ -1,6 +1,9 @@
 #pragma once
 class Teacher {
+
+
 private:
+    static std::shared_ptr<Teacher> instantiate_;
     Texture2D right;
     Texture2D left;
     Texture2D idle;
@@ -16,11 +19,15 @@ private:
     Vector2 position;
 
     int speed;
-public:
     bool isSeen;
     Teacher();
+
+public:
+    static std::shared_ptr<Teacher> getInstantiation();
     ~Teacher();
     void LoadSprites();
     void update(Vector2 posHero, Rectangle heroRec);
     void draw();
+    void changePosition(Vector2 newPos);
+    void setActive(bool state);
 };

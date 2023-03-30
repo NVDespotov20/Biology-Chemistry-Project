@@ -22,7 +22,7 @@ ChasingRoom::ChasingRoom(int doors)
 
 	//make them smart and delete by themselve
 	player = std::make_shared<Player>();
-	teacher = std::make_shared<Teacher>();
+	teacher = Teacher::getInstantiation();
 	//singleton Instantiation
 	inventory = InventorySystem::getInstantiation();
 	money = Money::getInstantiation();
@@ -33,6 +33,7 @@ ChasingRoom::ChasingRoom(int doors)
 	teacher->LoadSprites();
 	this->doors = doors;
 	loadMiniGame = 0;
+	miniGamePlayed = false;
 	positionOfMiniGamePlace = { 0,0 };
 
 
@@ -54,7 +55,7 @@ void ChasingRoom::drawChasingRoom()
 		positionOfMiniGamePlace = { 1000, 200 };
 		DrawCircleV(positionOfMiniGamePlace, 100, RED);
 
-		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P))
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGamePlayed)
 		{
 			splitElements = SplitElements::getInstantiation();
 			loadMiniGame = true;
@@ -89,13 +90,19 @@ void ChasingRoom::drawMiniGame()
 	splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
 
 	if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)
+	{
+		miniGamePlayed = false;
 		return;
-
+	}
+	miniGamePlayed = true;
 	bool tmp = splitElements->checkElements();
 	if (tmp) money->addMoney();
-	teacher->isSeen = !tmp;
+	teacher->setActive(!tmp);
 	loadMiniGame = false;
 }
+
+
+
 
 void ChasingRoom::checkDoors()
 {
