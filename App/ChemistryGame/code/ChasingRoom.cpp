@@ -25,6 +25,7 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	money = Money::getInstantiation();
 	items = Items::getInstantiation();
 	dir = Navigator::getInstantiation();
+	checkValency = CheckValency::getInstantiation();
 
 	//loads sprites of the moving people
 	player->LoadSprites(60);
@@ -94,22 +95,20 @@ void ChasingRoom::drawChasingRoom()
 
 void ChasingRoom::drawMiniGame()
 {
-	splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
+	//splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
 
-	//checkValency->CheckValency::CheckValency();
-	//checkValency->saveValency();
-	//checkValency->drawAndCheckElementsAndHolders();
+	checkValency->drawAndCheckElementsAndHolders();
 
-	if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)
-	{
-	miniGamePlayed = false;
-	return;
-	}
-	miniGamePlayed = true;
-	bool tmp = splitElements->checkElements();
-	if (tmp) money->addMoney();
-	teacher->setActive(!tmp);
-	loadMiniGame = false;
+	//if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)
+	//{
+	//miniGamePlayed = false;
+	//return;
+	//}
+	//miniGamePlayed = true;
+	//bool tmp = splitElements->checkElements();
+	//if (tmp) money->addMoney();
+	//teacher->setActive(!tmp);
+	//loadMiniGame = false;
 }
 
 

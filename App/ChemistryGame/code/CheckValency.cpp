@@ -1,5 +1,16 @@
 #include "pchGame.hpp"
 #include "CheckValency.hpp"
+#include <iostream>
+
+std::shared_ptr<CheckValency> CheckValency::instantiate_ = nullptr;
+
+std::shared_ptr<CheckValency> CheckValency::getInstantiation()
+{
+	if (instantiate_ == nullptr) {
+		instantiate_ = std::shared_ptr<CheckValency>(new CheckValency);
+	}
+	return instantiate_;
+}
 
 CheckValency::CheckValency() 
 {
@@ -8,16 +19,16 @@ CheckValency::CheckValency()
 	HEIGHT = GetScreenHeight();
 
 	valencyTwo = {
-		"Zinc(Zn)",
-		"Copper(Cu)",
-		"Oxygen(O2)"
+		"../assets/images/chemistry/Zinc(Zn).png",
+		"../assets/images/chemistry/Copper(Cu).png",
+		"../assets/images/chemistry/Oxygen(O2).png"
 	};
 
 	valencyOne = {
-		"Silver(Ag)",
-		"Gold(Au)",
-		"Soldium(Na)",
-		"Hydrogen(H2)"
+		"../assets/images/chemistry/Silver(Ag).png",
+		"../assets/images/chemistry/Gold(Au).png",
+		"../assets/images/chemistry/Soldium(Na).png",
+		"../assets/images/chemistry/Hydrogen(H2).png"
 	};
 
 	saver = 0;
@@ -30,15 +41,9 @@ CheckValency::CheckValency()
 
 	//std::shuffle(elementsTexturesStrings.begin(), elementsTexturesStrings.end(), gen);
 
-	
 	std::shuffle(valencyOne.begin(), valencyOne.end(), gen);
 	std::shuffle(valencyTwo.begin(), valencyTwo.end(), gen);
-	
-	for (int i = 0; i < 3; i++)
-	{
-		valencyTwo[i] = "../assets/images/chemistry/" + valencyTwo[i] + ".png";
-		valencyOne[i] = "../assets/images/chemistry/" + valencyOne[i] + ".png";
-	}
+
 
     theChosenThreeStrings.push_back((valencyTwo[0].c_str()));
 
@@ -48,6 +53,11 @@ CheckValency::CheckValency()
 	}
 
     std::shuffle(theChosenThreeStrings.begin(), theChosenThreeStrings.end(), gen);
+
+	for(int i=0;i<3;i++)
+	{
+		answersRec[i] = {200+i*100.f, 400, 250, 250};
+	}
 }
 
 
@@ -82,8 +92,21 @@ void CheckValency::drawAndCheckElementsAndHolders()
 
 	for (int i = 0; i < 3; i++)
 	{
-        DrawTexture(theChosenThree[i], WIDTH/4, HEIGHT/3,BLUE);
+		theChosenThree.push_back(LoadTexture(theChosenThreeStrings[i].c_str()));	
 	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		theChosenThree[i].width = 250;
+		theChosenThree[i].height = 300;
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		DrawTexture(theChosenThree[i],200*i+200,500,WHITE);
+		DrawRectangleRec(answersRec[i], LIME);
+	}
+
 }
 
 CheckValency::~CheckValency()

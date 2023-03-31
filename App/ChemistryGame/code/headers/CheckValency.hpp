@@ -27,10 +27,13 @@ public:
 
 	unsigned seed;
 
+	Rectangle answersRec[3];
+
 	//random engine from random library
 	std::mt19937 gen;
 
-
+	static std::shared_ptr<CheckValency> getInstantiation();
+	static std::shared_ptr<CheckValency> instantiate_;
 private:
 
 
