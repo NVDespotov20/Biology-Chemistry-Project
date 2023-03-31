@@ -97,6 +97,7 @@ void ChasingRoom::drawMiniGame()
 {
 	//splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
 
+	checkValency->saveValency();
 	checkValency->drawAndCheckElementsAndHolders();
 
 	//if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)

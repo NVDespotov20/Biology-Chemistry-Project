@@ -14,7 +14,8 @@ std::shared_ptr<CheckValency> CheckValency::getInstantiation()
 
 CheckValency::CheckValency() 
 {
-    
+	//mousePoint = GetMousePosition();
+
     WIDTH = GetScreenWidth();
 	HEIGHT = GetScreenHeight();
 
@@ -30,8 +31,6 @@ CheckValency::CheckValency()
 		"../assets/images/chemistry/Soldium(Na).png",
 		"../assets/images/chemistry/Hydrogen(H2).png"
 	};
-
-	saver = 0;
 
 	//random seed for the numbers
 	seed = std::chrono::steady_clock::now().time_since_epoch().count();
@@ -54,10 +53,26 @@ CheckValency::CheckValency()
 
     std::shuffle(theChosenThreeStrings.begin(), theChosenThreeStrings.end(), gen);
 
-	for(int i=0;i<3;i++)
+	for (int i = 0; i < 9; i++)
 	{
-		answersRec[i] = {200+i*100.f, 400, 250, 250};
+		answersRec[i] = {
+			(50 + i * 200) * WIDTH / 1920.f,
+			800 * HEIGHT / 1080.f,
+			150 * WIDTH / 1920.f,
+			150 * HEIGHT / 1080.f
+		};
 	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		containersRec[i] = {
+			(30 + i * 600) * WIDTH / 1920.f,
+			470 * HEIGHT / 1080.f,
+			590 * WIDTH / 1920.f,
+			500 * HEIGHT / 1080.f
+		};
+	}
+	
 }
 
 
@@ -77,15 +92,17 @@ void CheckValency::saveValency()
 
 void CheckValency::drawAndCheckElementsAndHolders()
 {
+	mousePoint = GetMousePosition();
+
 	for (int i = 0; i < 3; i++)
 	{
 		if (saver == i)
 		{
-			answersArray[i] = 2;
+			rightAnswersArray[i] = 2;
 		}
 		else
 		{
-			answersArray[i] = 1;
+			rightAnswersArray[i] = 1;
 		}
 
 	}
@@ -97,16 +114,43 @@ void CheckValency::drawAndCheckElementsAndHolders()
 
 	for (int i = 0; i < 3; i++)
 	{
-		theChosenThree[i].width = 250;
-		theChosenThree[i].height = 300;
+		theChosenThree[i].width = 200;
+		theChosenThree[i].height = 250;
+
+		DrawTexture(theChosenThree[i], 600 * i + 235, 450, WHITE);
+		DrawRectangleLinesEx(containersRec[i], 10, BLACK);
 	}
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 9; i++)
 	{
-		DrawTexture(theChosenThree[i],200*i+200,500,WHITE);
 		DrawRectangleRec(answersRec[i], LIME);
 	}
 
+	for (int i = 1; i < 4; i++)
+	{
+		for (int j = 1; j < 4; j++)
+		{
+			DrawText(std::to_string(i).c_str(), 600 + (j-2) * 650 + i *200, 770, 50, BLACK);
+		}
+	}
+
+	for (int i = 1; i < 10; i++)
+	{
+		if (IsMouseButtonPressed && CheckCollisionPointRec(mousePoint, answersRec[i]))
+		{
+			//std::cout << "yes" << std::endl;
+			givenAnswers[i] = i;
+		}
+	}
+	std::cout << mousePoint.x << "    " << mousePoint.y << std::endl;
+	if (givenAnswers[0] != 0 or givenAnswers[1] != 0 or givenAnswers[2] != 0)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			//::cout << "given :" << givenAnswers[i] << "        right: " << rightAnswersArray[i] << std::endl;
+		}
+	}
+	
 }
 
 CheckValency::~CheckValency()

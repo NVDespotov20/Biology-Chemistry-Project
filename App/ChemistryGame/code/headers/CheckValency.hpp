@@ -10,6 +10,8 @@ public:
 	void saveValency(); 
 	void drawAndCheckElementsAndHolders();
 
+	Vector2 mousePoint;
+
 	int WIDTH;
 	int HEIGHT;
 
@@ -23,11 +25,15 @@ public:
 
 	std::vector<Texture2D> theChosenThree;
 
-	int answersArray[3]; 
+	int rightAnswersArray[3]; 
+
+	int givenAnswers[3];
 
 	unsigned seed;
 
-	Rectangle answersRec[3];
+	Rectangle answersRec[9];
+
+	Rectangle containersRec[3];
 
 	//random engine from random library
 	std::mt19937 gen;
