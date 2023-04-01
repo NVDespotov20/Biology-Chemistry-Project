@@ -24,8 +24,11 @@ class ChasingRoom
 
     std::vector<std::string> stringsBackgroundName;
     int doors;
-    bool loadMiniGame;
-    bool miniGamePlayed;
+
+    bool loadCheckValencyMiniGame;
+    bool loadSplitElementsMiniGame;
+    bool miniGameSplitElementsPlayed;
+    bool miniGameCheckValencyPlayed;
     Vector2 positionOfMiniGamePlace;
     
     Texture2D background;
@@ -35,7 +38,8 @@ public:
     ChasingRoom(int doors);
     ~ChasingRoom();
     void drawChasingRoom();
-    void drawMiniGame();
+    void drawSplitElementsMiniGame();
+    void drawCheckValencyMiniGame();
 
     void checkDoors();
 };

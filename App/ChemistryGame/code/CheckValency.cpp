@@ -16,10 +16,10 @@ CheckValency::CheckValency()
 {
 	//mousePoint = GetMousePosition();
 
-	givenAnswers.resize(3);
-
     WIDTH = GetScreenWidth();
 	HEIGHT = GetScreenHeight();
+
+	counterForAccuracy = 0;
 
 	background.width = WIDTH;
 	background.height = HEIGHT;
@@ -94,10 +94,10 @@ CheckValency::CheckValency()
 	
 }
 
-
-
-void CheckValency::saveValency()
+void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 {
+	mousePoint = GetMousePosition();
+
 	for (int i = 0; i < 3; i++)
 	{
         // Compare the file paths using the == operator
@@ -107,23 +107,13 @@ void CheckValency::saveValency()
 		}
 		
 	}
-}
-
-void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
-{
-	mousePoint = GetMousePosition();
-
 	for (int i = 0; i < 3; i++)
 	{
+		rightAnswersArray[i] = 1 + i * 3;
 		if (saver == i)
 		{
-			rightAnswersArray[i] = 2 + i * 3;
+			rightAnswersArray[i]++;
 		}
-		else
-		{
-			rightAnswersArray[i] = 1 + i * 3;
-		}
-
 	}
 
 	DrawTexture(background, 0, 0, WHITE);
@@ -150,46 +140,52 @@ void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 	}
 
 
-	//int k = 1;
-	//while (k < 10)
-	//{
-	//	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, answersRec[k]))
-	//	{
-	//		if (givenAnswers.size() < 3)
-	//		{
-	//			if (givenAnswers.size() > 1 && k < 4)
-	//			{
-	//				givenAnswers.push_back(k);
-	//			}
-	//			if (givenAnswers.size() == 1 && k < 7 && k >3)
-	//			{
-	//				givenAnswers.push_back(k);
-	//			}
-	//			if(givenAnswers.size() > 1 && k > 7)
-	//			{
-	//				givenAnswers.push_back(k);
-	//			}
-	//		}
-	//		k++;
-	//	}
-	//}
-
-	//if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, answersRec[0]) && givenAnswers.at(0))
-	//{
-
-	//}
-
-	//if (givenAnswers.size() == 3)
-	//{
-	//	for (int i = 0; i < 3; i++)
-	//	{
-	//		std::cout << "given index:   " << i << "    given answer:   " << givenAnswers.at(i) << "    right index: " << i << "right answer:" << rightAnswersArray[i];
-	//	}
-	//	std::cout << std::endl;
-	//}
-
+	for (int i = 0; i < 9; i++)
+	{
+		if (CheckCollisionPointRec(mousePoint, answersRec[i]))
+		{
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+			{
+				if (givenAnswers.size() < 3) {
+					if (givenAnswers.size() == 0) {
+						if (i >= 0 && i <= 2) {
+							givenAnswers.push_back(i+1);
+						}
+					}
+					else if (givenAnswers.size() == 1) {
+						if (i >= 3 && i <= 5) {
+							givenAnswers.push_back(i+1);
+						}
+					}
+					else if (givenAnswers.size() == 2) {
+						if (i >= 6 && i <= 8) {
+							givenAnswers.push_back(i+1);
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
+
+bool CheckValency::checkAccuracy()
+{
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (givenAnswers[i] == rightAnswersArray[i])
+		{
+			++counterForAccuracy;
+			break;
+		}
+		
+	}
+
+	//if you did right you earn money if not then RUN the teacher starts to chase you
+	return (counterForAccuracy == 3);
+
+}
 
 CheckValency::~CheckValency()
 {

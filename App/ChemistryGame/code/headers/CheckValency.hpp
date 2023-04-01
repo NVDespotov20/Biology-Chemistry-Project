@@ -7,10 +7,11 @@ public:
 	CheckValency();
 	~CheckValency();
 
-	void saveValency(); 
 	void drawAndCheckElementsAndHolders(bool &loadMiniGame);
+	bool checkAccuracy();
 	void unload(); 
 
+	int counterForAccuracy;
 
 	int rightAnswersArray[3];
 	int saver;

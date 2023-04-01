@@ -26,7 +26,6 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	money = Money::getInstantiation();
 	items = Items::getInstantiation();
 	dir = Navigator::getInstantiation();
-	checkValency = CheckValency::getInstantiation();
 
 	//loads sprites of the moving people
 	player->LoadSprites(60);
@@ -44,8 +43,10 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 		stringsBackgroundName.at(i) = "../assets/image/chemistry/Rooms/"+ stringsBackgroundName.at(i) + ".png";
 	}
 
-	loadMiniGame = 0;
-	miniGamePlayed = false;
+	loadSplitElementsMiniGame = 0;
+	loadCheckValencyMiniGame = 0;
+	miniGameSplitElementsPlayed = false;
+	miniGameCheckValencyPlayed = false;
 	positionOfMiniGamePlace = { 0,0 };
 }
 
@@ -67,16 +68,41 @@ void ChasingRoom::drawChasingRoom()
 		positionOfMiniGamePlace = { 1000, 200 };
 		DrawCircleV(positionOfMiniGamePlace, 100, RED);
 
-		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGamePlayed)
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameCheckValencyPlayed)
 		{
-			splitElements = SplitElements::getInstantiation();
-			loadMiniGame = true;
+			checkValency = CheckValency::getInstantiation();
+			loadCheckValencyMiniGame = true;
 		}
 	}
-	//also for right
-	if (loadMiniGame)
+
+	if (dir->j == 2 && dir->i == 0)
 	{
-		drawMiniGame();
+		//right bot
+	}
+
+	if (dir->j == 2 && dir->i == 1)
+	{
+		//center bot
+		positionOfMiniGamePlace = { 1000, 600 };
+		DrawCircleV(positionOfMiniGamePlace, 100, ORANGE);
+
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameSplitElementsPlayed)
+		{
+			splitElements = SplitElements::getInstantiation();
+			loadSplitElementsMiniGame = true;
+		}
+	}
+
+	//also for right
+	if (loadCheckValencyMiniGame)
+	{
+		drawCheckValencyMiniGame();
+		return;
+	}
+
+	if (loadSplitElementsMiniGame)
+	{
+		drawSplitElementsMiniGame();
 		return;
 	}
 
@@ -86,6 +112,7 @@ void ChasingRoom::drawChasingRoom()
 		inventory->isPickedUp(player->move, items->item, items->normalItemsPos);
 		items->drawNormalItems();
 	}
+
 	//update teacher
 	teacher->update(player->playerCords, player->move);
 	teacher->draw();
@@ -99,27 +126,47 @@ void ChasingRoom::drawChasingRoom()
 	checkDoors();
 }
 
-void ChasingRoom::drawMiniGame()
-{
-	//splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
-
+void ChasingRoom::drawCheckValencyMiniGame()
+{ 
 	DrawTexture(background,0,0,WHITE); 
 	
-	checkValency->drawAndCheckElementsAndHolders(loadMiniGame);
+	checkValency->drawAndCheckElementsAndHolders(loadCheckValencyMiniGame);
 
-	//if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)
-	//{
-	//miniGamePlayed = false;
-	//return;
-	//}
-	//miniGamePlayed = true;
-	//bool tmp = splitElements->checkElements();
-	//if (tmp) money->addMoney();
-	//teacher->setActive(!tmp);
-	//loadMiniGame = false;
+	if (checkValency->givenAnswers.size() != 3)
+	{
+	miniGameCheckValencyPlayed = false;
+	return;
+	}
+	miniGameCheckValencyPlayed = true;
+
+	bool tmp = checkValency->checkAccuracy();
+	if (tmp)
+	{
+		teacher->setActive(!tmp);
+	}
+	else
+	{
+		money->addMoney();
+	}
+	loadCheckValencyMiniGame = false;
 }
 
+void ChasingRoom::drawSplitElementsMiniGame()
+{
+	splitElements->drawAndMoveElementsAndHolders(loadSplitElementsMiniGame);
 
+
+	if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)
+	{
+	miniGameSplitElementsPlayed = false;
+	return;
+	}
+	miniGameSplitElementsPlayed = true;
+	bool tmp = splitElements->checkElements();
+	if (tmp) money->addMoney();
+	teacher->setActive(!tmp);
+	loadSplitElementsMiniGame = false;
+}
 
 
 void ChasingRoom::checkDoors()
