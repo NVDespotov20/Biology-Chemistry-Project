@@ -8,39 +8,34 @@ public:
 	~CheckValency();
 
 	void saveValency(); 
-	void drawAndCheckElementsAndHolders();
+	void drawAndCheckElementsAndHolders(bool &loadMiniGame);
+	void unload(); 
 
-	Vector2 mousePoint;
 
-	int WIDTH;
-	int HEIGHT;
-
+	int rightAnswersArray[3];
 	int saver;
+	std::vector<int> givenAnswers;
 
 	std::vector<std::string> theChosenThreeStrings;
-
 	std::vector<std::string> valencyTwo;
-
 	std::vector<std::string> valencyOne;
 
 	std::vector<Texture2D> theChosenThree;
-
-	int rightAnswersArray[3]; 
-
-	int givenAnswers[3];
-
-	unsigned seed;
+	Texture2D background; 
 
 	Rectangle answersRec[9];
-
 	Rectangle containersRec[3];
+
+	unsigned seed;
 
 	//random engine from random library
 	std::mt19937 gen;
 
 	static std::shared_ptr<CheckValency> getInstantiation();
-	static std::shared_ptr<CheckValency> instantiate_;
+	
 private:
-
-
+	Vector2 mousePoint;
+	static std::shared_ptr<CheckValency> instantiate_;
+	int WIDTH;
+	int HEIGHT;
 };

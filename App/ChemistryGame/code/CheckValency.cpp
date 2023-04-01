@@ -16,8 +16,13 @@ CheckValency::CheckValency()
 {
 	//mousePoint = GetMousePosition();
 
+	givenAnswers.resize(3);
+
     WIDTH = GetScreenWidth();
 	HEIGHT = GetScreenHeight();
+
+	background.width = WIDTH;
+	background.height = HEIGHT;
 
 	valencyTwo = {
 		"Zinc(Zn)",
@@ -65,22 +70,27 @@ CheckValency::CheckValency()
 	for (int i = 0; i < 9; i++)
 	{
 		answersRec[i] = {
-			(50 + i * 200) * WIDTH / 1920.f,
-			800 * HEIGHT / 1080.f,
-			150 * WIDTH / 1920.f,
-			150 * HEIGHT / 1080.f
+			200.f *i + 50 ,
+			800 ,
+			150, 
+			150
 		};
 	}
 
 	for (int i = 0; i < 3; i++)
 	{
 		containersRec[i] = {
-			(30 + i * 600) * WIDTH / 1920.f,
-			470 * HEIGHT / 1080.f,
-			590 * WIDTH / 1920.f,
-			500 * HEIGHT / 1080.f
+			float(30 + i * 600) ,
+			470 ,
+			590 ,
+			500 
 		};
 	}
+	for (int i = 0; i < 3; i++)
+	{
+		theChosenThree.push_back(LoadTexture(theChosenThreeStrings[i].c_str()));
+	}
+	background = LoadTexture("../assets/images/chemistry/Objects/TableBackground.png");
 	
 }
 
@@ -99,7 +109,7 @@ void CheckValency::saveValency()
 	}
 }
 
-void CheckValency::drawAndCheckElementsAndHolders()
+void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 {
 	mousePoint = GetMousePosition();
 
@@ -107,26 +117,22 @@ void CheckValency::drawAndCheckElementsAndHolders()
 	{
 		if (saver == i)
 		{
-			rightAnswersArray[i] = 2;
+			rightAnswersArray[i] = 2 + i * 3;
 		}
 		else
 		{
-			rightAnswersArray[i] = 1;
+			rightAnswersArray[i] = 1 + i * 3;
 		}
 
 	}
 
-	for (int i = 0; i < 3; i++)
-	{
-		theChosenThree.push_back(LoadTexture(theChosenThreeStrings[i].c_str()));	
-	}
-
+	DrawTexture(background, 0, 0, WHITE);
 	for (int i = 0; i < 3; i++)
 	{
 		theChosenThree[i].width = 200;
 		theChosenThree[i].height = 250;
 
-		DrawTexture(theChosenThree[i], 600 * i + 235, 450, WHITE);
+		DrawTexture(theChosenThree[i], float(30 + i * 600), 470, WHITE);
 		DrawRectangleLinesEx(containersRec[i], 10, BLACK);
 	}
 
@@ -139,30 +145,63 @@ void CheckValency::drawAndCheckElementsAndHolders()
 	{
 		for (int j = 1; j < 4; j++)
 		{
-			DrawText(std::to_string(i).c_str(), 600 + (j-2) * 650 + i *200, 770, 50, BLACK);
+			DrawText(std::to_string(i).c_str(), 600 + (j - 2) * 650 + i * 200, 770, 50, BLACK);
 		}
 	}
 
-	for (int i = 1; i < 10; i++)
-	{
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, answersRec[i]))
-		{
-			//std::cout << "yes" << std::endl;
-			givenAnswers[i] = i;
-		}
-	}
 
-	if (givenAnswers[0] != 0 or givenAnswers[1] != 0 or givenAnswers[2] != 0)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			//::cout << "given :" << givenAnswers[i] << "        right: " << rightAnswersArray[i] << std::endl;
-		}
-	}
-	
+	//int k = 1;
+	//while (k < 10)
+	//{
+	//	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, answersRec[k]))
+	//	{
+	//		if (givenAnswers.size() < 3)
+	//		{
+	//			if (givenAnswers.size() > 1 && k < 4)
+	//			{
+	//				givenAnswers.push_back(k);
+	//			}
+	//			if (givenAnswers.size() == 1 && k < 7 && k >3)
+	//			{
+	//				givenAnswers.push_back(k);
+	//			}
+	//			if(givenAnswers.size() > 1 && k > 7)
+	//			{
+	//				givenAnswers.push_back(k);
+	//			}
+	//		}
+	//		k++;
+	//	}
+	//}
+
+	//if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, answersRec[0]) && givenAnswers.at(0))
+	//{
+
+	//}
+
+	//if (givenAnswers.size() == 3)
+	//{
+	//	for (int i = 0; i < 3; i++)
+	//	{
+	//		std::cout << "given index:   " << i << "    given answer:   " << givenAnswers.at(i) << "    right index: " << i << "right answer:" << rightAnswersArray[i];
+	//	}
+	//	std::cout << std::endl;
+	//}
+
 }
+
 
 CheckValency::~CheckValency()
 {
-
+	unload();
 }
+
+void CheckValency::unload()
+{
+	for (int i = 0; i < 3; i++)
+	{
+		UnloadTexture(theChosenThree[i]);
+	}
+	UnloadTexture(background); 
+}
+

@@ -7,11 +7,12 @@ ChasingRoom::ChasingRoom()
 	////make them smart and delete by themselve
 	//player = std::make_shared<Player>();
 	//teacher = std::make_shared<Teacher>();
-	//
+	
 
 	////loads sprites of the moving people
 	//player->LoadSprites(60);
 	//teacher->LoadSprites();
+
 }
 
 ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenHeight()), doors(doors)
@@ -32,11 +33,16 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	teacher->LoadSprites();
 
 	stringsBackgroundName = {
-		"../assets/images/chemistry/SpawnRoom.png",
-		"../assets/images/chemistry/RoomOne.png",
-		"../assets/images/chemistry/RoomTwo.png",
-		"../assets/images/chemistry/RoomThree.png"
+		"SpawnRoom",
+		"RoomOne",
+		"RoomTwo",
+		"RoomThree"
 	};
+	
+	for (int i = 0; i < 4; i++)
+	{
+		stringsBackgroundName.at(i) = "../assets/image/chemistry/Rooms/"+ stringsBackgroundName.at(i) + ".png";
+	}
 
 	loadMiniGame = 0;
 	miniGamePlayed = false;
@@ -97,8 +103,9 @@ void ChasingRoom::drawMiniGame()
 {
 	//splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
 
-	checkValency->saveValency();
-	checkValency->drawAndCheckElementsAndHolders();
+	DrawTexture(background,0,0,WHITE); 
+	
+	checkValency->drawAndCheckElementsAndHolders(loadMiniGame);
 
 	//if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)
 	//{
