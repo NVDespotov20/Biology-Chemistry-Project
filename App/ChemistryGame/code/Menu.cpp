@@ -25,7 +25,7 @@ Menu::~Menu()
 
 inline void Menu::load()
 {
-    menuBackground = LoadTexture("../assets/images/UI elements/bg.png");
+    menuBackground = LoadTexture("../assets/images/Rooms/RoomThree.png");
 }
 
 inline void Menu::unload()

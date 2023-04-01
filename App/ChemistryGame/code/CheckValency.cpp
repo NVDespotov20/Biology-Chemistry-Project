@@ -20,17 +20,26 @@ CheckValency::CheckValency()
 	HEIGHT = GetScreenHeight();
 
 	valencyTwo = {
-		"../assets/images/chemistry/Zinc(Zn).png",
-		"../assets/images/chemistry/Copper(Cu).png",
-		"../assets/images/chemistry/Oxygen(O2).png"
+		"Zinc(Zn)",
+		"Copper(Cu)",
+		"Oxygen(O2)"
 	};
 
 	valencyOne = {
-		"../assets/images/chemistry/Silver(Ag).png",
-		"../assets/images/chemistry/Gold(Au).png",
-		"../assets/images/chemistry/Soldium(Na).png",
-		"../assets/images/chemistry/Hydrogen(H2).png"
+		"Silver(Ag)",
+		"Gold(Au)",
+		"Soldium(Na)",
+		"Hydrogen(H2)"
 	};
+
+	for (int i = 0; i < 4; i++)
+	{
+		valencyOne[i] = "../assets/images/chemistry/Elements/" + valencyOne[i] + ".png";
+		if (i < 3)
+		{
+			valencyTwo[i] = "../assets/images/chemistry/Elements/" + valencyTwo[i] + ".png";
+		}
+	}
 
 	//random seed for the numbers
 	seed = std::chrono::steady_clock::now().time_since_epoch().count();
@@ -136,13 +145,13 @@ void CheckValency::drawAndCheckElementsAndHolders()
 
 	for (int i = 1; i < 10; i++)
 	{
-		if (IsMouseButtonPressed && CheckCollisionPointRec(mousePoint, answersRec[i]))
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePoint, answersRec[i]))
 		{
 			//std::cout << "yes" << std::endl;
 			givenAnswers[i] = i;
 		}
 	}
-	std::cout << mousePoint.x << "    " << mousePoint.y << std::endl;
+
 	if (givenAnswers[0] != 0 or givenAnswers[1] != 0 or givenAnswers[2] != 0)
 	{
 		for (int i = 0; i < 3; i++)
