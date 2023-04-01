@@ -21,8 +21,8 @@ CheckValency::CheckValency()
 
 	counterForAccuracy = 0;
 
-	background.width = WIDTH;
-	background.height = HEIGHT;
+	background.width = GetScreenWidth();
+	background.height = GetScreenHeight();
 
 	valencyTwo = {
 		"Zinc(Zn)",
@@ -56,7 +56,6 @@ CheckValency::CheckValency()
 
 	std::shuffle(valencyOne.begin(), valencyOne.end(), gen);
 	std::shuffle(valencyTwo.begin(), valencyTwo.end(), gen);
-
 
     theChosenThreeStrings.push_back((valencyTwo[0].c_str()));
 

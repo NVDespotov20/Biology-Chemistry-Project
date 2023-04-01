@@ -17,6 +17,12 @@ ChasingRoom::ChasingRoom()
 
 ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenHeight()), doors(doors)
 {
+	table = LoadTexture("../assets/images/chemistry/Objects/Table.png");
+	table.width =250; 
+	table.height =200; 
+
+	spawnPointBackground = LoadTexture("../assets/images/chemistry/Rooms/SpawnRoom.png");
+
 	//make them smart and delete by themselve
 	player = std::make_shared<Player>();
 	teacher = Teacher::getInstantiation();
@@ -38,9 +44,39 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 		"RoomThree"
 	};
 	
+	spawnPointBackground.width = GetScreenWidth();
+	spawnPointBackground.height = GetScreenHeight() ;
+
+	seed = std::chrono::steady_clock::now().time_since_epoch().count();
+
+	//generator of new random number with the seed
+	gen.seed(seed);
+
+	//std::shuffle(elementsTexturesStrings.begin(), elementsTexturesStrings.end(), gen);
+
+	std::shuffle(stringsBackgroundName.begin(), stringsBackgroundName.end(), gen);
+
 	for (int i = 0; i < 4; i++)
 	{
-		stringsBackgroundName.at(i) = "../assets/image/chemistry/Rooms/"+ stringsBackgroundName.at(i) + ".png";
+		stringsBackgroundName.at(i) = "../assets/images/chemistry/Rooms/"+ stringsBackgroundName.at(i) + ".png";
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (stringsBackgroundName.at(i) != "../assets/images/chemistry/Rooms/SpawnRoom.png")
+		{
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+		}
+	}
+
+	std::shuffle(texturesBackgrounds.begin(), texturesBackgrounds.end(), gen);
+
+	for (int i = 0; i < 6; i++)
+	{
+		texturesBackgrounds.at(i).width = WIDTH;
+		texturesBackgrounds.at(i).height = HEIGHT;
 	}
 
 	loadSplitElementsMiniGame = 0;
@@ -59,30 +95,14 @@ ChasingRoom::~ChasingRoom()
 void ChasingRoom::drawChasingRoom()
 {
 
+	
 	money->drawMoney();
 	
 	//check if a map elemts have to draw mini game
 	if (dir->j == 3 && dir->i == 0)
 	{
 		//right up
-		positionOfMiniGamePlace = { 1000, 200 };
-		DrawCircleV(positionOfMiniGamePlace, 100, RED);
-
-		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameCheckValencyPlayed)
-		{
-			checkValency = CheckValency::getInstantiation();
-			loadCheckValencyMiniGame = true;
-		}
-	}
-
-	if (dir->j == 2 && dir->i == 0)
-	{
-		//right bot
-	}
-
-	if (dir->j == 2 && dir->i == 1)
-	{
-		//center bot
+		DrawTexture(texturesBackgrounds.at(0),0,0,WHITE);
 		positionOfMiniGamePlace = { 1000, 600 };
 		DrawCircleV(positionOfMiniGamePlace, 100, ORANGE);
 
@@ -93,11 +113,49 @@ void ChasingRoom::drawChasingRoom()
 		}
 	}
 
+	if (dir->j == 2 && dir->i == 0)
+	{
+		//center top 
+
+		DrawTexture(spawnPointBackground,0,0,WHITE);
+		
+	}
+
+	if (dir->j == 2 && dir->i == 1)
+	{
+		DrawTexture(texturesBackgrounds.at(1), 0, 0, WHITE);
+		//center bot
+		positionOfMiniGamePlace = { 1000, 200 };
+		DrawCircleV(positionOfMiniGamePlace, 100, RED);
+		DrawTexture(table, 880, 150, WHITE);
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameCheckValencyPlayed)
+		{
+			checkValency = CheckValency::getInstantiation();
+			loadCheckValencyMiniGame = true;
+		}
+	}
+
+	if (dir->j == 1 && dir->i == 0)
+	{
+		//left top or bio room
+		DrawTexture(texturesBackgrounds.at(2), 0, 0, WHITE);
+	}
+
 	//also for right
 	if (loadCheckValencyMiniGame)
 	{
 		drawCheckValencyMiniGame();
 		return;
+	}
+
+	if (dir->j == 3 && dir->i == 1)
+	{//bot right
+		DrawTexture(texturesBackgrounds.at(3), 0, 0, WHITE);
+	}
+
+	if (dir->j == 1 && dir->i == 1)
+	{//bot left
+		DrawTexture(texturesBackgrounds.at(4), 0, 0, WHITE);
 	}
 
 	if (loadSplitElementsMiniGame)
@@ -128,8 +186,6 @@ void ChasingRoom::drawChasingRoom()
 
 void ChasingRoom::drawCheckValencyMiniGame()
 { 
-	DrawTexture(background,0,0,WHITE); 
-	
 	checkValency->drawAndCheckElementsAndHolders(loadCheckValencyMiniGame);
 
 	if (checkValency->givenAnswers.size() != 3)
