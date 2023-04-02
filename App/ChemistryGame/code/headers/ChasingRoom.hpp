@@ -22,17 +22,30 @@ class ChasingRoom
     std::shared_ptr<Navigator>dir;
     std::shared_ptr<CheckValency> checkValency;
 
-    std::vector<const char*> stringsBackgroundName;
+    std::vector<std::string> stringsBackgroundName;
+    std::vector<Texture2D> texturesBackgrounds;
     int doors;
-    bool loadMiniGame;
-    bool miniGamePlayed;
+
+    bool loadCheckValencyMiniGame;
+    bool loadSplitElementsMiniGame;
+    bool miniGameSplitElementsPlayed;
+    bool miniGameCheckValencyPlayed;
     Vector2 positionOfMiniGamePlace;
+    
+    unsigned seed;
+
+    //random engine from random library
+    std::mt19937 gen;
+
+    Texture2D spawnPointBackground;
+    Texture2D table; 
 public:
     ChasingRoom();
     ChasingRoom(int doors);
     ~ChasingRoom();
     void drawChasingRoom();
-    void drawMiniGame();
+    void drawSplitElementsMiniGame();
+    void drawCheckValencyMiniGame();
 
     void checkDoors();
 };

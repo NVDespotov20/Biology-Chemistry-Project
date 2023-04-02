@@ -14,24 +14,37 @@ std::shared_ptr<CheckValency> CheckValency::getInstantiation()
 
 CheckValency::CheckValency() 
 {
-    
+	//mousePoint = GetMousePosition();
+
     WIDTH = GetScreenWidth();
 	HEIGHT = GetScreenHeight();
 
+	counterForAccuracy = 0;
+
+	background.width = GetScreenWidth();
+	background.height = GetScreenHeight();
+
 	valencyTwo = {
-		"../assets/images/chemistry/Zinc(Zn).png",
-		"../assets/images/chemistry/Copper(Cu).png",
-		"../assets/images/chemistry/Oxygen(O2).png"
+		"Zinc(Zn)",
+		"Copper(Cu)",
+		"Oxygen(O2)"
 	};
 
 	valencyOne = {
-		"../assets/images/chemistry/Silver(Ag).png",
-		"../assets/images/chemistry/Gold(Au).png",
-		"../assets/images/chemistry/Soldium(Na).png",
-		"../assets/images/chemistry/Hydrogen(H2).png"
+		"Silver(Ag)",
+		"Gold(Au)",
+		"Soldium(Na)",
+		"Hydrogen(H2)"
 	};
 
-	saver = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		valencyOne[i] = "../assets/images/chemistry/Elements/" + valencyOne[i] + ".png";
+		if (i < 3)
+		{
+			valencyTwo[i] = "../assets/images/chemistry/Elements/" + valencyTwo[i] + ".png";
+		}
+	}
 
 	//random seed for the numbers
 	seed = std::chrono::steady_clock::now().time_since_epoch().count();
@@ -44,7 +57,6 @@ CheckValency::CheckValency()
 	std::shuffle(valencyOne.begin(), valencyOne.end(), gen);
 	std::shuffle(valencyTwo.begin(), valencyTwo.end(), gen);
 
-
     theChosenThreeStrings.push_back((valencyTwo[0].c_str()));
 
 	for(int i = 0; i < 2; i++)
@@ -54,16 +66,37 @@ CheckValency::CheckValency()
 
     std::shuffle(theChosenThreeStrings.begin(), theChosenThreeStrings.end(), gen);
 
-	for(int i=0;i<3;i++)
+	for (int i = 0; i < 9; i++)
 	{
-		answersRec[i] = {200+i*100.f, 400, 250, 250};
+		answersRec[i] = {
+			200.f *i + 50 ,
+			800 ,
+			150, 
+			150
+		};
 	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		containersRec[i] = {
+			float(30 + i * 600) ,
+			470 ,
+			590 ,
+			500 
+		};
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		theChosenThree.push_back(LoadTexture(theChosenThreeStrings[i].c_str()));
+	}
+	background = LoadTexture("../assets/images/chemistry/Objects/TableBackground.png");
+	
 }
 
-
-
-void CheckValency::saveValency()
+void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 {
+	mousePoint = GetMousePosition();
+
 	for (int i = 0; i < 3; i++)
 	{
         // Compare the file paths using the == operator
@@ -73,43 +106,97 @@ void CheckValency::saveValency()
 		}
 		
 	}
-}
-
-void CheckValency::drawAndCheckElementsAndHolders()
-{
 	for (int i = 0; i < 3; i++)
 	{
+		rightAnswersArray[i] = 1 + i * 3;
 		if (saver == i)
 		{
-			answersArray[i] = 2;
+			rightAnswersArray[i]++;
 		}
-		else
-		{
-			answersArray[i] = 1;
-		}
-
 	}
 
+	DrawTexture(background, 0, 0, WHITE);
 	for (int i = 0; i < 3; i++)
 	{
-		theChosenThree.push_back(LoadTexture(theChosenThreeStrings[i].c_str()));	
+		theChosenThree[i].width = 200;
+		theChosenThree[i].height = 250;
+
+		DrawTexture(theChosenThree[i], float(30 + i * 600), 470, WHITE);
+		DrawRectangleLinesEx(containersRec[i], 10, BLACK);
 	}
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 9; i++)
 	{
-		theChosenThree[i].width = 250;
-		theChosenThree[i].height = 300;
-	}
-
-	for (int i = 0; i < 3; i++)
-	{
-		DrawTexture(theChosenThree[i],200*i+200,500,WHITE);
 		DrawRectangleRec(answersRec[i], LIME);
 	}
+
+	for (int i = 1; i < 4; i++)
+	{
+		for (int j = 1; j < 4; j++)
+		{
+			DrawText(std::to_string(i).c_str(), 600 + (j - 2) * 650 + i * 200, 770, 50, BLACK);
+		}
+	}
+
+
+	for (int i = 0; i < 9; i++)
+	{
+		if (CheckCollisionPointRec(mousePoint, answersRec[i]))
+		{
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+			{
+				if (givenAnswers.size() < 3) {
+					if (givenAnswers.size() == 0) {
+						if (i >= 0 && i <= 2) {
+							givenAnswers.push_back(i+1);
+						}
+					}
+					else if (givenAnswers.size() == 1) {
+						if (i >= 3 && i <= 5) {
+							givenAnswers.push_back(i+1);
+						}
+					}
+					else if (givenAnswers.size() == 2) {
+						if (i >= 6 && i <= 8) {
+							givenAnswers.push_back(i+1);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+bool CheckValency::checkAccuracy()
+{
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (givenAnswers[i] == rightAnswersArray[i])
+		{
+			++counterForAccuracy;
+			break;
+		}
+		
+	}
+
+	//if you did right you earn money if not then RUN the teacher starts to chase you
+	return (counterForAccuracy == 3);
 
 }
 
 CheckValency::~CheckValency()
 {
-
+	unload();
 }
+
+void CheckValency::unload()
+{
+	for (int i = 0; i < 3; i++)
+	{
+		UnloadTexture(theChosenThree[i]);
+	}
+	UnloadTexture(background); 
+}
+

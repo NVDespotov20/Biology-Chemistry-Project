@@ -53,12 +53,12 @@ SplitElements::SplitElements()
 	//push split metals and nonmetals
 	for (int i = 0; i < 5; i++)
 	{
-		metalElementsStrings.push_back("../assets/images/chemistry/" + elementsTexturesStrings[i] + ".png");
+		metalElementsStrings.push_back("../assets/images/chemistry/Elements/" + elementsTexturesStrings[i] + ".png");
 	}
 
 	for (int i = 5; i < 11; i++)
 	{
-		nonmetalElementsStrings.push_back("../assets/images/chemistry/" + elementsTexturesStrings[i] + ".png");
+		nonmetalElementsStrings.push_back("../assets/images/chemistry/Elements/" + elementsTexturesStrings[i] + ".png");
 	}
 
 	//shuffle them to get ranodm only 4 of them
@@ -69,7 +69,7 @@ SplitElements::SplitElements()
 	mousepoint = GetMousePosition();
 
 	//loadtexture for bg
-	backgroundOfTable = LoadTexture("../assets/images/chemistry/ArrangeTableBackground.png");
+	backgroundOfTable = LoadTexture("../assets/images/chemistry/Objects/ArrangeTableBackground.png");
 
 	//set size for width & height
 	backgroundOfTable.width = GetScreenWidth();
@@ -152,7 +152,7 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 	mousepoint = GetMousePosition();
 
 	
-	if (CheckCollisionPointRec(mousepoint, backButton))
+	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, backButton))
 		loadMiniGame = false;
 
 

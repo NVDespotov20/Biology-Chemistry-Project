@@ -7,15 +7,22 @@ ChasingRoom::ChasingRoom()
 	////make them smart and delete by themselve
 	//player = std::make_shared<Player>();
 	//teacher = std::make_shared<Teacher>();
-	//
+	
 
 	////loads sprites of the moving people
 	//player->LoadSprites(60);
 	//teacher->LoadSprites();
+
 }
 
 ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenHeight()), doors(doors)
 {
+	table = LoadTexture("../assets/images/chemistry/Objects/Table.png");
+	table.width =250; 
+	table.height =200; 
+
+	spawnPointBackground = LoadTexture("../assets/images/chemistry/Rooms/SpawnRoom.png");
+
 	//make them smart and delete by themselve
 	player = std::make_shared<Player>();
 	teacher = Teacher::getInstantiation();
@@ -25,21 +32,57 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	money = Money::getInstantiation();
 	items = Items::getInstantiation();
 	dir = Navigator::getInstantiation();
-	checkValency = CheckValency::getInstantiation();
 
 	//loads sprites of the moving people
 	player->LoadSprites(60);
 	teacher->LoadSprites();
 
 	stringsBackgroundName = {
-		"../assets/images/chemistry/SpawnRoom.png",
-		"../assets/images/chemistry/RoomOne.png",
-		"../assets/images/chemistry/RoomTwo.png",
-		"../assets/images/chemistry/RoomThree.png"
+		"SpawnRoom",
+		"RoomOne",
+		"RoomTwo",
+		"RoomThree"
 	};
+	
+	spawnPointBackground.width = GetScreenWidth();
+	spawnPointBackground.height = GetScreenHeight() ;
 
-	loadMiniGame = 0;
-	miniGamePlayed = false;
+	seed = std::chrono::steady_clock::now().time_since_epoch().count();
+
+	//generator of new random number with the seed
+	gen.seed(seed);
+
+	//std::shuffle(elementsTexturesStrings.begin(), elementsTexturesStrings.end(), gen);
+
+	std::shuffle(stringsBackgroundName.begin(), stringsBackgroundName.end(), gen);
+
+	for (int i = 0; i < 4; i++)
+	{
+		stringsBackgroundName.at(i) = "../assets/images/chemistry/Rooms/"+ stringsBackgroundName.at(i) + ".png";
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (stringsBackgroundName.at(i) != "../assets/images/chemistry/Rooms/SpawnRoom.png")
+		{
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+		}
+	}
+
+	std::shuffle(texturesBackgrounds.begin(), texturesBackgrounds.end(), gen);
+
+	for (int i = 0; i < 6; i++)
+	{
+		texturesBackgrounds.at(i).width = WIDTH;
+		texturesBackgrounds.at(i).height = HEIGHT;
+	}
+
+	loadSplitElementsMiniGame = 0;
+	loadCheckValencyMiniGame = 0;
+	miniGameSplitElementsPlayed = false;
+	miniGameCheckValencyPlayed = false;
 	positionOfMiniGamePlace = { 0,0 };
 }
 
@@ -52,25 +95,72 @@ ChasingRoom::~ChasingRoom()
 void ChasingRoom::drawChasingRoom()
 {
 
+	
 	money->drawMoney();
 	
 	//check if a map elemts have to draw mini game
 	if (dir->j == 3 && dir->i == 0)
 	{
 		//right up
-		positionOfMiniGamePlace = { 1000, 200 };
-		DrawCircleV(positionOfMiniGamePlace, 100, RED);
+		DrawTexture(texturesBackgrounds.at(0),0,0,WHITE);
+		positionOfMiniGamePlace = { 1000, 600 };
+		DrawCircleV(positionOfMiniGamePlace, 100, ORANGE);
 
-		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGamePlayed)
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameSplitElementsPlayed)
 		{
 			splitElements = SplitElements::getInstantiation();
-			loadMiniGame = true;
+			loadSplitElementsMiniGame = true;
 		}
 	}
-	//also for right
-	if (loadMiniGame)
+
+	if (dir->j == 2 && dir->i == 0)
 	{
-		drawMiniGame();
+		//center top 
+
+		DrawTexture(spawnPointBackground,0,0,WHITE);
+		
+	}
+
+	if (dir->j == 2 && dir->i == 1)
+	{
+		DrawTexture(texturesBackgrounds.at(1), 0, 0, WHITE);
+		//center bot
+		positionOfMiniGamePlace = { 1000, 200 };
+		DrawCircleV(positionOfMiniGamePlace, 100, RED);
+		DrawTexture(table, 880, 150, WHITE);
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameCheckValencyPlayed)
+		{
+			checkValency = CheckValency::getInstantiation();
+			loadCheckValencyMiniGame = true;
+		}
+	}
+
+	if (dir->j == 1 && dir->i == 0)
+	{
+		//left top or bio room
+		DrawTexture(texturesBackgrounds.at(2), 0, 0, WHITE);
+	}
+
+	//also for right
+	if (loadCheckValencyMiniGame)
+	{
+		drawCheckValencyMiniGame();
+		return;
+	}
+
+	if (dir->j == 3 && dir->i == 1)
+	{//bot right
+		DrawTexture(texturesBackgrounds.at(3), 0, 0, WHITE);
+	}
+
+	if (dir->j == 1 && dir->i == 1)
+	{//bot left
+		DrawTexture(texturesBackgrounds.at(4), 0, 0, WHITE);
+	}
+
+	if (loadSplitElementsMiniGame)
+	{
+		drawSplitElementsMiniGame();
 		return;
 	}
 
@@ -80,6 +170,7 @@ void ChasingRoom::drawChasingRoom()
 		inventory->isPickedUp(player->move, items->item, items->normalItemsPos);
 		items->drawNormalItems();
 	}
+
 	//update teacher
 	teacher->update(player->playerCords, player->move);
 	teacher->draw();
@@ -93,25 +184,45 @@ void ChasingRoom::drawChasingRoom()
 	checkDoors();
 }
 
-void ChasingRoom::drawMiniGame()
-{
-	//splitElements->drawAndMoveElementsAndHolders(loadMiniGame);
+void ChasingRoom::drawCheckValencyMiniGame()
+{ 
+	checkValency->drawAndCheckElementsAndHolders(loadCheckValencyMiniGame);
 
-	checkValency->drawAndCheckElementsAndHolders();
+	if (checkValency->givenAnswers.size() != 3)
+	{
+	miniGameCheckValencyPlayed = false;
+	return;
+	}
+	miniGameCheckValencyPlayed = true;
 
-	//if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)
-	//{
-	//miniGamePlayed = false;
-	//return;
-	//}
-	//miniGamePlayed = true;
-	//bool tmp = splitElements->checkElements();
-	//if (tmp) money->addMoney();
-	//teacher->setActive(!tmp);
-	//loadMiniGame = false;
+	bool tmp = checkValency->checkAccuracy();
+	if (tmp)
+	{
+		teacher->setActive(!tmp);
+	}
+	else
+	{
+		money->addMoney();
+	}
+	loadCheckValencyMiniGame = false;
 }
 
+void ChasingRoom::drawSplitElementsMiniGame()
+{
+	splitElements->drawAndMoveElementsAndHolders(loadSplitElementsMiniGame);
 
+
+	if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)
+	{
+	miniGameSplitElementsPlayed = false;
+	return;
+	}
+	miniGameSplitElementsPlayed = true;
+	bool tmp = splitElements->checkElements();
+	if (tmp) money->addMoney();
+	teacher->setActive(!tmp);
+	loadSplitElementsMiniGame = false;
+}
 
 
 void ChasingRoom::checkDoors()
