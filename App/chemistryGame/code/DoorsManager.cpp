@@ -3,7 +3,7 @@
 
 DoorsManager::DoorsManager()
 {
-	door = LoadTexture("../assets/images/UI elements/door.png");
+	door = LoadTexture("../assets/images/chemistry/Objects/Door.png");
 	dir = Navigator::getInstantiation();
 	teacher = Teacher::getInstantiation();
 	positionsOfDoors = {
@@ -38,6 +38,7 @@ DoorsManager::DoorsManager()
 	{
 		randomizedLabelsStrings.push_back("../assets/images/chemistry/" + randomDoorsLabelsStrings[i] + ".png");
 	}
+	
 }
 
 DoorsManager::~DoorsManager()
@@ -49,7 +50,8 @@ void DoorsManager::drawDoors()
 {
 	for (const auto& [key, position] : positionsOfDoors)
 	{
-		//DrawTextureV(door, position, WHITE);
+	
+		//DrawTextureV(door, position, WHITE);	
 		DrawCircleV(position, 200, Fade(PURPLE, 0.5f));
 	}
 }

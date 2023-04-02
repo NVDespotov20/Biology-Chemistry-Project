@@ -22,7 +22,6 @@ public:
 	std::vector<std::string> valencyOne;
 
 	std::vector<Texture2D> theChosenThree;
-	Texture2D background; 
 
 	Rectangle answersRec[9];
 	Rectangle containersRec[3];

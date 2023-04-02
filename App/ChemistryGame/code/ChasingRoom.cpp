@@ -1,4 +1,5 @@
 #include "pchGame.hpp"
+
 #include "ChasingRoom.hpp"
 
 
@@ -45,7 +46,9 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	};
 	
 	spawnPointBackground.width = GetScreenWidth();
-	spawnPointBackground.height = GetScreenHeight() ;
+	spawnPointBackground.height = GetScreenHeight();
+	
+	
 
 	seed = std::chrono::steady_clock::now().time_since_epoch().count();
 
@@ -88,8 +91,7 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 
 ChasingRoom::~ChasingRoom()
 {
-
-
+	unload();
 }
 
 void ChasingRoom::drawChasingRoom()
@@ -103,9 +105,9 @@ void ChasingRoom::drawChasingRoom()
 	{
 		//right up
 		DrawTexture(texturesBackgrounds.at(0),0,0,WHITE);
-		positionOfMiniGamePlace = { 1000, 600 };
+		positionOfMiniGamePlace = { 1600, 200 };
 		DrawCircleV(positionOfMiniGamePlace, 100, ORANGE);
-
+		DrawTexture(table, 1480, 100, WHITE);
 		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameSplitElementsPlayed)
 		{
 			splitElements = SplitElements::getInstantiation();
@@ -118,16 +120,16 @@ void ChasingRoom::drawChasingRoom()
 		//center top 
 
 		DrawTexture(spawnPointBackground,0,0,WHITE);
-		
+
 	}
 
 	if (dir->j == 2 && dir->i == 1)
 	{
 		DrawTexture(texturesBackgrounds.at(1), 0, 0, WHITE);
 		//center bot
-		positionOfMiniGamePlace = { 1000, 200 };
+		positionOfMiniGamePlace = { 1600, 200 };
 		DrawCircleV(positionOfMiniGamePlace, 100, RED);
-		DrawTexture(table, 880, 150, WHITE);
+		DrawTexture(table, 1480, 100, WHITE);
 		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameCheckValencyPlayed)
 		{
 			checkValency = CheckValency::getInstantiation();
@@ -186,6 +188,8 @@ void ChasingRoom::drawChasingRoom()
 
 void ChasingRoom::drawCheckValencyMiniGame()
 { 
+	
+	
 	checkValency->drawAndCheckElementsAndHolders(loadCheckValencyMiniGame);
 
 	if (checkValency->givenAnswers.size() != 3)
@@ -205,6 +209,17 @@ void ChasingRoom::drawCheckValencyMiniGame()
 		money->addMoney();
 	}
 	loadCheckValencyMiniGame = false;
+}
+
+void ChasingRoom::unload()
+{
+	for (int i = 0; i < 4;i++)
+	{
+		UnloadTexture(texturesBackgrounds[i]);
+	}
+	
+	UnloadTexture(spawnPointBackground);
+	UnloadTexture(table);
 }
 
 void ChasingRoom::drawSplitElementsMiniGame()

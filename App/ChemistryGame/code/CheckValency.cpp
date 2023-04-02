@@ -21,9 +21,6 @@ CheckValency::CheckValency()
 
 	counterForAccuracy = 0;
 
-	background.width = GetScreenWidth();
-	background.height = GetScreenHeight();
-
 	valencyTwo = {
 		"Zinc(Zn)",
 		"Copper(Cu)",
@@ -89,7 +86,7 @@ CheckValency::CheckValency()
 	{
 		theChosenThree.push_back(LoadTexture(theChosenThreeStrings[i].c_str()));
 	}
-	background = LoadTexture("../assets/images/chemistry/Objects/TableBackground.png");
+
 	
 }
 
@@ -115,7 +112,7 @@ void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 		}
 	}
 
-	DrawTexture(background, 0, 0, WHITE);
+	
 	for (int i = 0; i < 3; i++)
 	{
 		theChosenThree[i].width = 200;
@@ -197,6 +194,6 @@ void CheckValency::unload()
 	{
 		UnloadTexture(theChosenThree[i]);
 	}
-	UnloadTexture(background); 
+	
 }
 

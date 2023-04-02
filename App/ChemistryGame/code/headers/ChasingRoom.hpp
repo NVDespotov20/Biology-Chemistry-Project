@@ -39,6 +39,8 @@ class ChasingRoom
 
     Texture2D spawnPointBackground;
     Texture2D table; 
+ 
+
 public:
     ChasingRoom();
     ChasingRoom(int doors);
@@ -46,6 +48,6 @@ public:
     void drawChasingRoom();
     void drawSplitElementsMiniGame();
     void drawCheckValencyMiniGame();
-
+    void unload();
     void checkDoors();
 };
