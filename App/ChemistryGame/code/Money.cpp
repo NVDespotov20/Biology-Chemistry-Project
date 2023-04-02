@@ -26,10 +26,10 @@ Money::~Money()
 
 void Money::addMoney()
 {
-    money += 500;
+    money += 1;
 }
 
 void Money::drawMoney()
 {
-    DrawText(std::to_string(money).c_str(), 85, 50, 50, GOLD);
+    DrawText(std::to_string(money).c_str(), 172, 25.5, 55, GOLD);
 }

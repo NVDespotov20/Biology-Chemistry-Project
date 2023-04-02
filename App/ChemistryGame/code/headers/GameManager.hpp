@@ -7,6 +7,8 @@ class GameManager
 private:
 	std::shared_ptr<Game> game;
 	std::shared_ptr<Menu> menu;
+	int WIDTH;
+	int HEIGHT;
 	bool shouldQuit;
 public:
 	GameManager();

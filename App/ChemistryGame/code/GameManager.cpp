@@ -4,7 +4,11 @@
 GameManager::GameManager()
 {
     // Initialization of the window and setting name and starting coordinates of the window
-    InitWindow(2000, 1000, "Chemistry GameManager");
+
+    WIDTH = GetScreenWidth();
+    HEIGHT = GetScreenHeight();
+
+    InitWindow(WIDTH, HEIGHT, "Escape the IT");
 
     // Set our GameManager to run at 60 frames-per-second
     SetTargetFPS(60);

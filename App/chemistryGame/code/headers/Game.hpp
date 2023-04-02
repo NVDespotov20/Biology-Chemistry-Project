@@ -10,12 +10,12 @@ private:
 	std::shared_ptr<RoomManager>roomManager;
 	Button backButton;
 	Vector2 mousePoint;
-	float WIDTH;
-	float HEIGHT;
 	int fontSize;
 public:
 	Game();
 	~Game();
 	void mainLoop();
+	float WIDTH;
+	float HEIGHT;
 
 };

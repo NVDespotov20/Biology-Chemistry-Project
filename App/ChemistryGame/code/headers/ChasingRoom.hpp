@@ -11,6 +11,9 @@ class ChasingRoom
 {
     int WIDTH;
     int HEIGHT;
+
+    Rectangle menuButton;
+
     std::shared_ptr<Teacher> teacher;
     std::shared_ptr<InventorySystem> inventory;
     std::shared_ptr<Items> items;

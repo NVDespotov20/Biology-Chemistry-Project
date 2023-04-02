@@ -18,6 +18,8 @@ ChasingRoom::ChasingRoom()
 
 ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenHeight()), doors(doors)
 {
+
+
 	table = LoadTexture("../assets/images/chemistry/Objects/Table.png");
 	table.width =250; 
 	table.height =200; 
@@ -82,6 +84,8 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 		texturesBackgrounds.at(i).height = HEIGHT;
 	}
 
+	menuButton = { 0, 20, HEIGHT / 7.f, HEIGHT / 20.f };
+
 	loadSplitElementsMiniGame = 0;
 	loadCheckValencyMiniGame = 0;
 	miniGameSplitElementsPlayed = false;
@@ -96,17 +100,13 @@ ChasingRoom::~ChasingRoom()
 
 void ChasingRoom::drawChasingRoom()
 {
-
-	
-	money->drawMoney();
-	
 	//check if a map elemts have to draw mini game
 	if (dir->j == 3 && dir->i == 0)
 	{
 		//right up
 		DrawTexture(texturesBackgrounds.at(0),0,0,WHITE);
 		positionOfMiniGamePlace = { 1600, 200 };
-		DrawCircleV(positionOfMiniGamePlace, 100, ORANGE);
+		DrawCircleV(positionOfMiniGamePlace, 100, BLANK);
 		DrawTexture(table, 1480, 100, WHITE);
 		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameSplitElementsPlayed)
 		{
@@ -127,8 +127,8 @@ void ChasingRoom::drawChasingRoom()
 	{
 		DrawTexture(texturesBackgrounds.at(1), 0, 0, WHITE);
 		//center bot
-		positionOfMiniGamePlace = { 1600, 200 };
-		DrawCircleV(positionOfMiniGamePlace, 100, RED);
+		positionOfMiniGamePlace = { 1600, 225 };
+		DrawCircleV(positionOfMiniGamePlace, 100, BLANK);
 		DrawTexture(table, 1480, 100, WHITE);
 		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameCheckValencyPlayed)
 		{
@@ -183,6 +183,11 @@ void ChasingRoom::drawChasingRoom()
 	if (IsKeyDown(KEY_TAB))
 		inventory->drawInventory(items->item);
 	//check doors
+
+	DrawRectangleRounded(menuButton, 0.5 ,0, RED);
+	DrawText("Menu", 32.5, 30, HEIGHT /36,BLACK);
+	DrawRectangle(160,20,50,55,DARKGRAY);
+	money->drawMoney();
 	checkDoors();
 }
 
@@ -213,7 +218,7 @@ void ChasingRoom::drawCheckValencyMiniGame()
 
 void ChasingRoom::unload()
 {
-	for (int i = 0; i < 4;i++)
+	for (int i = 0; i < 4; i++)
 	{
 		UnloadTexture(texturesBackgrounds[i]);
 	}
