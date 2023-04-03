@@ -11,10 +11,12 @@ public:
 	bool checkAccuracy();
 	void unload(); 
 
-	int counterForAccuracy;
+	static std::shared_ptr<CheckValency> getInstantiation();
 
-	int rightAnswersArray[3];
+	int counterForAccuracy;
 	int saver;
+	int rightAnswersArray[3];
+
 	std::vector<int> givenAnswers;
 
 	std::vector<std::string> theChosenThreeStrings;
@@ -23,18 +25,15 @@ public:
 
 	std::vector<Texture2D> theChosenThree;
 
+	Rectangle backbutton;
 	Rectangle answersRec1[3];
 	Rectangle answersRec2[3];
 	Rectangle answersRec3[3];
-
-	Rectangle backbutton;
-
-	Texture2D background;
-
 	Rectangle containersRec[3];
 
+	Texture2D background;
+	Texture2D backbuttonTexture;
 	Texture2D buttonsTextures[3];
-
 	Texture2D metalOrNonmetalChoice[2];
 
 	unsigned seed;
@@ -42,7 +41,6 @@ public:
 	//random engine from random library
 	std::mt19937 gen;
 
-	static std::shared_ptr<CheckValency> getInstantiation();
 	
 private:
 	Vector2 mousePoint;

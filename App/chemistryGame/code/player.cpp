@@ -48,6 +48,19 @@ void Player::LoadSprites(int fps)
 //player load
 Player::Player()
 {
+
+	WIDTH = GetScreenWidth();
+	HEIGHT = GetScreenHeight();
+
+	verticalLimits = {
+		{0,0,WIDTH,HEIGHT / 10.f},
+		{0,HEIGHT - HEIGHT / 9.f,WIDTH,HEIGHT / 8.f}
+	};
+
+	horizontalLimits = {
+		{0,0,WIDTH / 8.f,HEIGHT},
+		{WIDTH - WIDTH / 8.f,0,WIDTH / 8.f,HEIGHT}
+	};
 	playerCords.x = GetScreenWidth() / 2;
 	playerCords.y = GetScreenHeight() / 2;
 	HorizotnalOrVertical[0] = 0;
@@ -65,7 +78,10 @@ Player::~Player()
 //switch sprite when button is clicked
 void Player::CheckDir()
 {
-
+	for (auto& i : verticalLimits)
+		DrawRectangleRec(i, Fade(BLACK, 0.5f));
+	for (auto& i : horizontalLimits)
+		DrawRectangleRec(i, Fade(RED, 0.5f));
 	CheckWalls();
 	if ((IsKeyDown(KEY_UP) or IsKeyDown(KEY_W)) && !(playerCords.y <= 20))
 	{

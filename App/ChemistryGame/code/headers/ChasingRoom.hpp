@@ -9,10 +9,15 @@
 #include "CheckValency.hpp"
 class ChasingRoom
 {
-    int WIDTH;
-    int HEIGHT;
+    float WIDTH;
+    float HEIGHT;
 
     Rectangle menuButton;
+
+    std::vector<Rectangle>verticalLimits;
+    std::vector<Rectangle>horizontalLimits;
+
+
 
     std::shared_ptr<Teacher> teacher;
     std::shared_ptr<InventorySystem> inventory;

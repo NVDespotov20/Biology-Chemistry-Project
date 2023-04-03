@@ -4,6 +4,13 @@
 class Player : public DoorsManager
 {
 private:
+
+	
+	float WIDTH, HEIGHT;
+
+	std::vector<Rectangle> verticalLimits;
+	std::vector<Rectangle> horizontalLimits;
+
 	//set textures for the moving player
 	Texture2D up;
 	Texture2D down;

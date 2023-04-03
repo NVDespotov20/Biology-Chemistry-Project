@@ -35,7 +35,7 @@ inline void Menu::load()
 
     buttonsTextures[0] = LoadTexture("../assets/images/chemistry/Buttons/StartButton.png");
     buttonsTextures[1] = LoadTexture("../assets/images/chemistry/Buttons/OptionsButton.png");
-    buttonsTextures[2] = LoadTexture("../assets/images/chemistry/Buttons/OptionsButton.png");
+    buttonsTextures[2] = LoadTexture("../assets/images/chemistry/Buttons/RulesButton.png");
     buttonsTextures[3] = LoadTexture("../assets/images/chemistry/Buttons/ExitButton.png");
 }
 
