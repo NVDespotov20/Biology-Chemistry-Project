@@ -52,5 +52,6 @@ public:
     void drawSplitElementsMiniGame();
     void drawCheckValencyMiniGame();
     void unload();
+    void load();
     void checkDoors();
 };

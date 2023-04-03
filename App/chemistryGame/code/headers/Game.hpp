@@ -11,6 +11,7 @@ private:
 	Button backButton;
 	Vector2 mousePoint;
 	int fontSize;
+	bool loadingComplete;
 public:
 	Game();
 	~Game();

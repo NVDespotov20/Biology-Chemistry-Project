@@ -7,12 +7,6 @@ InventorySystem::InventorySystem()
 	WIDTH = GetScreenWidth();
 	HEIGHT = GetScreenHeight();
 
-	//loading textures
-	inventory = LoadTexture("../assets/images/UI elements/inventory.png");
-	inventoryRect = { 0,0, (float)inventory.width, (float)inventory.height };
-
-	
-
 	//the position where the first item is placed in the inventory
 	positionOfItemsInInventory = { float(WIDTH / 3), float(HEIGHT - HEIGHT / 1.75) };
 	
@@ -53,6 +47,13 @@ bool InventorySystem::isPickedUp(Rectangle heroPosition,Texture2D&item, std::vec
 		}
 	}
 	return 0;
+}
+
+void InventorySystem::load()
+{
+	//loading textures
+	inventory = LoadTexture("../assets/images/UI elements/inventory.png");
+	inventoryRect = { 0,0, (float)inventory.width, (float)inventory.height };
 }
 
 void InventorySystem::drawInventory(Texture2D&item)

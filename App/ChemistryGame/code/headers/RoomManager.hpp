@@ -7,6 +7,8 @@ class RoomManager
 	std::shared_ptr<Navigator> dir;
 	public:
 	void manageAndDrawRooms();
+	void load();
+	void unload();
 	RoomManager();
 	~RoomManager();
 };

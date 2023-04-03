@@ -11,16 +11,20 @@ std::shared_ptr<Items> Items::getInstantiation()
 	}
 	return instantiate_;
 }
+void Items::load()
+{
+
+	item = LoadTexture("../assets/images/chemistry/item.png");
+	//setting sizes of variables
+	item.width = 50;
+	item.height = 50;
+}
 Items::Items()
 {
 	//things for items
 	WIDTH = GetScreenWidth();
 	HEIGHT = GetScreenHeight();
 
-	item = LoadTexture("../assets/images/chemistry/item.png");
-	//setting sizes of variables
-	item.width = 50;
-	item.height = 50;
 
 
 	//random seed using chrono library

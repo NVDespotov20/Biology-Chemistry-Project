@@ -12,7 +12,7 @@ public:
 
 	//initialization of rectangles
 	Rectangle inventoryRect;
-
+	void load();
 	
 
 	//vectors for the position of the items

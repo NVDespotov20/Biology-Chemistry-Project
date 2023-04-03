@@ -4,11 +4,34 @@
 RoomManager::RoomManager()
 {
 	rooms = {
-	   {nullptr, nullptr, std::make_shared<Rooms>(3), nullptr, nullptr},
-	   {nullptr, nullptr, std::make_shared<Rooms>(4), nullptr, nullptr},
+	   {std::make_shared<Rooms>(1),  std::make_shared<Rooms>(2), std::make_shared<Rooms>(3),  std::make_shared<Rooms>(2),  std::make_shared<Rooms>(1)},
+	   {std::make_shared<Rooms>(1),  std::make_shared<Rooms>(2), std::make_shared<Rooms>(4),  std::make_shared<Rooms>(2),  std::make_shared<Rooms>(1)},
 	   {std::make_shared<Rooms>(1)}
 	};
 	dir = Navigator::getInstantiation();
+}
+void RoomManager::load()
+{
+	for (auto& room : rooms)
+	{
+		for (auto& textures : room)
+		{
+			if (textures != nullptr)
+				textures->load();
+		}
+	}
+}
+
+void RoomManager::unload()
+{
+	for (auto& room : rooms)
+	{
+		for (auto& textures : room)
+		{
+			if (textures != nullptr)
+				textures->unload();
+		}
+	}
 }
 void RoomManager::manageAndDrawRooms()
 {

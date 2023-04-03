@@ -16,12 +16,7 @@ ChasingRoom::ChasingRoom()
 
 ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenHeight()), doors(doors)
 {
-	table = LoadTexture("../assets/images/chemistry/Objects/Table.png");
-	table.width =250; 
-	table.height =200; 
-
-	spawnPointBackground = LoadTexture("../assets/images/chemistry/Rooms/SpawnRoom.png");
-
+	
 	//make them smart and delete by themselve
 	player = std::make_shared<Player>();
 	teacher = Teacher::getInstantiation();
@@ -33,8 +28,6 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	dir = Navigator::getInstantiation();
 
 	//loads sprites of the moving people
-	player->LoadSprites(60);
-	teacher->LoadSprites();
 
 	stringsBackgroundName = {
 		"SpawnRoom",
@@ -43,8 +36,7 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 		"RoomThree"
 	};
 	
-	spawnPointBackground.width = GetScreenWidth();
-	spawnPointBackground.height = GetScreenHeight();
+	
 
 	seed = std::chrono::steady_clock::now().time_since_epoch().count();
 
@@ -55,29 +47,8 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 
 	std::shuffle(stringsBackgroundName.begin(), stringsBackgroundName.end(), gen);
 
-	for (int i = 0; i < 4; i++)
-	{
-		stringsBackgroundName.at(i) = "../assets/images/chemistry/Rooms/"+ stringsBackgroundName.at(i) + ".png";
-	}
 
-	for (int i = 0; i < 4; i++)
-	{
-		if (stringsBackgroundName.at(i) != "../assets/images/chemistry/Rooms/SpawnRoom.png")
-		{
-			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
-			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
-			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
-		}
-	}
-
-	std::shuffle(texturesBackgrounds.begin(), texturesBackgrounds.end(), gen);
-
-	for (int i = 0; i < 6; i++)
-	{
-		texturesBackgrounds.at(i).width = WIDTH;
-		texturesBackgrounds.at(i).height = HEIGHT;
-	}
-
+	
 	menuButton = { 0, 20, HEIGHT / 7.f, HEIGHT / 20.f };
 
 	loadSplitElementsMiniGame = 0;
@@ -219,6 +190,46 @@ void ChasingRoom::unload()
 	UnloadTexture(table);
 }
 
+void ChasingRoom::load()
+{
+	//load
+	table = LoadTexture("../assets/images/chemistry/Objects/Table.png");
+	table.width = 250;
+	table.height = 200;
+
+	spawnPointBackground = LoadTexture("../assets/images/chemistry/Rooms/SpawnRoom.png");
+	spawnPointBackground.width = GetScreenWidth();
+	spawnPointBackground.height = GetScreenHeight();
+	teacher->LoadSprites();
+	player->LoadSprites(60);
+
+	for (int i = 0; i < 4; i++)
+	{
+		stringsBackgroundName.at(i) = "../assets/images/chemistry/Rooms/" + stringsBackgroundName.at(i) + ".png";
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (stringsBackgroundName.at(i) != "../assets/images/chemistry/Rooms/SpawnRoom.png")
+		{
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+		}
+	}
+
+	std::shuffle(texturesBackgrounds.begin(), texturesBackgrounds.end(), gen);
+	for (int i = 0; i < 6; i++)
+	{
+		texturesBackgrounds.at(i).width = WIDTH;
+		texturesBackgrounds.at(i).height = HEIGHT;
+	}
+
+	inventory->load();
+	items->load();
+
+}
+
 void ChasingRoom::drawSplitElementsMiniGame()
 {
 	splitElements->drawAndMoveElementsAndHolders(loadSplitElementsMiniGame);
@@ -226,13 +237,13 @@ void ChasingRoom::drawSplitElementsMiniGame()
 
 	if (splitElements->checkerForMetals.size() != 4 or splitElements->nonmetalsHolders.size() != 4)
 	{
-	miniGameSplitElementsPlayed = false;
-	return;
+		miniGameSplitElementsPlayed = false;
+		return;
 	}
 	miniGameSplitElementsPlayed = true;
 	bool tmp = splitElements->checkElements();
 	if (tmp) money->addMoney();
-	teacher->setActive(!tmp);
+		teacher->setActive(!tmp);
 	loadSplitElementsMiniGame = false;
 }
 

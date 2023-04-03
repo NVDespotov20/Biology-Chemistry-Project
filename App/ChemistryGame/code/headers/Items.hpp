@@ -6,6 +6,7 @@ public:
 	~Items();
 	static std::shared_ptr<Items> getInstantiation();
 	void drawNormalItems();
+	void load();
 	std::vector<Vector2> normalItemsPos;
 
 	Texture2D item;

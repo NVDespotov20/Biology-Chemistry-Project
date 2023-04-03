@@ -8,6 +8,7 @@ Game::Game()
 	roomManager = std::make_shared<RoomManager>();
 	fontSize = HEIGHT / 36;
 	backButton = Button("Menu", 0, 20, HEIGHT / 7, HEIGHT / 20, fontSize); //size of back button
+	roomManager->load();
 }
 
 //destructor - unloads and closes everything

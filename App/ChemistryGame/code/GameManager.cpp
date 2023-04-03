@@ -5,16 +5,19 @@ GameManager::GameManager()
 {
     // Initialization of the window and setting name and starting coordinates of the window
 
-    WIDTH = GetScreenWidth();
-    HEIGHT = GetScreenHeight();
 
-    InitWindow(WIDTH, HEIGHT, "Escape the IT");
-
-    // Set our GameManager to run at 60 frames-per-second
+    InitWindow(0, 0, "Escape the IT");
+    ToggleFullscreen();
     SetTargetFPS(60);
 
+    BeginDrawing();
+    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), RED);
+        DrawText("Loading...", 500, 500, 100, WHITE);
+    EndDrawing();
+
+    // Set our GameManager to run at 60 frames-per-second
+
     //Set our GameManager to be on fullscreen
-    //ToggleFullscreen();
     game = std::make_shared<Game>();
     menu = std::make_shared<Menu>();
 
@@ -32,12 +35,12 @@ GameManager::~GameManager()
 void GameManager::start()
 {
 
-    while (!WindowShouldClose() && !shouldQuit)
+    while (!WindowShouldClose())
     {
 
         BeginDrawing();
         ClearBackground(LIGHTGRAY);
-        shouldQuit = manageGame();
+        manageGame();
         EndDrawing();
     }
 }
@@ -60,7 +63,9 @@ bool GameManager::manageGame()
         }
         case Navigator::Navigate::QUIT:
         {
-            return true;
+            EndDrawing();
+            CloseWindow();
+            exit(0);
         }
     }
 }
