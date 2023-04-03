@@ -21,9 +21,7 @@ void FileReader::openFile(std::string path)
 
 	file.open(path);
 	if (!file.is_open())
-	{
 		std::cout << "File not loaded path: " << path;
-	}
 }
 
 void FileReader::closeFile()

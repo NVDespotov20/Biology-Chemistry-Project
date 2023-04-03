@@ -5,11 +5,10 @@ class AppManager
 {
 public:
     ~AppManager();
-    bool manageApp();
+    void manageApp();
     void drawMainLoop();
     static AppManager* getInstantiation();
 private:
-    bool shouldQuit;
     static AppManager* instantiate_;
 
     AppManager();

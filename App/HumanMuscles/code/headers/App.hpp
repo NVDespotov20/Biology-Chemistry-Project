@@ -6,7 +6,7 @@ class App
 {
 public:
     ~App();
-    void drawHumanAndButtons();
+    void drawUI();
     void setSizes();
     void setButtons();
     void showInfo(int indexOfMuscle);
@@ -20,14 +20,16 @@ private:
 
     void load();
     void unload();
-    void switchViews();
+    void checkInput();
 
     int indexOfButtons;
     int fontSize = 20;
     int sizeOfmuscleButtons;
 
-    float WIDTH, offsetX;
+    float WIDTH, offsetX ;
     float HEIGHT, offsetY;
+
+    Texture2D background;
 
     Texture2D nextButton;
     Texture2D previousButton;
@@ -35,6 +37,7 @@ private:
     Texture2D humanBody;
     Texture2D *selectedMuscle;
     Texture2D muscleTextures[12];
+
     std::string muscleNames[12];
 
     Button muscles[12];
