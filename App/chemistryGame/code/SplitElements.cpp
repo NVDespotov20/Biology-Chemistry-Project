@@ -113,7 +113,7 @@ SplitElements::SplitElements()
 		choiceOfMetalOtNonmetal[i].width = 250;
 		choiceOfMetalOtNonmetal[i].height = 250;
 
-		choice[i] = { WIDTH / 15.f + i * 900,HEIGHT / 6.f,WIDTH / 2 - WIDTH / 9.46f,HEIGHT / 1.367f };
+		choice[i] = { 680 + i * 300.f,750,250,250 };
 	}
 
 	//set size for each texture
@@ -205,12 +205,10 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 
 	if (chooseMetalOrNonmetal)
 	{
-		DrawText("Metal or Nonmetal", WIDTH / 3.85, HEIGHT / 11, 100, BLANK);
-
 		for (int i = 0; i < 2; i++)
 		{
-			DrawRectangleRec(choice[i], BLANK);
-			DrawTexture(choiceOfMetalOtNonmetal[i], 680+ i * 300,750,WHITE);
+			DrawRectangleRec(choice[i], BLACK);
+			DrawTexture(choiceOfMetalOtNonmetal[i], 680 + i * 300,750,WHITE);
 		}
 
 		//if you choose metal if statemant
