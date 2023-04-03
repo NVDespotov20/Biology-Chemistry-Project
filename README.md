@@ -22,6 +22,7 @@
 ---
 
 <h1 align="center"> Preview of the game</h1> <a name = "preview"></a>
+<img align="center" src="App/chemistryGame/assets/images/chemistry/Objects/MainBackground.png" height="50%" width = "45%">
 
 <p align = "center" font-size="60">Our game point's to complete a serval chemistry task to escape the IT school and to complete the game</p>
 <p align="center">
@@ -44,7 +45,7 @@
 
 ---
 
-# [📄 Documentation](https://codingburgas-my.sharepoint.com/:p:/r/personal/aikostov20_codingburgas_bg/_layouts/15/doc2.aspx?sourcedoc=%7B3D9C0078-AB00-4519-98A2-AC85D7485037%7D&file=Project%20Biology-Chemisty.pptx&action=edit&mobileredirect=true&ct=1680496574067&wdOrigin=OFFICECOM-WEB.MAIN.EDGEWORTH&cid=4660aa27-c248-466c-b8ff-038725647a0aq)<br/>
+# [📄 Documentation](https://codingburgas-my.sharepoint.com/:w:/g/personal/aikostov20_codingburgas_bg/EVYUYJ-pHFtLvrKKRdHYdgMB_PBEj5-JufA-YMYlidlQFA?e=oa2ybwq)<br/>
 # [📄 Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/aikostov20_codingburgas_bg/Ea3c1DTtPjdNi16M9Wh9hbwB2lGu7hMKC0nu-ZfNEe8-aQ)
 
 

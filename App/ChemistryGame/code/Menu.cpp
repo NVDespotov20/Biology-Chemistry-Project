@@ -31,7 +31,7 @@ Menu::~Menu()
 
 inline void Menu::load()
 {
-    menuBackground = LoadTexture("../assets/images/Rooms/RoomThree.png");
+    menuBackground = LoadTexture("../assets/images/chemistry/Objects/MainBackground.png");
 
     buttonsTextures[0] = LoadTexture("../assets/images/chemistry/Buttons/StartButton.png");
     buttonsTextures[1] = LoadTexture("../assets/images/chemistry/Buttons/OptionsButton.png");
@@ -51,6 +51,8 @@ inline bool Menu::isClicked(const Vector2& mPos, const Rectangle& rec)
 
 void Menu::drawMainMenu()
 {
+    menuBackground.width = GetScreenWidth();
+    menuBackground.height = GetScreenHeight();
     DrawTexture(menuBackground, 0, 0, WHITE);
 
     mousePoint = GetMousePosition();
