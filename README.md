@@ -22,12 +22,14 @@
 ---
 
 <h1 align="center"> Preview of the game</h1> <a name = "preview"></a>
-<img align="center" src="App/chemistryGame/assets/images/chemistry/Objects/MainBackground.png" height="50%" width = "45%">
 
-<p align = "center" font-size="60">Our game point's to complete a serval chemistry task to escape the IT school and to complete the game</p>
+
 <p align="center">
-  <img src = "Preview.png" height="60%" width = "70%">
+  
+<img align="center" src="App/chemistryGame/assets/images/chemistry/Objects/MainBackground.png" height="50%" width = "80%">
  </p>
+<p align = "center" font-size="60">Our game point's to complete a serval chemistry task to escape the IT school and to complete the game</p>
+
 
 ---
 
