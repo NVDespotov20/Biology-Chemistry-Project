@@ -23,8 +23,19 @@ public:
 
 	std::vector<Texture2D> theChosenThree;
 
-	Rectangle answersRec[9];
+	Rectangle answersRec1[3];
+	Rectangle answersRec2[3];
+	Rectangle answersRec3[3];
+
+	Rectangle backbutton;
+
+	Texture2D background;
+
 	Rectangle containersRec[3];
+
+	Texture2D buttonsTextures[3];
+
+	Texture2D metalOrNonmetalChoice[2];
 
 	unsigned seed;
 

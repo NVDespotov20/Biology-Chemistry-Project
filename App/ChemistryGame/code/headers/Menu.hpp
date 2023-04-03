@@ -18,6 +18,8 @@ private:
 
     int fontSize;
 
+    Texture2D buttonsTextures[4];
+
     Texture2D menuBackground;
 
     Vector2 mousePoint;

@@ -1,6 +1,5 @@
 #include "pchGame.hpp"
 #include "CheckValency.hpp"
-#include <iostream>
 
 std::shared_ptr<CheckValency> CheckValency::instantiate_ = nullptr;
 
@@ -15,7 +14,6 @@ std::shared_ptr<CheckValency> CheckValency::getInstantiation()
 CheckValency::CheckValency() 
 {
 	//mousePoint = GetMousePosition();
-
     WIDTH = GetScreenWidth();
 	HEIGHT = GetScreenHeight();
 
@@ -33,6 +31,12 @@ CheckValency::CheckValency()
 		"Soldium(Na)",
 		"Hydrogen(H2)"
 	};
+	
+	backbutton = {700,750,600,300};
+
+	buttonsTextures[0] = LoadTexture("../assets/images/chemistry/Buttons/HolderOne.png");
+	buttonsTextures[1] = LoadTexture("../assets/images/chemistry/Buttons/HolderTwo.png");
+	buttonsTextures[2] = LoadTexture("../assets/images/chemistry/Buttons/HolderThree.png");
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -63,36 +67,54 @@ CheckValency::CheckValency()
 
     std::shuffle(theChosenThreeStrings.begin(), theChosenThreeStrings.end(), gen);
 
-	for (int i = 0; i < 9; i++)
-	{
-		answersRec[i] = {
-			200.f *i + 50 ,
-			800 ,
-			150, 
-			150
-		};
-	}
 
 	for (int i = 0; i < 3; i++)
 	{
 		containersRec[i] = {
-			float(30 + i * 600) ,
-			470 ,
-			590 ,
-			500 
+			float(55 + i * 610) ,
+			50,
+			590,
+			500
 		};
-	}
-	for (int i = 0; i < 3; i++)
-	{
+
+		answersRec1[i] = {
+			200.f *i + 75,
+			375,
+			150, 
+			150
+		};
+
+		answersRec2[i] = {
+			200.f * (i+3) + 85,
+			375,
+			150,
+			150
+		};
+
+		answersRec3[i] = {
+			200.f * (i+6) + 95,
+			375,
+			150,
+			150
+		};
+
 		theChosenThree.push_back(LoadTexture(theChosenThreeStrings[i].c_str()));
+
+		buttonsTextures[i].width = 160;
+		buttonsTextures[i].height = 160;
 	}
 
-	
+	background = LoadTexture("../assets/images/chemistry/Objects/TableBackground.png");
+
+	background.width = WIDTH;
+	background.height = HEIGHT;
 }
 
 void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 {
 	mousePoint = GetMousePosition();
+
+	DrawTexture(background, 0,0,WHITE);
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -103,6 +125,7 @@ void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 		}
 		
 	}
+
 	for (int i = 0; i < 3; i++)
 	{
 		rightAnswersArray[i] = 1 + i * 3;
@@ -110,57 +133,62 @@ void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 		{
 			rightAnswersArray[i]++;
 		}
-	}
 
-	
-	for (int i = 0; i < 3; i++)
-	{
 		theChosenThree[i].width = 200;
 		theChosenThree[i].height = 250;
 
-		DrawTexture(theChosenThree[i], float(30 + i * 600), 470, WHITE);
+		DrawTexture(theChosenThree[i], float(250 + i * 600), 100, WHITE);
 		DrawRectangleLinesEx(containersRec[i], 10, BLACK);
+
+		DrawRectangleRec(answersRec1[i], BLANK);
+		DrawRectangleRec(answersRec2[i], BLANK);
+		DrawRectangleRec(answersRec3[i], BLANK);
+
+		DrawTexture(buttonsTextures[0], 70 + 610*i, 370, WHITE);
+		DrawTexture(buttonsTextures[1], 270 + 610*i, 370, WHITE);
+		DrawTexture(buttonsTextures[2], 470 + 610*i, 370, WHITE);
+		
 	}
 
-	for (int i = 0; i < 9; i++)
-	{
-		DrawRectangleRec(answersRec[i], LIME);
-	}
 
-	for (int i = 1; i < 4; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		for (int j = 1; j < 4; j++)
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
-			DrawText(std::to_string(i).c_str(), 600 + (j - 2) * 650 + i * 200, 770, 50, BLACK);
-		}
-	}
-
-
-	for (int i = 0; i < 9; i++)
-	{
-		if (CheckCollisionPointRec(mousePoint, answersRec[i]))
-		{
-			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+			if (givenAnswers.size() < 3)
 			{
-				if (givenAnswers.size() < 3) {
-					if (givenAnswers.size() == 0) {
-						if (i >= 0 && i <= 2) {
-							givenAnswers.push_back(i+1);
-						}
+				if (CheckCollisionPointRec(mousePoint, answersRec1[i]))
+				{
+					if (givenAnswers.size() == 0)
+					{
+						givenAnswers.push_back(i + 1);
 					}
-					else if (givenAnswers.size() == 1) {
-						if (i >= 3 && i <= 5) {
-							givenAnswers.push_back(i+1);
-						}
+				}
+
+				if (CheckCollisionPointRec(mousePoint, answersRec2[i]))
+				{
+					if (givenAnswers.size() == 1)
+					{
+						givenAnswers.push_back(3 * i + 1);
 					}
-					else if (givenAnswers.size() == 2) {
-						if (i >= 6 && i <= 8) {
-							givenAnswers.push_back(i+1);
-						}
+				}
+
+				if (CheckCollisionPointRec(mousePoint, answersRec3[i]))
+				{
+					if (givenAnswers.size() == 2)
+					{
+						givenAnswers.push_back(3 * i + 1);
 					}
 				}
 			}
 		}
+	}
+
+	DrawRectangleRounded(backbutton,10,10,BLUE);
+
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(mousePoint, backbutton))
+	{
+		loadMiniGame = false;
 	}
 }
 

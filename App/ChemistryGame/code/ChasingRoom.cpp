@@ -1,7 +1,5 @@
 #include "pchGame.hpp"
-
 #include "ChasingRoom.hpp"
-
 
 ChasingRoom::ChasingRoom()
 {
@@ -18,8 +16,6 @@ ChasingRoom::ChasingRoom()
 
 ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenHeight()), doors(doors)
 {
-
-
 	table = LoadTexture("../assets/images/chemistry/Objects/Table.png");
 	table.width =250; 
 	table.height =200; 
@@ -49,8 +45,6 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	
 	spawnPointBackground.width = GetScreenWidth();
 	spawnPointBackground.height = GetScreenHeight();
-	
-	
 
 	seed = std::chrono::steady_clock::now().time_since_epoch().count();
 
@@ -117,10 +111,8 @@ void ChasingRoom::drawChasingRoom()
 
 	if (dir->j == 2 && dir->i == 0)
 	{
-		//center top 
-
+		//center top
 		DrawTexture(spawnPointBackground,0,0,WHITE);
-
 	}
 
 	if (dir->j == 2 && dir->i == 1)
