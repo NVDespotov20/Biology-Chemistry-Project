@@ -154,7 +154,6 @@ void App::setButtons()
 void App::drawUI()
 {
 	mousePoint = GetMousePosition();
-
 	checkInput();
 
 	DrawTexturePro(background,
@@ -162,8 +161,6 @@ void App::drawUI()
 		Rectangle{ 0,0,WIDTH + offsetX ,HEIGHT + offsetY },
 		Vector2{ 0,0 },
 		0, WHITE);
-
-	backButton.draw(0.4f, 1, RED, BLACK);
 
 	if (selectedMuscle)
 	{
@@ -179,7 +176,7 @@ void App::drawUI()
 	for (int i = 0; i < sizeOfmuscleButtons; ++i)
 	{
 		muscles[i].draw(0.4f, 10, BLUE, BLACK);
-		if (CheckCollisionPointRec(mousePoint, muscles[i].getBoundingBox()))
+		if (CheckCollisionPointRec(mousePoint, muscles[i].getBoundingBox()) || (selectedMuscle != nullptr && selectedMuscle == &muscleTextures[i]))
 		{
 			muscles[i].draw(0.4f, 10, SKYBLUE, BLACK);
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
@@ -188,10 +185,12 @@ void App::drawUI()
 	}
 
 	DrawLineEx(lineOfButtons[0], lineOfButtons[1], 5, BLACK);
-	if (muscleInfo.empty())
-		return;
-	DrawRectangle( offsetX / 2, offsetY / 2, previousButtonRec.x - offsetX / 2, HEIGHT - offsetY / 2, ORANGE);
-	DrawText(muscleInfo.c_str(), WIDTH / 192 + offsetX / 2, HEIGHT / 10.8f + offsetY / 2, fontSize, BLACK);
+	if (!muscleInfo.empty()) 
+	{
+		DrawRectangle(offsetX / 1.99, offsetY / 2, previousButtonRec.x - offsetX / 1.71, HEIGHT + 1, Color{69,69,69, 255});
+		DrawText(muscleInfo.c_str(), WIDTH / 192 + offsetX / 2, HEIGHT / 10.8f + offsetY / 2, fontSize, LIGHTGRAY);
+	}
+	backButton.draw(0.4f, 1, RED, BLACK);
 }
 
 
