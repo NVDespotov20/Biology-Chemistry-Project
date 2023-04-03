@@ -39,8 +39,8 @@ Items::Items()
 
 
 	//set the range for the x and y where the normal items can appear
-	range = std::uniform_int_distribution<int>(1, WIDTH - WIDTH / 17);
-	range2 = std::uniform_int_distribution<int>(1, HEIGHT - HEIGHT / 15);
+	range = std::uniform_int_distribution<int>(150, WIDTH - 150);
+	range2 = std::uniform_int_distribution<int>(150, HEIGHT - 150);
 
 	for (int i = 0; i < v1.size(); i++)
 	{
