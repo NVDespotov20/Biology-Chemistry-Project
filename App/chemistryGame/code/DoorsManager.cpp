@@ -26,7 +26,6 @@ DoorsManager::DoorsManager()
 	"Oxygen(O2)"
 	};
 
-
 	seed = std::chrono::steady_clock::now().time_since_epoch().count();
 
 	//generator of new random number with the seed

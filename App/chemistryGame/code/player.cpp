@@ -51,16 +51,6 @@ Player::Player()
 
 	WIDTH = GetScreenWidth();
 	HEIGHT = GetScreenHeight();
-
-	verticalLimits = {
-		{0,0,WIDTH,HEIGHT / 10.f},
-		{0,HEIGHT - HEIGHT / 9.f,WIDTH,HEIGHT / 8.f}
-	};
-
-	horizontalLimits = {
-		{0,0,WIDTH / 8.f,HEIGHT},
-		{WIDTH - WIDTH / 8.f,0,WIDTH / 8.f,HEIGHT}
-	};
 	playerCords.x = GetScreenWidth() / 2;
 	playerCords.y = GetScreenHeight() / 2;
 	HorizotnalOrVertical[0] = 0;
@@ -78,19 +68,15 @@ Player::~Player()
 //switch sprite when button is clicked
 void Player::CheckDir()
 {
-	for (auto& i : verticalLimits)
-		DrawRectangleRec(i, Fade(BLACK, 0.5f));
-	for (auto& i : horizontalLimits)
-		DrawRectangleRec(i, Fade(RED, 0.5f));
-	CheckWalls();
-	if ((IsKeyDown(KEY_UP) or IsKeyDown(KEY_W)) && !(playerCords.y <= 20))
+
+	if ((IsKeyDown(KEY_UP) or IsKeyDown(KEY_W)) && !(playerCords.y <= HEIGHT / 10))
 	{
 		playerCords.y -= speed.y * GetFrameTime();
 		HeroDir = UP;
 
 		HorizotnalOrVertical[1] = 1;
 	}
-	else if ((IsKeyDown(KEY_DOWN) or IsKeyDown(KEY_S)) && !(playerCords.y >= GetScreenHeight() - playerSprite.height))
+	else if ((IsKeyDown(KEY_DOWN) or IsKeyDown(KEY_S)) && !(playerCords.y >= GetScreenHeight() - (playerSprite.height + HEIGHT / 7.f)))
 	{
 		playerCords.y += speed.y * GetFrameTime();
 
@@ -99,18 +85,17 @@ void Player::CheckDir()
 
 	}
 	else {
-
 		HorizotnalOrVertical[1] = 0;
 	}
 
-	if ((IsKeyDown(KEY_LEFT) or IsKeyDown(KEY_A)) && !(playerCords.x <= 0))
+	if ((IsKeyDown(KEY_LEFT) or IsKeyDown(KEY_A)) && !(playerCords.x <= WIDTH / 10))
 	{
 		playerCords.x -= speed.x * GetFrameTime();
 		HeroDir = LEFT;
 		HorizotnalOrVertical[0] = 1;
 
 	}
-	else if ((IsKeyDown(KEY_RIGHT) or IsKeyDown(KEY_D)) && !(playerCords.x >= GetScreenWidth() - 100))
+	else if ((IsKeyDown(KEY_RIGHT) or IsKeyDown(KEY_D)) && !(playerCords.x >= GetScreenWidth() - WIDTH / 7))
 	{
 		playerCords.x += speed.x * GetFrameTime();
 		HeroDir = RIGHT;
@@ -119,7 +104,6 @@ void Player::CheckDir()
 	}
 	else {
 		HorizotnalOrVertical[0] = 0;
-
 	}
 
 }
@@ -137,17 +121,10 @@ void Player::Movement()
 		playerSprite = idleSprites.at(int(HeroDir));
 	}
 
-	if (HorizotnalOrVertical[0] && HorizotnalOrVertical[1]) {
-
-		speed.x = 90;
-		speed.y = 90;
-	}
+	if (HorizotnalOrVertical[0] && HorizotnalOrVertical[1])
+		speed = {90, 90};
 	else
-	{
-		speed.x = 150;
-
-		speed.y = 150;
-	}
+		speed = {150, 150};
 
 
 	//flames
@@ -161,45 +138,15 @@ void Player::Movement()
 		view.x = lim;
 	}
 	counter++;
+
 	move = Rectangle{ playerCords.x, playerCords.y, lim, (float)playerSprite.height };
-}
-void Player::CheckWalls()
-{
-	/*for (int i = 0; i < walls.size(); i++) {
-		if (CheckCollisionRecs(move, walls.at(i))) {
-			if(i == 2)
-			{
-				if ((HorizotnalOrVertical[0] || HorizotnalOrVertical[1]) || (HorizotnalOrVertical[0] && HorizotnalOrVertical[1])){
-					speed.x = 0;
-					speed.y = 200;
-				}
-				else {
-					speed.x = 200;
-					speed.y = 0;
-				}
-			}
-			else {
-				if (HorizotnalOrVertical[0] || HorizotnalOrVertical[1]){
-					speed.x = 200;
-					speed.y = 0;
-				}
-				else {
-					speed.x = 0;
-					speed.y = 200;
-				}
-			}
-		}
-	}*/
 }
 void Player::UnLoadTextures()
 {
-	UnloadTexture(down);
-	UnloadTexture(left);
-	UnloadTexture(right);
-	UnloadTexture(up);
-
-	UnloadTexture(idleD);
-	UnloadTexture(idleL);
-	UnloadTexture(idleR);
-	UnloadTexture(idleU);
+	for(auto &texture : playerSprites){
+		UnloadTexture(texture);
+	}
+	for (auto& texture : idleSprites) {
+		UnloadTexture(texture);
+	}
 }

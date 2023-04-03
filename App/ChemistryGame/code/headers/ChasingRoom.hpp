@@ -7,6 +7,7 @@
 #include "Items.hpp"
 #include "Money.hpp"
 #include "CheckValency.hpp"
+
 class ChasingRoom
 {
     float WIDTH;
@@ -16,8 +17,6 @@ class ChasingRoom
 
     std::vector<Rectangle>verticalLimits;
     std::vector<Rectangle>horizontalLimits;
-
-
 
     std::shared_ptr<Teacher> teacher;
     std::shared_ptr<InventorySystem> inventory;
@@ -40,6 +39,8 @@ class ChasingRoom
     bool miniGameCheckValencyPlayed;
     Vector2 positionOfMiniGamePlace;
     
+    bool drawTable;
+
     unsigned seed;
 
     //random engine from random library
@@ -47,7 +48,10 @@ class ChasingRoom
 
     Texture2D spawnPointBackground;
     Texture2D table; 
- 
+    Texture2D tableBackground;
+    Texture2D rightArrow;
+
+    std::vector<Vector2> points;
 
 public:
     ChasingRoom();

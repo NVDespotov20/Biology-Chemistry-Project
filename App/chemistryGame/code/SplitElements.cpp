@@ -49,6 +49,9 @@ SplitElements::SplitElements()
 	//generator of new random number with the seed
 	gen.seed(seed);
 
+	backbuttonTexture = LoadTexture("../assets/images/chemistry/Buttons/BackButton.png");
+	backbuttonTexture.width = 220;
+	backbuttonTexture.height = 150;
 
 	//push split metals and nonmetals
 	for (int i = 0; i < 5; i++)
@@ -260,9 +263,9 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 			}
 		}
 	}
-	
 
-	DrawRectangleRec(backButton, GREEN);
+	DrawRectangleRec(backButton, BLANK);
+	DrawTexture(backbuttonTexture, 850, 60, WHITE);
 }
 
 //checks if they are actually metals and nonmetals

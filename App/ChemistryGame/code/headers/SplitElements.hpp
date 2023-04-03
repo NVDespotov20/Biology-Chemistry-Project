@@ -44,6 +44,7 @@ public:
 	std::vector<Texture2D> nonmetalsHolders;
 
 	Texture2D choiceOfMetalOtNonmetal[2];
+	Texture2D backbuttonTexture;
 
 	int counter;
 

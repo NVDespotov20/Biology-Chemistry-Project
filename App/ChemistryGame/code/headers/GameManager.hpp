@@ -8,7 +8,6 @@ private:
 	std::shared_ptr<Game> game;
 	std::shared_ptr<Menu> menu;
 	Rectangle view;
-	bool shouldQuit;
 public:
 	GameManager();
 	~GameManager();

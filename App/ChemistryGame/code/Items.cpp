@@ -14,7 +14,7 @@ std::shared_ptr<Items> Items::getInstantiation()
 void Items::load()
 {
 
-	item = LoadTexture("../assets/images/chemistry/item.png");
+	item = LoadTexture("../assets/images/chemistry/Elements/MiniCopper(Cu).png");
 	//setting sizes of variables
 	item.width = 50;
 	item.height = 50;

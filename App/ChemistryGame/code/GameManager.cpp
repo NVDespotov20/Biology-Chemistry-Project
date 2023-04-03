@@ -7,28 +7,25 @@ GameManager::GameManager()
 
 
     InitWindow(0, 0, "Escape the IT");
-    ToggleFullscreen();
+    //ToggleFullscreen();
     SetTargetFPS(60);
-
+    
     BeginDrawing();
-    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), RED);
-        DrawText("Loading...", 500, 500, 100, WHITE);
+        DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(),PURPLE);
+        DrawText("lOADING...", GetScreenWidth() / 2, GetScreenHeight()/ 2, 169, WHITE);
     EndDrawing();
-
-    // Set our GameManager to run at 60 frames-per-second
-
+      
     //Set our GameManager to be on fullscreen
     game = std::make_shared<Game>();
     menu = std::make_shared<Menu>();
 
-    shouldQuit = false;
-
+    //shouldQuit = false;
 }
 
 //destructor - unloads and closes everything
 GameManager::~GameManager()
 {
-
+    //UnloadTexture(loadingSprite);
     CloseWindow();
 }
 
@@ -37,7 +34,6 @@ void GameManager::start()
 
     while (!WindowShouldClose())
     {
-
         BeginDrawing();
         ClearBackground(LIGHTGRAY);
         manageGame();

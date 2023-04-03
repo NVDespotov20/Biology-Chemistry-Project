@@ -6,7 +6,7 @@ Teacher::Teacher()
 	counterFrameIdle = 0;
 	counterFrameChasing = 0;
 	speed = 100;
-	position = { 500, 800 };
+	position = { 500, 600 };
 	isSeen = 0;
 }
 

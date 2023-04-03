@@ -32,13 +32,15 @@ CheckValency::CheckValency()
 		"Hydrogen(H2)"
 	};
 	
-	backbutton = {700,750,600,300};
+	backbutton = {700,825,600,200};
 
 	buttonsTextures[0] = LoadTexture("../assets/images/chemistry/Buttons/HolderOne.png");
 	buttonsTextures[1] = LoadTexture("../assets/images/chemistry/Buttons/HolderTwo.png");
 	buttonsTextures[2] = LoadTexture("../assets/images/chemistry/Buttons/HolderThree.png");
 
-	backbuttonTexture = LoadTexture("");
+	backbuttonTexture = LoadTexture("../assets/images/chemistry/Buttons/BackButton.png");
+	backbuttonTexture.width = 600;
+	backbuttonTexture.height = 450;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -149,7 +151,6 @@ void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 		DrawTexture(buttonsTextures[0], 70 + 610*i, 370, WHITE);
 		DrawTexture(buttonsTextures[1], 270 + 610*i, 370, WHITE);
 		DrawTexture(buttonsTextures[2], 470 + 610*i, 370, WHITE);
-		
 	}
 
 
@@ -186,7 +187,8 @@ void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 		}
 	}
 
-	DrawRectangleRounded(backbutton,10,10,BLUE);
+	DrawTexture(backbuttonTexture, 700,700,WHITE);//backbuttonTexture.width = 600;
+	DrawRectangleRounded(backbutton,10,10,BLANK);
 
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(mousePoint, backbutton))
 	{

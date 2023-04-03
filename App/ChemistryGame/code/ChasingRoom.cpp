@@ -16,8 +16,6 @@ ChasingRoom::ChasingRoom()
 
 ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenHeight()), doors(doors)
 {
-	
-
 	//make them smart and delete by themselve
 	player = std::make_shared<Player>();
 	teacher = Teacher::getInstantiation();
@@ -30,14 +28,32 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 
 	//loads sprites of the moving people
 
+	tableBackground = LoadTexture("../assets/images/chemistry/Objects/TableBackground.png");
+	tableBackground.width = GetScreenWidth();
+	tableBackground.height = GetScreenHeight();
+
 	stringsBackgroundName = {
 		"SpawnRoom",
 		"RoomOne",
 		"RoomTwo",
 		"RoomThree"
 	};
+
+	points = {
+		{ WIDTH / 2, 100 },
+		{ WIDTH / 2 + 50, 150 },
+		{ WIDTH / 2 + 25, 225 },
+		{ WIDTH / 2 - 25, 225 },
+		{ WIDTH / 2 - 50, 150 },
+		{ WIDTH / 2 - 20, 125 },
+		{ WIDTH / 2 + 20, 125 }
+	};
 	
-	
+	drawTable = false;
+
+	rightArrow = LoadTexture("../assets/images/UI Elements/RightArrow.png");
+	rightArrow.width = 350;
+	rightArrow.height = 200;
 
 	seed = std::chrono::steady_clock::now().time_since_epoch().count();
 
@@ -47,8 +63,6 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	//std::shuffle(elementsTexturesStrings.begin(), elementsTexturesStrings.end(), gen);
 
 	std::shuffle(stringsBackgroundName.begin(), stringsBackgroundName.end(), gen);
-
-
 	
 	menuButton = { 0, 20, HEIGHT / 7.f, HEIGHT / 20.f };
 
@@ -119,16 +133,34 @@ void ChasingRoom::drawChasingRoom()
 
 	if (dir->j == 3 && dir->i == 1)
 	{//bot right
-		positionOfMiniGamePlace = { 300, 100 };
 		DrawTexture(texturesBackgrounds.at(3), 0, 0, WHITE);
-		DrawCircleV(positionOfMiniGamePlace, 100, ORANGE);
-		DrawTexture(table, 300, 200, WHITE);
 	}
 
 	if (dir->j == 1 && dir->i == 1)
 	{//bot left
-		DrawTexture(table, 300, 200, WHITE);
+		positionOfMiniGamePlace = { 300, 200 };
 		DrawTexture(texturesBackgrounds.at(4), 0, 0, WHITE);
+		DrawCircleV(positionOfMiniGamePlace, 100, BLANK);
+		DrawTexture(table, 170, 100, WHITE);
+
+		if (IsKeyPressed(KEY_P) && CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && inventory->itemsInInventoryPos.size() == 4)
+		{
+			drawTable = true;
+		}
+
+		if (drawTable)
+		{
+			DrawTexture(tableBackground,0,0,WHITE);
+			for (int i = 0; i < 7; i++)
+			{
+				DrawPoly(points.at(i), 7, 500, 0, BLUE);
+			}
+			DrawTexture(rightArrow, 800,500,WHITE);
+			if (!drawTable)
+			{
+				money->addMoney();
+			}
+		}
 	}
 
 	if (loadSplitElementsMiniGame)
@@ -165,8 +197,6 @@ void ChasingRoom::drawChasingRoom()
 
 void ChasingRoom::drawCheckValencyMiniGame()
 { 
-	
-	
 	checkValency->drawAndCheckElementsAndHolders(loadCheckValencyMiniGame);
 
 	if (checkValency->givenAnswers.size() != 3)
@@ -261,28 +291,34 @@ void ChasingRoom::checkDoors()
 {
 	switch (this->doors)
 	{
-	case 1:
-		//remove unneeded doors
+	//case 1:
+	//	//remove unneeded doors
+	//	if (dir->j > 2) {
+	//		player->positionsOfDoors.erase("down");
+	//		player->positionsOfDoors.erase("right");
+	//	}
+	//	else {
+	//		player->positionsOfDoors.erase("down");
+	//		player->positionsOfDoors.erase("left");
+	//	}
+
+
+	//	//draw and check if player is near door
+	//	player->drawDoors();
+	//	stringDirHolder = player->isNearDoor(player->move);
+	//	player->enterDoor(stringDirHolder);
+
+	//break;
+
+	case 2:
 		if (dir->j > 2) {
 			player->positionsOfDoors.erase("down");
 			player->positionsOfDoors.erase("right");
-		}
-		else {
+		}else{
+
 			player->positionsOfDoors.erase("down");
 			player->positionsOfDoors.erase("left");
 		}
-
-
-		//draw and check if player is near door
-		player->drawDoors();
-		stringDirHolder = player->isNearDoor(player->move);
-		player->enterDoor(stringDirHolder);
-
-	break;
-
-	case 2:
-	
-		player->positionsOfDoors.erase("down");
 
 		//draw and check if player is near door
 		player->drawDoors();
