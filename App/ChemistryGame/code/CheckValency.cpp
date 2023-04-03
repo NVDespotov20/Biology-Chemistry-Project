@@ -191,7 +191,7 @@ void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 		loadMiniGame = false;
 	}
 }
-
+	
 
 bool CheckValency::checkAccuracy()
 {

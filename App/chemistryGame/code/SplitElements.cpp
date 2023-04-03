@@ -94,11 +94,14 @@ SplitElements::SplitElements()
 		elementsTextures.push_back(LoadTexture(elementsStrings[i].c_str()));
 	}
 
+	choiceOfMetalOtNonmetal[0] = LoadTexture("../assets/images/chemistry/Buttons/MetalButton.png");
+	choiceOfMetalOtNonmetal[1] = LoadTexture("../assets/images/chemistry/Buttons/NonmetalButton.png");
+
 	//set sizes for each box
 	for (int i = 0; i < 4; i++)
 	{
-		elementsInTheBoxRec[i] = { WIDTH / 3.80f + i * 250 - WIDTH / 25 - WIDTH / 550, HEIGHT / 4.f + (HEIGHT / 4), WIDTH/12.f, HEIGHT/7.f};
-		elementsInTheBoxRec2[i] = { WIDTH / 3.80f + i * 250 - WIDTH / 25 - WIDTH / 550, HEIGHT / 4.5f + (HEIGHT / 40), WIDTH / 12.f, HEIGHT / 7.f };
+		elementsInTheBoxRec[i] = { WIDTH / 3.80f + i * 250, HEIGHT / 4.f + (HEIGHT / 4), WIDTH/12.f, HEIGHT/7.f};
+		elementsInTheBoxRec2[i] = { WIDTH / 3.80f + i * 250, HEIGHT / 4.5f + (HEIGHT / 40), WIDTH / 12.f, HEIGHT / 7.f };
 
 		elementsInTheHolders[i] = { WIDTH / 15.f,HEIGHT / 6.f + i * 175,WIDTH / 12.2f,HEIGHT / 7.f };
 		elementsInTheHolders2[i] = { WIDTH - WIDTH / 6.5f,HEIGHT / 6.f + i * 175,WIDTH / 12.f,HEIGHT / 7.f };
@@ -107,6 +110,9 @@ SplitElements::SplitElements()
 	//set size for choosing metal or nonmetal
 	for (int i = 0; i < 2; i++)
 	{
+		choiceOfMetalOtNonmetal[i].width = 250;
+		choiceOfMetalOtNonmetal[i].height = 250;
+
 		choice[i] = { WIDTH / 15.f + i * 900,HEIGHT / 6.f,WIDTH / 2 - WIDTH / 9.46f,HEIGHT / 1.367f };
 	}
 
@@ -118,7 +124,7 @@ SplitElements::SplitElements()
 	}
 
 	//set place and size for back button
-	backButton = {WIDTH/2.f-WIDTH/20,HEIGHT-HEIGHT/10.f,WIDTH/10.f,HEIGHT/20.f};
+	backButton = {WIDTH/2.f-WIDTH/20,HEIGHT/10.f,WIDTH/10.f,HEIGHT/20.f};
 	
 }
 
@@ -153,8 +159,9 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 
 	
 	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, backButton))
+	{
 		loadMiniGame = false;
-
+	}
 
 	DrawTexture(backgroundOfTable, 0, 0, WHITE);
 
@@ -198,18 +205,16 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 
 	if (chooseMetalOrNonmetal)
 	{
-		DrawText("Metal or Nonmetal", WIDTH / 3.85, HEIGHT / 11, 100, PURPLE);
+		DrawText("Metal or Nonmetal", WIDTH / 3.85, HEIGHT / 11, 100, BLANK);
 
 		for (int i = 0; i < 2; i++)
 		{
-			DrawRectangleRec(choice[i], PINK);
+			DrawRectangleRec(choice[i], BLANK);
+			DrawTexture(choiceOfMetalOtNonmetal[i], 680+ i * 300,750,WHITE);
 		}
 
-		DrawText("Metal", WIDTH / 5.15, HEIGHT / 2.15, 110, PURPLE);
-		DrawText("Nonmetal", WIDTH / 1.64, HEIGHT / 2.15, 110, PURPLE);
-
 		//if you choose metal if statemant
-		if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && CheckCollisionPointRec(mousepoint, choice[0]))
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, choice[0]))
 		{
 			//if the 4 slots are not full
 			if (metalsHolders.size() < 4 && elementsStrings[saverForIndexOfElement] != "")
@@ -224,7 +229,7 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 		}
 
 		//if you choose nonmetal if statemant
-		if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && CheckCollisionPointRec(mousepoint, choice[1]))
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, choice[1]))
 		{
 			//if the 4 slots are not full
 			if (nonmetalsHolders.size() < 4 && elementsStrings[saverForIndexOfElement] != "")
