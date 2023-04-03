@@ -17,6 +17,7 @@ ChasingRoom::ChasingRoom()
 ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenHeight()), doors(doors)
 {
 	
+
 	//make them smart and delete by themselve
 	player = std::make_shared<Player>();
 	teacher = Teacher::getInstantiation();
@@ -65,6 +66,7 @@ ChasingRoom::~ChasingRoom()
 
 void ChasingRoom::drawChasingRoom()
 {
+	
 	//check if a map elemts have to draw mini game
 	if (dir->j == 3 && dir->i == 0)
 	{
@@ -99,11 +101,13 @@ void ChasingRoom::drawChasingRoom()
 			loadCheckValencyMiniGame = true;
 		}
 	}
-
 	if (dir->j == 1 && dir->i == 0)
 	{
 		//left top or bio room
+		positionOfMiniGamePlace = { 325, 800 };
 		DrawTexture(texturesBackgrounds.at(2), 0, 0, WHITE);
+		DrawCircleV(positionOfMiniGamePlace, 100, PINK);
+		DrawTexture(table, 200, 650, WHITE);
 	}
 
 	//also for right
@@ -115,11 +119,15 @@ void ChasingRoom::drawChasingRoom()
 
 	if (dir->j == 3 && dir->i == 1)
 	{//bot right
+		positionOfMiniGamePlace = { 300, 100 };
 		DrawTexture(texturesBackgrounds.at(3), 0, 0, WHITE);
+		DrawCircleV(positionOfMiniGamePlace, 100, ORANGE);
+		DrawTexture(table, 300, 200, WHITE);
 	}
 
 	if (dir->j == 1 && dir->i == 1)
 	{//bot left
+		DrawTexture(table, 300, 200, WHITE);
 		DrawTexture(texturesBackgrounds.at(4), 0, 0, WHITE);
 	}
 
@@ -152,6 +160,7 @@ void ChasingRoom::drawChasingRoom()
 	DrawRectangle(160,20,50,55,DARKGRAY);
 	money->drawMoney();
 	checkDoors();
+	
 }
 
 void ChasingRoom::drawCheckValencyMiniGame()

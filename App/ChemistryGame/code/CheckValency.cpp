@@ -38,6 +38,8 @@ CheckValency::CheckValency()
 	buttonsTextures[1] = LoadTexture("../assets/images/chemistry/Buttons/HolderTwo.png");
 	buttonsTextures[2] = LoadTexture("../assets/images/chemistry/Buttons/HolderThree.png");
 
+	backbuttonTexture = LoadTexture("");
+
 	for (int i = 0; i < 4; i++)
 	{
 		valencyOne[i] = "../assets/images/chemistry/Elements/" + valencyOne[i] + ".png";
