@@ -3,7 +3,8 @@
 <br>
 <br>
 <p align="center">
-  <img align="center" src="App/Logo/TeamLogo.png" height="50%" width = "45%">
+  <img align="center" src="App/Logo/TeamLogo.png#gh-dark-mode-only" height="50%" width = "45%">
+  <img align="center" src="App/Logo/TeamLogoDark.png#gh-light-mode-only" height="50%" width = "45%">
 </p>
 
 <h1 align="center">We are Escape the IT</h1>
@@ -34,11 +35,11 @@
 # Contributors
 
 <br/>
-<a href = "https://github.com/aikostov20"> Aleksander Kostov</a> - Scrum Trainer><br/>
-<a href = "https://github.com/ipstoyanov20"> Ivaylo Stoqnov</a>  - BackEnd Developer><br/>
-<a href = "https://github.com/NVDespotov20"> Nikolay Despotov</a>  - BackEnd Developer><br/>
-<a href = "https://github.com/DGBratoevski20"> Denislav Bratoevski</a> - BackEnd Developer><br/>
-<a href = "https://github.com/AAMutlu20"> Andrey Mutlu</a> - Designer><br/>
+<a href = "https://github.com/aikostov20"> Aleksander Kostov</a> - Scrum Trainer<br/>
+<a href = "https://github.com/ipstoyanov20"> Ivaylo Stoqnov</a>  - BackEnd Developer<br/>
+<a href = "https://github.com/NVDespotov20"> Nikolay Despotov</a>  - BackEnd Developer<br/>
+<a href = "https://github.com/DGBratoevski20"> Denislav Bratoevski</a> - BackEnd Developer<br/>
+<a href = "https://github.com/AAMutlu20"> Andrey Mutlu</a> - Designer<br/>
 <br>
 
 ---
