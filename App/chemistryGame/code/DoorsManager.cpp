@@ -11,33 +11,6 @@ DoorsManager::DoorsManager()
 		{"down", {GetScreenWidth() / 2.f, (float)GetScreenHeight()}},
 		{"right", {(float)GetScreenWidth(), GetScreenHeight() / 2.f}}
 	};
-
-	randomDoorsLabelsStrings = {
-	"Zinc(Zn)",
-	"Copper(Cu)",
-	"Silver(Ag)",
-	"Gold(Au)",
-	"Soldium(Na)",
-	"Sulfur(S)",
-	"Phosphorus(P)",
-	"Carbon(C)",
-	"Chlorine(Cl2)",
-	"Hydrogen(H2)",
-	"Oxygen(O2)"
-	};
-
-	seed = std::chrono::steady_clock::now().time_since_epoch().count();
-
-	//generator of new random number with the seed
-	gen.seed(seed);
-
-	std::shuffle(randomDoorsLabelsStrings.begin(), randomDoorsLabelsStrings.end(), gen);
-
-	for (int i = 0; i < 5; i++)
-	{
-		randomizedLabelsStrings.push_back("../assets/images/chemistry/" + randomDoorsLabelsStrings[i] + ".png");
-	}
-	
 }
 
 DoorsManager::~DoorsManager()
@@ -77,7 +50,7 @@ void DoorsManager::enterDoor(std::string& inx)
 		{
 			case 'u':
 			{
-				teacher->changePosition(Vector2{500, 800});
+				teacher->changePosition(Vector2{500, 500});
 				teacher->setActive(false);
 				//Load level 1
 				dir->i--;
@@ -86,7 +59,7 @@ void DoorsManager::enterDoor(std::string& inx)
 			}
 			case 'd':
 			{
-				teacher->changePosition(Vector2{500, 800});
+				teacher->changePosition(Vector2{500, 500});
 				teacher->setActive(false);
 				//Load level 2
 				dir->i++;
@@ -95,7 +68,7 @@ void DoorsManager::enterDoor(std::string& inx)
 			}
 			case 'l':
 			{
-				teacher->changePosition(Vector2{500, 800});
+				teacher->changePosition(Vector2{500, 500});
 				teacher->setActive(false);
 				//Load level 3
 				dir->j--;
@@ -103,7 +76,7 @@ void DoorsManager::enterDoor(std::string& inx)
 			}
 			case 'r':
 			{
-				teacher->changePosition(Vector2{500, 800});
+				teacher->changePosition(Vector2{500, 500});
 				teacher->setActive(false);
 				//Load level 3
 				dir->j++;

@@ -45,8 +45,6 @@ class ChasingRoom
     bool miniGameSplitElementsPlayed;
     bool miniGameCheckValencyPlayed;
     Vector2 positionOfMiniGamePlace;
-    
-    bool drawTable;
 
     unsigned seed;
 

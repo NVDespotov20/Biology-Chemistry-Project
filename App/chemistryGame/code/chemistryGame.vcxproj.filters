@@ -75,6 +75,9 @@
     <ClCompile Include="CheckValency.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MixElements.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Inventory.hpp">
@@ -135,6 +138,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\CheckValency.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MixElements.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

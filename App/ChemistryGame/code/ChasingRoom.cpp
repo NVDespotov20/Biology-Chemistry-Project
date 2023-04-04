@@ -41,8 +41,6 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 		{ WIDTH / 2 + 20, 125 }
 	};
 
-	drawTable = false;
-
 	rightArrow = LoadTexture("../assets/images/UI Elements/RightArrow.png");
 	rightArrow.width = 350;
 	rightArrow.height = 200;
@@ -216,20 +214,10 @@ void ChasingRoom::drawChasingRoom()
 
 		if (IsKeyPressed(KEY_P) && CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && inventory->itemsInInventoryPos.size() == 4)
 		{
-			drawTable = true;
-		}
-
-		if (drawTable)
-		{
-			DrawTexture(tableBackground,0,0,WHITE);
-			for (int i = 0; i < 7; i++)
+			money->addMoney();
+			for (int i = 0; i < 4; i++)
 			{
-				DrawPoly(points.at(i), 7, 300, 0, BLUE);
-			}
-			DrawTexture(rightArrow, 800,500,WHITE);
-			if (!drawTable)
-			{
-				money->addMoney();
+				inventory->itemsInInventoryPos.pop_back();
 			}
 		}
 	}
