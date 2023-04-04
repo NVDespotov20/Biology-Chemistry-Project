@@ -100,6 +100,8 @@ void ChasingRoom::load()
 	doorsPositons[2].x = WIDTH / 2.259f;
 	doorsPositons[2].y = HEIGHT / 36.f;
 
+	loadMixElementsMiniGame = false;
+
 	doorsPositons[3].x = WIDTH / 2.259f;
 	doorsPositons[3].y = HEIGHT / 1.263f;
 
@@ -138,7 +140,13 @@ void ChasingRoom::load()
 
 void ChasingRoom::drawChasingRoom()
 {
-
+	if (money->money == 3)
+	{
+		ClearBackground(RAYWHITE);
+		DrawText("Game over",WIDTH/2,HEIGHT/2, 100, BLACK);
+		EndDrawing;
+		CloseWindow();
+	}
 	//check if a map elemts have to draw mini game
 	if (dir->j == 3 && dir->i == 0)
 	{
@@ -169,9 +177,7 @@ void ChasingRoom::drawChasingRoom()
 		//center bottom
 		DrawTexture(texturesBackgrounds.at(1), 0, 0, WHITE);
 		DrawTexture(leftDoor, doorsPositons[0].x, doorsPositons[0].y, WHITE);
-		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
 		DrawTexture(upDoor, doorsPositons[2].x, doorsPositons[2].y, WHITE);
-		DrawTexture(downDoor, doorsPositons[3].x, doorsPositons[3].y, WHITE);
 		positionOfMiniGamePlace = { WIDTH / 1.2f, HEIGHT / 4.8f };
 		DrawCircleV(positionOfMiniGamePlace, WIDTH / 192, BLANK);
 		DrawTexture(table, WIDTH / 1.297f, HEIGHT / 10.8f, WHITE);
@@ -209,6 +215,8 @@ void ChasingRoom::drawChasingRoom()
 		//bot right
 		DrawTexture(texturesBackgrounds.at(3), 0, 0, WHITE);
 		DrawTexture(leftDoor, doorsPositons[0].x, doorsPositons[0].y, WHITE);
+		mixElements->Draw(loadMixElementsMiniGame);
+		DrawTexture(rightArrow, WIDTH/2, HEIGHT-HEIGHT/1.5, WHITE);
 		//fyre
 	}
 

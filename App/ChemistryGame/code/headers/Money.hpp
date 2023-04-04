@@ -13,8 +13,8 @@ public:
 
     void addMoney();
     void drawMoney();
+    int money;
 
 private:
-    int money;
     float WIDTH, HEIGHT;
 };

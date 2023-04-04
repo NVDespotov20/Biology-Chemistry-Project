@@ -91,10 +91,10 @@ void Teacher::update(Vector2 posHero, Rectangle heroRec)
 		
 	(position.x > posHero.x) ? teacherTextureChasing = left : teacherTextureChasing = right;
 
-	if (CheckCollisionPointCircle(position, posHero, WIDTH / 38.4))
+	if (CheckCollisionPointCircle(position, posHero,100))
 	{
 		CloseWindow();
-		std::cout << "DIEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!\n";
+
 		// Insert among us kill animation here
 		Rectangle killanimRect = { 0,0, WIDTH, HEIGHT };
 		Texture killAnim = LoadTexture("../assets/images/chemistry/Objects/EndgameLoss.png");

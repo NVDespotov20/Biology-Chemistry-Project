@@ -7,6 +7,7 @@
 #include "Items.hpp"
 #include "Money.hpp"
 #include "CheckValency.hpp"
+#include "MixElements.hpp"
 
 class ChasingRoom
 {
@@ -20,6 +21,7 @@ class ChasingRoom
 
     std::shared_ptr<Teacher> teacher;
     std::shared_ptr<InventorySystem> inventory;
+    std::shared_ptr<mixElements> mixElements;
     std::shared_ptr<Items> items;
     std::shared_ptr<Money> money;
 
@@ -40,6 +42,7 @@ class ChasingRoom
 
     Vector2 doorsPositons[4];
 
+    bool loadMixElementsMiniGame;
     bool loadCheckValencyMiniGame;
     bool loadSplitElementsMiniGame;
     bool miniGameSplitElementsPlayed;
