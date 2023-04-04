@@ -166,12 +166,12 @@ void ChasingRoom::drawChasingRoom()
 
 	if (dir->j == 2 && dir->i == 1)
 	{
+		//center bottom
 		DrawTexture(texturesBackgrounds.at(1), 0, 0, WHITE);
 		DrawTexture(leftDoor, doorsPositons[0].x, doorsPositons[0].y, WHITE);
 		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
 		DrawTexture(upDoor, doorsPositons[2].x, doorsPositons[2].y, WHITE);
 		DrawTexture(downDoor, doorsPositons[3].x, doorsPositons[3].y, WHITE);
-		//center bot
 		positionOfMiniGamePlace = { WIDTH / 1.2f, HEIGHT / 4.8f };
 		DrawCircleV(positionOfMiniGamePlace, WIDTH / 192, BLANK);
 		DrawTexture(table, WIDTH / 1.297f, HEIGHT / 10.8f, WHITE);
@@ -186,14 +186,12 @@ void ChasingRoom::drawChasingRoom()
 		//left top or bio room
 		positionOfMiniGamePlace = { WIDTH / 5.908f, HEIGHT / 1.35f };
 		DrawTexture(texturesBackgrounds.at(2), 0, 0, WHITE);
+		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
 		DrawCircleV(positionOfMiniGamePlace, WIDTH / 192, PINK);
 		DrawTexture(table, WIDTH / 9.6f, HEIGHT / 1.662f, WHITE);
 		if (CheckCollisionCircleRec(positionOfMiniGamePlace, WIDTH / 192, player->move) && IsKeyPressed(KEY_P))
 		{
-			#include "../../HumanMuscles/code/headers/AppManager.hpp"
-			AppManager* manager = AppManager::getInstantiation();
-			manager->drawMainLoop();
-			delete manager;
+			
 		}
 	}
 
@@ -205,14 +203,16 @@ void ChasingRoom::drawChasingRoom()
 	}
 
 	if (dir->j == 3 && dir->i == 1)
-	{//bot right
+	{
+		//bot right
 		DrawTexture(texturesBackgrounds.at(3), 0, 0, WHITE);
 		DrawTexture(leftDoor, doorsPositons[0].x, doorsPositons[0].y, WHITE);
 		//fyre
 	}
 
 	if (dir->j == 1 && dir->i == 1)
-	{	//bot left
+	{
+		//bot left
 		positionOfMiniGamePlace = { WIDTH / 6.4f, HEIGHT / 5.4f };
 		DrawTexture(texturesBackgrounds.at(4), 0, 0, WHITE);
 		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
@@ -227,20 +227,15 @@ void ChasingRoom::drawChasingRoom()
 				inventory->itemsInInventoryPos.pop_back();
 			}
 		}
+		inventory->isPickedUp(player->move, items->item, items->normalItemsPos);
+		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
+		items->drawNormalItems();
 	}
 
 	if (loadSplitElementsMiniGame)
 	{
 		drawSplitElementsMiniGame();
 		return;
-	}
-
-	//left down
-	if (dir->j == 1 && dir->i == 1)
-	{
-		inventory->isPickedUp(player->move, items->item, items->normalItemsPos);
-		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
-		items->drawNormalItems();
 	}
 
 	//update teacher

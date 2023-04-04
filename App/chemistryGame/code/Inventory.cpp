@@ -33,10 +33,8 @@ bool InventorySystem::isPickedUp(Rectangle heroPosition,Texture2D&item, std::vec
 		//checks if you are close to the items
 		if (!CheckCollisionCircleRec(normalItemsPos[i], WIDTH / 25, heroPosition))
 			continue;
-
 		//draw items that you are close and you can pick up without any opacity 
 		DrawTextureV(item, normalItemsPos[i], Fade(WHITE, 1));
-
 		if (!IsKeyPressed(KEY_Q))
 			continue;
 

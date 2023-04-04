@@ -26,6 +26,11 @@ void Game::mainLoop()
 		auto manager = Navigator::getInstantiation();
 		manager->dir = Navigator::Navigate::MENU;
 	}
+	if (IsKeyPressed(KEY_ESCAPE))
+	{
+		auto manager = Navigator::getInstantiation();
+		manager->dir = Navigator::Navigate::QUIT;
+	}
 	backButton.draw(0.4f, 1, RED, BLACK);
 	roomManager->manageAndDrawRooms();
 }

@@ -38,6 +38,8 @@ CheckValency::CheckValency()
 	buttonsTextures[1] = LoadTexture("../assets/images/chemistry/Buttons/HolderTwo.png");
 	buttonsTextures[2] = LoadTexture("../assets/images/chemistry/Buttons/HolderThree.png");
 
+	label = LoadTexture("../assets/images/chemistry/Buttons/CheckValency.png");
+
 	backbuttonTexture = LoadTexture("../assets/images/chemistry/Buttons/BackButton.png");
 	backbuttonTexture.width = WIDTH / 3.2f;
 	backbuttonTexture.height = HEIGHT / 2.4f;
@@ -227,4 +229,3 @@ void CheckValency::unload()
 	}
 
 }
-

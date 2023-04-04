@@ -119,6 +119,8 @@ SplitElements::SplitElements()
 		choice[i] = { WIDTH / 2.82f + i * WIDTH / 6.4f, HEIGHT / 1.44f, WIDTH /7.68f,HEIGHT/4.32f };
 	}
 
+	label = LoadTexture("../assets/images/chemistry/Buttons/SortElement.png");
+
 	//set size for each texture
 	for (int i = 0; i < elementsTextures.size(); i++)
 	{

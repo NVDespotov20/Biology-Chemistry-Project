@@ -2,7 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="App.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="AppManager.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Button.cpp" />

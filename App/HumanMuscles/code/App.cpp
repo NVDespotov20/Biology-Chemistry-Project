@@ -50,13 +50,13 @@ std::shared_ptr<App> App::getInstantiation()
 inline void App::load()
 {
 	background = LoadTexture("../../ChemistryGame/assets/images/chemistry/Objects/Monitor.png");
-	nextButton = LoadTexture("../assets/images/UI elements/next.png");
-	previousButton = LoadTexture("../assets/images/UI elements/previous.png");
-	humanBody = LoadTexture("../assets/images/muscles/body.png");
+	nextButton = LoadTexture("../../HumanMuscles/assets/images/UI elements/next.png");
+	previousButton = LoadTexture("../../HumanMuscles/assets/images/UI elements/previous.png");
+	humanBody = LoadTexture("../../HumanMuscles/assets/images/muscles/body.png");
 
 	for (int i = 0; i < sizeOfmuscleButtons; ++i)
 	{
-		std::string path = "../assets/images/muscles/" + muscleNames[i] + ".png";
+		std::string path = "../../HumanMuscles/assets/images/muscles/" + muscleNames[i] + ".png";
 		muscleTextures[i] = LoadTexture(path.c_str());
 	}
 }
@@ -213,7 +213,7 @@ void App::showInfo(int indexOfMuscle)
 		11	==	Hamstrings
 	*/
 
-	fReader.openFile("../assets/textFiles/" + muscleNames[indexOfMuscle] + ".txt");
+	fReader.openFile("../../HumanMuscles/assets/textFiles/" + muscleNames[indexOfMuscle] + ".txt");
 	std::string tmp = fReader.getText();
 	
 	if (!muscleInfo.empty() && muscleInfo == tmp)
