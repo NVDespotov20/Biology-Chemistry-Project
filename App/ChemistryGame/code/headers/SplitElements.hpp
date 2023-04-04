@@ -1,5 +1,5 @@
 #pragma once // This is a preprocessor directive that ensures the header file is only included once in the compilation process.
-
+#include "pchGame.hpp"
 class SplitElements
 {
 

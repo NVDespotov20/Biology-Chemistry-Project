@@ -6,14 +6,14 @@ AppManager* AppManager::instantiate_ = nullptr;
 AppManager::AppManager()
 {
     // Initialize window and settings
-    InitWindow(0, 0, "Human muscles");
-    SetTargetFPS(60);
-    ToggleFullscreen();
+    //InitWindow(0, 0, "Human muscles");
+    //SetTargetFPS(60);
+    //ToggleFullscreen();
 }
 
 AppManager::~AppManager()
 {
-    CloseWindow();
+    //CloseWindow();
 }
 
 AppManager* AppManager::getInstantiation()
@@ -26,18 +26,18 @@ AppManager* AppManager::getInstantiation()
 
 void AppManager::drawMainLoop()
 {
-    
-    while (!WindowShouldClose())
+    bool continueLoop = true;
+    while (!WindowShouldClose() && continueLoop)
     {
         
         BeginDrawing();
         ClearBackground(LIGHTGRAY);
-        manageApp();
+        continueLoop = manageApp();
         EndDrawing();
     }
 }
 
-void AppManager::manageApp()
+bool AppManager::manageApp()
 {
     //create pch instance
     std::shared_ptr<pch> manager = pch::getInstantiation();
@@ -47,12 +47,11 @@ void AppManager::manageApp()
         {
             std::shared_ptr<App> app = App::getInstantiation();
             app->drawUI();
-            return;
+            return true;
         }
         case pch::Direction::QUIT:
         {
-            CloseWindow();
-            exit(0);
+            return false;
         }
     }
 }

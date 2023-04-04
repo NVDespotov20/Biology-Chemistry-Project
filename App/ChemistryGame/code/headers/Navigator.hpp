@@ -1,4 +1,5 @@
 #pragma once
+#include "pchGame.hpp"
 class Navigator
 {
 public:

@@ -5,7 +5,7 @@ class AppManager
 {
 public:
     ~AppManager();
-    void manageApp();
+    bool manageApp();
     void drawMainLoop();
     static AppManager* getInstantiation();
 private:

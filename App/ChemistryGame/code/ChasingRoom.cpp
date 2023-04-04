@@ -1,6 +1,6 @@
 #include "pchGame.hpp"
 #include "ChasingRoom.hpp"
-
+#include "../../HumanMuscles/code/headers/AppManager.hpp"
 ChasingRoom::ChasingRoom()
 {
 
@@ -187,11 +187,13 @@ void ChasingRoom::drawChasingRoom()
 		positionOfMiniGamePlace = { WIDTH / 5.908f, HEIGHT / 1.35f };
 		DrawTexture(texturesBackgrounds.at(2), 0, 0, WHITE);
 		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
-		DrawCircleV(positionOfMiniGamePlace, WIDTH / 192, PINK);
+		DrawCircleV(positionOfMiniGamePlace, WIDTH / 100, BLANK);
 		DrawTexture(table, WIDTH / 9.6f, HEIGHT / 1.662f, WHITE);
-		if (CheckCollisionCircleRec(positionOfMiniGamePlace, WIDTH / 192, player->move) && IsKeyPressed(KEY_P))
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, WIDTH / 100, player->move) && IsKeyPressed(KEY_P))
 		{
-			
+			AppManager* manager = AppManager::getInstantiation();
+			manager->drawMainLoop();
+			delete manager;
 		}
 	}
 

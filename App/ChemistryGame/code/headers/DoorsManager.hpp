@@ -1,6 +1,7 @@
 #pragma once
 #include "Navigator.hpp"
 #include "Teacher.hpp"
+
 class DoorsManager
 {
 	float WIDTH, HEIGHT;
