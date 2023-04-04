@@ -48,10 +48,9 @@ DoorsManager::~DoorsManager()
 void DoorsManager::drawDoors()
 {
 	for (const auto& [key, position] : positionsOfDoors)
-	{
-	
-		//DrawTextureV(door, position, WHITE);	
-		DrawCircleV(position, 200, Fade(PURPLE, 0.5f));
+	{	
+		DrawCircleV(position, 200, BLANK);
+		
 	}
 }
 
@@ -61,7 +60,7 @@ std::string DoorsManager::isNearDoor(Rectangle& heroPos)
 	{
 		if (CheckCollisionCircleRec(position, 200, heroPos))
 		{
-			DrawCircleV(position, 200, Fade(PURPLE, 1));
+			DrawCircleV(position, 200, BLANK);
 			return key;
 		}
 

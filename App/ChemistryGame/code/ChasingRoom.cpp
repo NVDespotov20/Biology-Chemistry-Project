@@ -3,14 +3,6 @@
 
 ChasingRoom::ChasingRoom()
 {
-	////make them smart and delete by themselve
-	//player = std::make_shared<Player>();
-	//teacher = std::make_shared<Teacher>();
-	
-
-	////loads sprites of the moving people
-	//player->LoadSprites(60);
-	//teacher->LoadSprites();
 
 }
 
@@ -48,7 +40,7 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 		{ WIDTH / 2 - 20, 125 },
 		{ WIDTH / 2 + 20, 125 }
 	};
-	
+
 	drawTable = false;
 
 	rightArrow = LoadTexture("../assets/images/UI Elements/RightArrow.png");
@@ -63,7 +55,7 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	//std::shuffle(elementsTexturesStrings.begin(), elementsTexturesStrings.end(), gen);
 
 	std::shuffle(stringsBackgroundName.begin(), stringsBackgroundName.end(), gen);
-	
+
 	menuButton = { 0, 20, HEIGHT / 7.f, HEIGHT / 20.f };
 
 	loadSplitElementsMiniGame = 0;
@@ -78,6 +70,74 @@ ChasingRoom::~ChasingRoom()
 	unload();
 }
 
+void ChasingRoom::load()
+{
+	//load
+	table = LoadTexture("../assets/images/chemistry/Objects/Table.png");
+	table.width = 200;
+	table.height = 200;
+
+	leftDoor = LoadTexture("../assets/images/chemistry/Objects/DoorLeft.png");
+	leftDoor.width = 200;
+	leftDoor.height = 200;
+
+	rightDoor = LoadTexture("../assets/images/chemistry/Objects/DoorRight.png");
+	rightDoor.width = 200;
+	rightDoor.height = 200;
+
+	downDoor = LoadTexture("../assets/images/chemistry/Objects/DoorDown.png");
+	downDoor.width = 200;
+	downDoor.height = 200;
+
+	upDoor = LoadTexture("../assets/images/chemistry/Objects/DoorUp.png");
+	upDoor.width = 200;
+	upDoor.height = 200;
+
+	doorsPositons[0].x = 25;
+	doorsPositons[0].y = 450;
+
+	doorsPositons[1].x = 1690;
+	doorsPositons[1].y = 450;
+
+	doorsPositons[2].x = 850;
+	doorsPositons[2].y = 30;
+
+	doorsPositons[3].x = 850;
+	doorsPositons[3].y = 855;
+
+	spawnPointBackground = LoadTexture("../assets/images/chemistry/Rooms/SpawnRoom.png");
+	spawnPointBackground.width = GetScreenWidth();
+	spawnPointBackground.height = GetScreenHeight();
+	teacher->LoadSprites();
+	player->LoadSprites(60);
+
+	for (int i = 0; i < 4; i++)
+	{
+		stringsBackgroundName.at(i) = "../assets/images/chemistry/Rooms/" + stringsBackgroundName.at(i) + ".png";
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (stringsBackgroundName.at(i) != "../assets/images/chemistry/Rooms/SpawnRoom.png")
+		{
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
+		}
+	}
+
+	std::shuffle(texturesBackgrounds.begin(), texturesBackgrounds.end(), gen);
+	for (int i = 0; i < 6; i++)
+	{
+		texturesBackgrounds.at(i).width = WIDTH;
+		texturesBackgrounds.at(i).height = HEIGHT;
+	}
+
+	inventory->load();
+	items->load();
+
+}
+
 void ChasingRoom::drawChasingRoom()
 {
 	
@@ -86,6 +146,7 @@ void ChasingRoom::drawChasingRoom()
 	{
 		//right up
 		DrawTexture(texturesBackgrounds.at(0),0,0,WHITE);
+		DrawTexture(leftDoor, doorsPositons[0].x, doorsPositons[0].y, WHITE);
 		positionOfMiniGamePlace = { 1600, 200 };
 		DrawCircleV(positionOfMiniGamePlace, 100, BLANK);
 		DrawTexture(table, 1480, 100, WHITE);
@@ -100,11 +161,18 @@ void ChasingRoom::drawChasingRoom()
 	{
 		//center top
 		DrawTexture(spawnPointBackground,0,0,WHITE);
+		DrawTexture(leftDoor, doorsPositons[0].x, doorsPositons[0].y, WHITE);
+		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
+		DrawTexture(downDoor, doorsPositons[3].x, doorsPositons[3].y, WHITE);
 	}
 
 	if (dir->j == 2 && dir->i == 1)
 	{
 		DrawTexture(texturesBackgrounds.at(1), 0, 0, WHITE);
+		DrawTexture(leftDoor, doorsPositons[0].x, doorsPositons[0].y, WHITE);
+		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
+		DrawTexture(upDoor, doorsPositons[2].x, doorsPositons[2].y, WHITE);
+		DrawTexture(downDoor, doorsPositons[3].x, doorsPositons[3].y, WHITE);
 		//center bot
 		positionOfMiniGamePlace = { 1600, 225 };
 		DrawCircleV(positionOfMiniGamePlace, 100, BLANK);
@@ -134,12 +202,15 @@ void ChasingRoom::drawChasingRoom()
 	if (dir->j == 3 && dir->i == 1)
 	{//bot right
 		DrawTexture(texturesBackgrounds.at(3), 0, 0, WHITE);
+		DrawTexture(leftDoor, doorsPositons[0].x, doorsPositons[0].y, WHITE);
+		//fyre
 	}
 
 	if (dir->j == 1 && dir->i == 1)
 	{//bot left
 		positionOfMiniGamePlace = { 300, 200 };
 		DrawTexture(texturesBackgrounds.at(4), 0, 0, WHITE);
+		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
 		DrawCircleV(positionOfMiniGamePlace, 100, BLANK);
 		DrawTexture(table, 170, 100, WHITE);
 
@@ -153,7 +224,7 @@ void ChasingRoom::drawChasingRoom()
 			DrawTexture(tableBackground,0,0,WHITE);
 			for (int i = 0; i < 7; i++)
 			{
-				DrawPoly(points.at(i), 7, 500, 0, BLUE);
+				DrawPoly(points.at(i), 7, 300, 0, BLUE);
 			}
 			DrawTexture(rightArrow, 800,500,WHITE);
 			if (!drawTable)
@@ -173,6 +244,7 @@ void ChasingRoom::drawChasingRoom()
 	if (dir->j == 1 && dir->i == 1)
 	{
 		inventory->isPickedUp(player->move, items->item, items->normalItemsPos);
+		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
 		items->drawNormalItems();
 	}
 
@@ -229,45 +301,6 @@ void ChasingRoom::unload()
 	UnloadTexture(table);
 }
 
-void ChasingRoom::load()
-{
-	//load
-	table = LoadTexture("../assets/images/chemistry/Objects/Table.png");
-	table.width = 250;
-	table.height = 200;
-
-	spawnPointBackground = LoadTexture("../assets/images/chemistry/Rooms/SpawnRoom.png");
-	spawnPointBackground.width = GetScreenWidth();
-	spawnPointBackground.height = GetScreenHeight();
-	teacher->LoadSprites();
-	player->LoadSprites(60);
-
-	for (int i = 0; i < 4; i++)
-	{
-		stringsBackgroundName.at(i) = "../assets/images/chemistry/Rooms/" + stringsBackgroundName.at(i) + ".png";
-	}
-
-	for (int i = 0; i < 4; i++)
-	{
-		if (stringsBackgroundName.at(i) != "../assets/images/chemistry/Rooms/SpawnRoom.png")
-		{
-			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
-			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
-			texturesBackgrounds.push_back(LoadTexture(stringsBackgroundName.at(i).c_str()));
-		}
-	}
-
-	std::shuffle(texturesBackgrounds.begin(), texturesBackgrounds.end(), gen);
-	for (int i = 0; i < 6; i++)
-	{
-		texturesBackgrounds.at(i).width = WIDTH;
-		texturesBackgrounds.at(i).height = HEIGHT;
-	}
-
-	inventory->load();
-	items->load();
-
-}
 
 void ChasingRoom::drawSplitElementsMiniGame()
 {
@@ -291,24 +324,6 @@ void ChasingRoom::checkDoors()
 {
 	switch (this->doors)
 	{
-	//case 1:
-	//	//remove unneeded doors
-	//	if (dir->j > 2) {
-	//		player->positionsOfDoors.erase("down");
-	//		player->positionsOfDoors.erase("right");
-	//	}
-	//	else {
-	//		player->positionsOfDoors.erase("down");
-	//		player->positionsOfDoors.erase("left");
-	//	}
-
-
-	//	//draw and check if player is near door
-	//	player->drawDoors();
-	//	stringDirHolder = player->isNearDoor(player->move);
-	//	player->enterDoor(stringDirHolder);
-
-	//break;
 
 	case 2:
 		if (dir->j > 2) {

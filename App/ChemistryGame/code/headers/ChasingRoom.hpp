@@ -33,6 +33,13 @@ class ChasingRoom
     std::vector<Texture2D> texturesBackgrounds;
     int doors;
 
+    Texture2D leftDoor;
+    Texture2D rightDoor;
+    Texture2D upDoor;
+    Texture2D downDoor;
+
+    Vector2 doorsPositons[4];
+
     bool loadCheckValencyMiniGame;
     bool loadSplitElementsMiniGame;
     bool miniGameSplitElementsPlayed;

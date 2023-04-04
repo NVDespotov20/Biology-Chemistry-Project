@@ -31,9 +31,9 @@ void Teacher::setActive(bool state)
 }
 void Teacher::LoadSprites()
 {
-	left = LoadTexture("../assets/images/heroSprite/left.png");
-	right = LoadTexture("../assets/images/heroSprite/right.png");
-	idle = LoadTexture("../assets/images/heroSprite/downIdle.png");
+	left = LoadTexture("../assets/images/teacherSprite/WalkLeft.png");
+	right = LoadTexture("../assets/images/teacherSprite/WalkRight.png");
+	idle = LoadTexture("../assets/images/teacherSprite/IdleFront.png");
 
 	teacherTextureIdle = idle;
 	teacherTextureChasing = right;
