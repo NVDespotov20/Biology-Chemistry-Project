@@ -6,7 +6,7 @@ class LastRoom
 	LastRoom();
 	~LastRoom();
 	void drawLastRoom();
-
+	void unload();
 	Texture2D backgroundLastRoom;
 	Texture2D doorDown;
 	Texture2D doorUp;

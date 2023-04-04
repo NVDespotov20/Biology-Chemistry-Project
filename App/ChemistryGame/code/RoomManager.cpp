@@ -29,7 +29,7 @@ void RoomManager::unload()
 		for (auto& textures : room)
 		{
 			if (textures != nullptr)
-				textures->unload();
+				RoomManager::unload();
 		}
 	}
 }

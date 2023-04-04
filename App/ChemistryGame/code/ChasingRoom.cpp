@@ -287,6 +287,9 @@ void ChasingRoom::unload()
 	
 	UnloadTexture(spawnPointBackground);
 	UnloadTexture(table);
+	UnloadTexture(tableBackground);
+	UnloadTexture(rightArrow);
+
 }
 
 

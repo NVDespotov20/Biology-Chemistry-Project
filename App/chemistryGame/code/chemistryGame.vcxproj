@@ -206,7 +206,6 @@
     <ClInclude Include="headers\Money.hpp" />
     <ClInclude Include="headers\Navigator.hpp" />
     <ClInclude Include="headers\Shop.hpp" />
-    <ClInclude Include="headers\mixElements.hpp" />
     <ClInclude Include="headers\pchGame.hpp" />
     <ClInclude Include="headers\Player.hpp" />
     <ClInclude Include="headers\RoomManager.hpp" />

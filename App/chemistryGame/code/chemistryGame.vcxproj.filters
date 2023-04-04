@@ -101,9 +101,6 @@
     <ClInclude Include="headers\SplitElements.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\mixElements.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\RoomManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

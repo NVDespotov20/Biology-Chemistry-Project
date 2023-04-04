@@ -47,3 +47,12 @@ void LastRoom::drawLastRoom()
 	DrawTexture(doorDown, doorsPositons[1].x, doorsPositons[1].y, WHITE);
 	DrawTextureRec(fire, imageSourceRec, imageDestRec, WHITE);
 }
+
+void LastRoom::unload()
+{
+	UnloadTexture(backgroundLastRoom);
+	UnloadTexture(doorDown);
+	UnloadTexture(fire);
+	UnloadTexture(doorUp);
+
+}
