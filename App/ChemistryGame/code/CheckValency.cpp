@@ -11,10 +11,10 @@ std::shared_ptr<CheckValency> CheckValency::getInstantiation()
 	return instantiate_;
 }
 
-CheckValency::CheckValency() 
+CheckValency::CheckValency()
 {
 	//mousePoint = GetMousePosition();
-    WIDTH = GetScreenWidth();
+	WIDTH = GetScreenWidth();
 	HEIGHT = GetScreenHeight();
 
 	counterForAccuracy = 0;
@@ -31,16 +31,16 @@ CheckValency::CheckValency()
 		"Soldium(Na)",
 		"Hydrogen(H2)"
 	};
-	
-	backbutton = {700,825,600,200};
+
+	backbutton = { WIDTH / 2.743f, HEIGHT / 1.309f, WIDTH / 3.2f, HEIGHT / 5.4f };
 
 	buttonsTextures[0] = LoadTexture("../assets/images/chemistry/Buttons/HolderOne.png");
 	buttonsTextures[1] = LoadTexture("../assets/images/chemistry/Buttons/HolderTwo.png");
 	buttonsTextures[2] = LoadTexture("../assets/images/chemistry/Buttons/HolderThree.png");
 
 	backbuttonTexture = LoadTexture("../assets/images/chemistry/Buttons/BackButton.png");
-	backbuttonTexture.width = 600;
-	backbuttonTexture.height = 450;
+	backbuttonTexture.width = WIDTH / 3.2f;
+	backbuttonTexture.height = HEIGHT / 2.4f;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -62,50 +62,50 @@ CheckValency::CheckValency()
 	std::shuffle(valencyOne.begin(), valencyOne.end(), gen);
 	std::shuffle(valencyTwo.begin(), valencyTwo.end(), gen);
 
-    theChosenThreeStrings.push_back((valencyTwo[0].c_str()));
+	theChosenThreeStrings.push_back((valencyTwo[0].c_str()));
 
-	for(int i = 0; i < 2; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		theChosenThreeStrings.push_back((valencyOne[i].c_str()));
 	}
 
-    std::shuffle(theChosenThreeStrings.begin(), theChosenThreeStrings.end(), gen);
+	std::shuffle(theChosenThreeStrings.begin(), theChosenThreeStrings.end(), gen);
 
 
 	for (int i = 0; i < 3; i++)
 	{
 		containersRec[i] = {
-			float(55 + i * 610) ,
-			50,
-			590,
-			500
+			WIDTH / 34.909f + i * WIDTH / 3.148f,
+			HEIGHT / 21.6f,
+			WIDTH / 3.254f,
+			HEIGHT / 2.16f
 		};
 
 		answersRec1[i] = {
-			200.f *i + 75,
-			375,
-			150, 
-			150
+			WIDTH / 9.6f * i + WIDTH / 25.6f,
+			HEIGHT / 2.88f,
+			WIDTH / 12.8f,
+			HEIGHT / 7.2f
 		};
 
 		answersRec2[i] = {
-			200.f * (i+3) + 85,
-			375,
-			150,
-			150
+			WIDTH / 9.6f * (i + 3) + WIDTH / 22.588f,
+			HEIGHT / 2.88f,
+			WIDTH / 12.8f,
+			HEIGHT / 7.2f
 		};
 
 		answersRec3[i] = {
-			200.f * (i+6) + 95,
-			375,
-			150,
-			150
+			WIDTH / 9.6f * (i + 6) + WIDTH / 20.210f,
+			HEIGHT / 2.88f,
+			WIDTH / 12.8f,
+			HEIGHT / 7.2f
 		};
 
 		theChosenThree.push_back(LoadTexture(theChosenThreeStrings[i].c_str()));
 
-		buttonsTextures[i].width = 160;
-		buttonsTextures[i].height = 160;
+		buttonsTextures[i].width = WIDTH / 12;
+		buttonsTextures[i].height = HEIGHT / 6.75;
 	}
 
 	background = LoadTexture("../assets/images/chemistry/Objects/TableBackground.png");
@@ -118,16 +118,16 @@ void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 {
 	mousePoint = GetMousePosition();
 
-	DrawTexture(background, 0,0,WHITE);
+	DrawTexture(background, 0, 0, WHITE);
 
 	for (int i = 0; i < 3; i++)
 	{
-        // Compare the file paths using the == operator
+		// Compare the file paths using the == operator
 		if (theChosenThreeStrings[i] == valencyTwo[0])
 		{
-			saver = i;	
+			saver = i;
 		}
-		
+
 	}
 
 	for (int i = 0; i < 3; i++)
@@ -138,64 +138,63 @@ void CheckValency::drawAndCheckElementsAndHolders(bool& loadMiniGame)
 			rightAnswersArray[i]++;
 		}
 
-		theChosenThree[i].width = 200;
-		theChosenThree[i].height = 250;
+		theChosenThree[i].width = WIDTH / 9.6f;
+		theChosenThree[i].height = HEIGHT / 4.32f;
 
-		DrawTexture(theChosenThree[i], float(250 + i * 600), 100, WHITE);
-		DrawRectangleLinesEx(containersRec[i], 10, BLACK);
+		DrawTexture(theChosenThree[i], WIDTH / 7.68f + i * WIDTH / 3.2f, HEIGHT / 10.8f, WHITE);
+		DrawRectangleLinesEx(containersRec[i], HEIGHT / 108, BLACK);
 
 		DrawRectangleRec(answersRec1[i], BLANK);
 		DrawRectangleRec(answersRec2[i], BLANK);
 		DrawRectangleRec(answersRec3[i], BLANK);
 
-		DrawTexture(buttonsTextures[0], 70 + 610*i, 370, WHITE);
-		DrawTexture(buttonsTextures[1], 270 + 610*i, 370, WHITE);
-		DrawTexture(buttonsTextures[2], 470 + 610*i, 370, WHITE);
+		DrawTexture(buttonsTextures[0], WIDTH / 26 + WIDTH / 3.148f * i, HEIGHT / 2.919f, WHITE);
+		DrawTexture(buttonsTextures[1], WIDTH / 7.111f + WIDTH / 3.148f * i, HEIGHT / 2.919f, WHITE);
+		DrawTexture(buttonsTextures[2], WIDTH / 4.085f + WIDTH / 3.148f * i, HEIGHT / 2.919f, WHITE);
 	}
 
 
 	for (int i = 0; i < 3; i++)
 	{
-		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+		if (!IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+			continue;
+		if (givenAnswers.size() >= 3)
+			continue;
+
+		if (CheckCollisionPointRec(mousePoint, answersRec1[i]))
 		{
-			if (givenAnswers.size() < 3)
+			if (givenAnswers.size() == 0)
 			{
-				if (CheckCollisionPointRec(mousePoint, answersRec1[i]))
-				{
-					if (givenAnswers.size() == 0)
-					{
-						givenAnswers.push_back(i + 1);
-					}
-				}
+				givenAnswers.push_back(i + 1);
+			}
+		}
 
-				if (CheckCollisionPointRec(mousePoint, answersRec2[i]))
-				{
-					if (givenAnswers.size() == 1)
-					{
-						givenAnswers.push_back(3 * i + 1);
-					}
-				}
+		if (CheckCollisionPointRec(mousePoint, answersRec2[i]))
+		{
+			if (givenAnswers.size() == 1)
+			{
+				givenAnswers.push_back(3 * i + 1);
+			}
+		}
 
-				if (CheckCollisionPointRec(mousePoint, answersRec3[i]))
-				{
-					if (givenAnswers.size() == 2)
-					{
-						givenAnswers.push_back(3 * i + 1);
-					}
-				}
+		if (CheckCollisionPointRec(mousePoint, answersRec3[i]))
+		{
+			if (givenAnswers.size() == 2)
+			{
+				givenAnswers.push_back(3 * i + 1);
 			}
 		}
 	}
 
-	DrawTexture(backbuttonTexture, 700,700,WHITE);//backbuttonTexture.width = 600;
-	DrawRectangleRounded(backbutton,10,10,BLANK);
+	DrawTexture(backbuttonTexture, WIDTH / 2.743f, HEIGHT / 1.543f, WHITE);
+	DrawRectangleRounded(backbutton, WIDTH / 192, HEIGHT / 108, BLANK);
 
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(mousePoint, backbutton))
 	{
 		loadMiniGame = false;
 	}
 }
-	
+
 
 bool CheckValency::checkAccuracy()
 {
@@ -207,7 +206,7 @@ bool CheckValency::checkAccuracy()
 			++counterForAccuracy;
 			break;
 		}
-		
+
 	}
 
 	//if you did right you earn money if not then RUN the teacher starts to chase you
@@ -226,6 +225,6 @@ void CheckValency::unload()
 	{
 		UnloadTexture(theChosenThree[i]);
 	}
-	
+
 }
 

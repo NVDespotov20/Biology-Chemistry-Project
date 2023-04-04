@@ -7,7 +7,7 @@ void Player::joinInRoom()
 	Movement();
 
 	//draw player
-	DrawTexturePro(playerSprite, view, move, Vector2{ 10, 10 }, 0, WHITE);
+	DrawTexturePro(playerSprite, view, move, Vector2{ WIDTH / 192, HEIGHT / 108 }, 0, WHITE);
 
 }
 void Player::LoadSprites(int fps)
@@ -29,14 +29,14 @@ void Player::LoadSprites(int fps)
 
 	for (auto& sprites : playerSprites)
 	{
-		sprites.width = 390;
-		sprites.height = 143;
+		sprites.width = WIDTH / 4.923f;
+		sprites.height = HEIGHT / 7.552f;
 	}
 
 	for (auto& sprites : idleSprites)
 	{
-		sprites.width = 195;
-		sprites.height = 143;
+		sprites.width = WIDTH / 9.846f;
+		sprites.height = HEIGHT / 7.552f;
 	}
 
 	lim = (float)idleSprites[0].width / 2;
@@ -55,7 +55,7 @@ Player::Player()
 	playerCords.y = GetScreenHeight() / 2;
 	HorizotnalOrVertical[0] = 0;
 	HorizotnalOrVertical[1] = 0;
-	speed = { 100, 100 };
+	speed = { WIDTH / 19.2f,  HEIGHT / 10.8f};
 	animationSpeed = 6;
 	HeroDir = LEFT;
 }
@@ -122,12 +122,12 @@ void Player::Movement()
 	}
 
 	if (HorizotnalOrVertical[0] && HorizotnalOrVertical[1])
-		speed = {90, 90};
+		speed = { WIDTH / 21.3f, HEIGHT / 12.f };
 	else
-		speed = {150, 150};
+		speed = { WIDTH / 12.8f, HEIGHT / 7.2f};
 
 
-	//flames
+	//frames
 	if (counter >= fps / animationSpeed)
 	{
 		view.x += lim;
@@ -143,7 +143,7 @@ void Player::Movement()
 }
 void Player::UnLoadTextures()
 {
-	for(auto &texture : playerSprites){
+	for (auto& texture : playerSprites) {
 		UnloadTexture(texture);
 	}
 	for (auto& texture : idleSprites) {

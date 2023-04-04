@@ -3,65 +3,69 @@
 
 GameManager::GameManager()
 {
-    // Initialization of the window and setting name and starting coordinates of the window
+	// Initialization of the window and setting name and starting coordinates of the window
 
 
-    InitWindow(0, 0, "Escape the IT");
-    //ToggleFullscreen();
-    SetTargetFPS(60);
-    
-    BeginDrawing();
-        DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(),PURPLE);
-        DrawText("lOADING...", GetScreenWidth() / 2, GetScreenHeight()/ 2, 169, WHITE);
-    EndDrawing();
-      
-    //Set our GameManager to be on fullscreen
-    game = std::make_shared<Game>();
-    menu = std::make_shared<Menu>();
+	InitWindow(0, 0, "Escape the IT");
+	ToggleFullscreen();
+	SetTargetFPS(60);
 
-    //shouldQuit = false;
+	BeginDrawing();
+	{
+
+		DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), PURPLE);
+		Vector2 textSize = MeasureTextEx(GetFontDefault(), "LOADING...", GetScreenWidth() / 11.294f, 1);
+		DrawText("LOADING...", (GetScreenWidth() - textSize.x) / 2, (GetScreenHeight() - textSize.y) / 2, GetScreenWidth() / 11.294f, WHITE);
+	}
+	EndDrawing();
+
+	//Set our GameManager to be on fullscreen
+	game = std::make_shared<Game>();
+	menu = std::make_shared<Menu>();
+
+	//shouldQuit = false;
 }
 
 //destructor - unloads and closes everything
 GameManager::~GameManager()
 {
-    //UnloadTexture(loadingSprite);
-    CloseWindow();
+	//UnloadTexture(loadingSprite);
+	CloseWindow();
 }
 
 void GameManager::start()
 {
 
-    while (!WindowShouldClose())
-    {
-        BeginDrawing();
-        ClearBackground(LIGHTGRAY);
-        manageGame();
-        EndDrawing();
-    }
+	while (!WindowShouldClose())
+	{
+		BeginDrawing();
+		ClearBackground(LIGHTGRAY);
+		manageGame();
+		EndDrawing();
+	}
 }
 
 bool GameManager::manageGame()
 {
-    //create pch instance
-    std::shared_ptr<Navigator> gameNavigator = Navigator::getInstantiation();
-    switch (gameNavigator->dir)
-    {
-        case Navigator::Navigate::GAME:
-        {
-            game->mainLoop();
-            return false;
-        }
-        case Navigator::Navigate::MENU:
-        {
-            menu->drawMainMenu();
-            return false;
-        }
-        case Navigator::Navigate::QUIT:
-        {
-            EndDrawing();
-            CloseWindow();
-            exit(0);
-        }
-    }
+	//create pch instance
+	std::shared_ptr<Navigator> gameNavigator = Navigator::getInstantiation();
+	switch (gameNavigator->dir)
+	{
+	case Navigator::Navigate::GAME:
+	{
+		game->mainLoop();
+		return false;
+	}
+	case Navigator::Navigate::MENU:
+	{
+		menu->drawMainMenu();
+		return false;
+	}
+	case Navigator::Navigate::QUIT:
+	{
+		EndDrawing();
+		CloseWindow();
+		exit(0);
+	}
+	}
 }

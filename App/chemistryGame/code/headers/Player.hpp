@@ -49,7 +49,6 @@ public:
 	void LoadSprites(int fps);
 	void Movement();
 	void CheckDir();
-	void CheckWalls();
 	void joinInRoom();
 	void UnLoadTextures();
 };

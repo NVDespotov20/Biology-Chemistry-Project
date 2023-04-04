@@ -32,18 +32,18 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 	};
 
 	points = {
-		{ WIDTH / 2, 100 },
-		{ WIDTH / 2 + 50, 150 },
-		{ WIDTH / 2 + 25, 225 },
-		{ WIDTH / 2 - 25, 225 },
-		{ WIDTH / 2 - 50, 150 },
-		{ WIDTH / 2 - 20, 125 },
-		{ WIDTH / 2 + 20, 125 }
+		{ WIDTH / 2, HEIGHT / 10.8f },
+		{ WIDTH / 1.909f, HEIGHT / 7.2f },
+		{ WIDTH / 1.949f, HEIGHT / 4.8f },
+		{ WIDTH / 2.053f, HEIGHT / 4.8f },
+		{ WIDTH / 2.11f, HEIGHT / 7.2f },
+		{ WIDTH / 2.043f, HEIGHT / 8.64f },
+		{ WIDTH / 1.96f, HEIGHT / 8.64f }
 	};
 
 	rightArrow = LoadTexture("../assets/images/UI Elements/RightArrow.png");
-	rightArrow.width = 350;
-	rightArrow.height = 200;
+	rightArrow.width = WIDTH / 5.486f;
+	rightArrow.height = HEIGHT / 5.4f;
 
 	seed = std::chrono::steady_clock::now().time_since_epoch().count();
 
@@ -54,7 +54,7 @@ ChasingRoom::ChasingRoom(int doors) : WIDTH(GetScreenWidth()), HEIGHT(GetScreenH
 
 	std::shuffle(stringsBackgroundName.begin(), stringsBackgroundName.end(), gen);
 
-	menuButton = { 0, 20, HEIGHT / 7.f, HEIGHT / 20.f };
+	menuButton = { 0,  HEIGHT / 54, WIDTH / 12.468f, HEIGHT / 20.f };
 
 	loadSplitElementsMiniGame = 0;
 	loadCheckValencyMiniGame = 0;
@@ -72,36 +72,36 @@ void ChasingRoom::load()
 {
 	//load
 	table = LoadTexture("../assets/images/chemistry/Objects/Table.png");
-	table.width = 200;
-	table.height = 200;
+	table.width = WIDTH / 9.6f;
+	table.height = HEIGHT / 5.4f;
 
 	leftDoor = LoadTexture("../assets/images/chemistry/Objects/DoorLeft.png");
-	leftDoor.width = 200;
-	leftDoor.height = 200;
+	leftDoor.width = WIDTH / 9.6f;
+	leftDoor.height = HEIGHT / 5.4f;
 
 	rightDoor = LoadTexture("../assets/images/chemistry/Objects/DoorRight.png");
-	rightDoor.width = 200;
-	rightDoor.height = 200;
+	rightDoor.width = WIDTH / 9.6f;
+	rightDoor.height = HEIGHT / 5.4f;
 
 	downDoor = LoadTexture("../assets/images/chemistry/Objects/DoorDown.png");
-	downDoor.width = 200;
-	downDoor.height = 200;
+	downDoor.width = WIDTH / 9.6f;
+	downDoor.height = HEIGHT / 5.4f;
 
 	upDoor = LoadTexture("../assets/images/chemistry/Objects/DoorUp.png");
-	upDoor.width = 200;
-	upDoor.height = 200;
+	upDoor.width = WIDTH / 9.6f;
+	upDoor.height = HEIGHT / 5.4f;
 
-	doorsPositons[0].x = 25;
-	doorsPositons[0].y = 450;
+	doorsPositons[0].x = WIDTH / 76.8f;
+	doorsPositons[0].y = HEIGHT / 2.4f;
 
-	doorsPositons[1].x = 1690;
-	doorsPositons[1].y = 450;
+	doorsPositons[1].x = WIDTH / 1.131f;
+	doorsPositons[1].y = HEIGHT / 2.4f;
 
-	doorsPositons[2].x = 850;
-	doorsPositons[2].y = 30;
+	doorsPositons[2].x = WIDTH / 2.259f;
+	doorsPositons[2].y = HEIGHT / 36.f;
 
-	doorsPositons[3].x = 850;
-	doorsPositons[3].y = 855;
+	doorsPositons[3].x = WIDTH / 2.259f;
+	doorsPositons[3].y = HEIGHT / 1.263f;
 
 	spawnPointBackground = LoadTexture("../assets/images/chemistry/Rooms/SpawnRoom.png");
 	spawnPointBackground.width = GetScreenWidth();
@@ -138,17 +138,17 @@ void ChasingRoom::load()
 
 void ChasingRoom::drawChasingRoom()
 {
-	
+
 	//check if a map elemts have to draw mini game
 	if (dir->j == 3 && dir->i == 0)
 	{
 		//right up
-		DrawTexture(texturesBackgrounds.at(0),0,0,WHITE);
+		DrawTexture(texturesBackgrounds.at(0), 0, 0, WHITE);
 		DrawTexture(leftDoor, doorsPositons[0].x, doorsPositons[0].y, WHITE);
-		positionOfMiniGamePlace = { 1600, 200 };
-		DrawCircleV(positionOfMiniGamePlace, 100, BLANK);
-		DrawTexture(table, 1480, 100, WHITE);
-		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameSplitElementsPlayed)
+		positionOfMiniGamePlace = { WIDTH / 1.2f, HEIGHT / 5.4f };
+		DrawCircleV(positionOfMiniGamePlace, WIDTH / 192, BLANK);
+		DrawTexture(table, WIDTH / 1.297f, HEIGHT / 10.8f, WHITE);
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, WIDTH / 192, player->move) && IsKeyPressed(KEY_P) && !miniGameSplitElementsPlayed)
 		{
 			splitElements = SplitElements::getInstantiation();
 			loadSplitElementsMiniGame = true;
@@ -158,7 +158,7 @@ void ChasingRoom::drawChasingRoom()
 	if (dir->j == 2 && dir->i == 0)
 	{
 		//center top
-		DrawTexture(spawnPointBackground,0,0,WHITE);
+		DrawTexture(spawnPointBackground, 0, 0, WHITE);
 		DrawTexture(leftDoor, doorsPositons[0].x, doorsPositons[0].y, WHITE);
 		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
 		DrawTexture(downDoor, doorsPositons[3].x, doorsPositons[3].y, WHITE);
@@ -172,10 +172,10 @@ void ChasingRoom::drawChasingRoom()
 		DrawTexture(upDoor, doorsPositons[2].x, doorsPositons[2].y, WHITE);
 		DrawTexture(downDoor, doorsPositons[3].x, doorsPositons[3].y, WHITE);
 		//center bot
-		positionOfMiniGamePlace = { 1600, 225 };
-		DrawCircleV(positionOfMiniGamePlace, 100, BLANK);
-		DrawTexture(table, 1480, 100, WHITE);
-		if (CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && IsKeyPressed(KEY_P) && !miniGameCheckValencyPlayed)
+		positionOfMiniGamePlace = { WIDTH / 1.2f, HEIGHT / 4.8f };
+		DrawCircleV(positionOfMiniGamePlace, WIDTH / 192, BLANK);
+		DrawTexture(table, WIDTH / 1.297f, HEIGHT / 10.8f, WHITE);
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, WIDTH / 192, player->move) && IsKeyPressed(KEY_P) && !miniGameCheckValencyPlayed)
 		{
 			checkValency = CheckValency::getInstantiation();
 			loadCheckValencyMiniGame = true;
@@ -184,10 +184,17 @@ void ChasingRoom::drawChasingRoom()
 	if (dir->j == 1 && dir->i == 0)
 	{
 		//left top or bio room
-		positionOfMiniGamePlace = { 325, 800 };
+		positionOfMiniGamePlace = { WIDTH / 5.908f, HEIGHT / 1.35f };
 		DrawTexture(texturesBackgrounds.at(2), 0, 0, WHITE);
-		DrawCircleV(positionOfMiniGamePlace, 100, PINK);
-		DrawTexture(table, 200, 650, WHITE);
+		DrawCircleV(positionOfMiniGamePlace, WIDTH / 192, PINK);
+		DrawTexture(table, WIDTH / 9.6f, HEIGHT / 1.662f, WHITE);
+		if (CheckCollisionCircleRec(positionOfMiniGamePlace, WIDTH / 192, player->move) && IsKeyPressed(KEY_P))
+		{
+			#include "../../HumanMuscles/code/headers/AppManager.hpp"
+			AppManager* manager = AppManager::getInstantiation();
+			manager->drawMainLoop();
+			delete manager;
+		}
 	}
 
 	//also for right
@@ -205,14 +212,14 @@ void ChasingRoom::drawChasingRoom()
 	}
 
 	if (dir->j == 1 && dir->i == 1)
-	{//bot left
-		positionOfMiniGamePlace = { 300, 200 };
+	{	//bot left
+		positionOfMiniGamePlace = { WIDTH / 6.4f, HEIGHT / 5.4f };
 		DrawTexture(texturesBackgrounds.at(4), 0, 0, WHITE);
 		DrawTexture(rightDoor, doorsPositons[1].x, doorsPositons[1].y, WHITE);
-		DrawCircleV(positionOfMiniGamePlace, 100, BLANK);
-		DrawTexture(table, 170, 100, WHITE);
+		DrawCircleV(positionOfMiniGamePlace, WIDTH / 192, BLANK);
+		DrawTexture(table, WIDTH / 11.294f, HEIGHT / 10.8f, WHITE);
 
-		if (IsKeyPressed(KEY_P) && CheckCollisionCircleRec(positionOfMiniGamePlace, 100, player->move) && inventory->itemsInInventoryPos.size() == 4)
+		if (IsKeyPressed(KEY_P) && CheckCollisionCircleRec(positionOfMiniGamePlace, WIDTH / 192, player->move) && inventory->itemsInInventoryPos.size() == 4)
 		{
 			money->addMoney();
 			for (int i = 0; i < 4; i++)
@@ -247,22 +254,22 @@ void ChasingRoom::drawChasingRoom()
 		inventory->drawInventory(items->item);
 	//check doors
 
-	DrawRectangleRounded(menuButton, 0.5 ,0, RED);
-	DrawText("Menu", 32.5, 30, HEIGHT /36,BLACK);
-	DrawRectangle(160,20,50,55,DARKGRAY);
+	DrawRectangleRounded(menuButton, 0.5, 0, RED);
+	DrawText("Menu", WIDTH / 59.077f, HEIGHT / 36, HEIGHT / 36, BLACK);
+	DrawRectangle(WIDTH / 12, HEIGHT / 54, WIDTH / 38.4f, HEIGHT / 19.636f, DARKGRAY);
 	money->drawMoney();
 	checkDoors();
-	
+
 }
 
 void ChasingRoom::drawCheckValencyMiniGame()
-{ 
+{
 	checkValency->drawAndCheckElementsAndHolders(loadCheckValencyMiniGame);
 
 	if (checkValency->givenAnswers.size() != 3)
 	{
-	miniGameCheckValencyPlayed = false;
-	return;
+		miniGameCheckValencyPlayed = false;
+		return;
 	}
 	miniGameCheckValencyPlayed = true;
 
@@ -284,7 +291,7 @@ void ChasingRoom::unload()
 	{
 		UnloadTexture(texturesBackgrounds[i]);
 	}
-	
+
 	UnloadTexture(spawnPointBackground);
 	UnloadTexture(table);
 	UnloadTexture(tableBackground);
@@ -306,7 +313,7 @@ void ChasingRoom::drawSplitElementsMiniGame()
 	miniGameSplitElementsPlayed = true;
 	bool tmp = splitElements->checkElements();
 	if (tmp) money->addMoney();
-		teacher->setActive(!tmp);
+	teacher->setActive(!tmp);
 	loadSplitElementsMiniGame = false;
 }
 
@@ -320,7 +327,8 @@ void ChasingRoom::checkDoors()
 		if (dir->j > 2) {
 			player->positionsOfDoors.erase("down");
 			player->positionsOfDoors.erase("right");
-		}else{
+		}
+		else {
 
 			player->positionsOfDoors.erase("down");
 			player->positionsOfDoors.erase("left");
@@ -331,19 +339,19 @@ void ChasingRoom::checkDoors()
 		stringDirHolder = player->isNearDoor(player->move);
 		player->enterDoor(stringDirHolder);
 
-	break;
+		break;
 
 	case 3:
-	
+
 		//draw and check if player is near door
 		player->drawDoors();
 		stringDirHolder = player->isNearDoor(player->move);
 		player->enterDoor(stringDirHolder);
 
-	break;
+		break;
 
 	case 4:
-	
+
 		player->positionsOfDoors.insert({ "up", {GetScreenWidth() / 2.f, 0} });
 
 		//draw and check if player is near door
@@ -351,6 +359,6 @@ void ChasingRoom::checkDoors()
 		stringDirHolder = player->isNearDoor(player->move);
 		player->enterDoor(stringDirHolder);
 
-	break;
+		break;
 	}
 }

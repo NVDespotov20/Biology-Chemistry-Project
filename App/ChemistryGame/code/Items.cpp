@@ -16,8 +16,8 @@ void Items::load()
 
 	item = LoadTexture("../assets/images/chemistry/Elements/MiniCopper(Cu).png");
 	//setting sizes of variables
-	item.width = 50;
-	item.height = 50;
+	item.width = WIDTH / 38.4f;
+	item.height = HEIGHT / 21.6f;
 }
 Items::Items()
 {
@@ -39,8 +39,8 @@ Items::Items()
 
 
 	//set the range for the x and y where the normal items can appear
-	range = std::uniform_int_distribution<int>(150, WIDTH - 150);
-	range2 = std::uniform_int_distribution<int>(150, HEIGHT - 150);
+	range = std::uniform_int_distribution<int>(WIDTH / 12.8f, WIDTH / 1.085f);
+	range2 = std::uniform_int_distribution<int>(7.2f, HEIGHT / 1.161f);
 
 	for (int i = 0; i < v1.size(); i++)
 	{

@@ -23,6 +23,8 @@ private:
     Teacher();
 
 public:
+     int WIDTH; 
+     int HEIGHT;
     static std::shared_ptr<Teacher> getInstantiation();
     ~Teacher();
     void LoadSprites();

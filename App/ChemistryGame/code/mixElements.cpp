@@ -5,8 +5,8 @@ mixElements::mixElements()
 {
 	water = LoadTexture("../assets/images/chemistry/Elements/Water(H2O).png");
 	backbuttonTexture = LoadTexture("../assets/images/chemistry/Buttons/BackButton.png");
-	backbuttonTexture.width = 220;
-	backbuttonTexture.height = 150;
+	backbuttonTexture.width = WIDTH / 8.727f;
+	backbuttonTexture.height = HEIGHT / 7.2f;
 	elementsTexturesStrings = {
 	"Zinc(Zn)",
 	"Copper(Cu)",
@@ -38,8 +38,8 @@ mixElements::mixElements()
 	for (int i = 0; i < 5; i++)
 	{
 		elementsTextures.push_back(LoadTexture(fiveChosen.at(i).c_str()));
-		elementsTextures[i].width = 160;
-		elementsTextures[i].height = 160;
+		elementsTextures[i].width = WIDTH / 12;
+		elementsTextures[i].height = HEIGHT / 6.75f;
 	}
 
 	v1.resize(4);
@@ -50,8 +50,8 @@ mixElements::mixElements()
 
 
 	//set the range for the x and y where the normal items can appear
-	range = std::uniform_int_distribution<int>(150, WIDTH - 150);
-	range2 = std::uniform_int_distribution<int>(150, HEIGHT - 150);
+	range = std::uniform_int_distribution<int>(WIDTH / 12.8f, WIDTH / 1.085f);
+	range2 = std::uniform_int_distribution<int>(HEIGHT / 7.2f, HEIGHT / 1.161f);
 
 	for (int i = 0; i < v1.size(); i++)
 	{

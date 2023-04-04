@@ -65,8 +65,8 @@ private:
 	SplitElements();
 	static std::shared_ptr<SplitElements> instantiate_;
 	//not accessable from other places vars
-	int WIDTH;
-	int HEIGHT;
+	float WIDTH;
+	float HEIGHT;
 
 	Vector2 mousepoint;
 

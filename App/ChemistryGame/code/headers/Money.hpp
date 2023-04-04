@@ -16,4 +16,5 @@ public:
 
 private:
     int money;
+    float WIDTH, HEIGHT;
 };

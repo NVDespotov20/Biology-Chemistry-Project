@@ -9,16 +9,17 @@ Menu::Menu()
     fontSize = HEIGHT / 27;
 
     buttonsRecs = {
-        Button("Start", WIDTH / 2 - WIDTH / 12,  580, WIDTH / 6, HEIGHT / 10, fontSize),
-        Button("Rules",  WIDTH / 2 - WIDTH / 12, 750    , WIDTH / 6, HEIGHT / 10, fontSize),
-        Button("Exit",  WIDTH / 2 - WIDTH / 12,  935  , WIDTH / 6, HEIGHT / 10, fontSize),
+        Button("Start", WIDTH / 2.4f, HEIGHT / 1.862f, WIDTH / 6, HEIGHT / 10, fontSize),
+        Button("Rules", WIDTH / 2.4f, HEIGHT / 1.44f, WIDTH / 6, HEIGHT / 10, fontSize),
+        Button("Exit",  WIDTH / 2.4f, HEIGHT / 1.155f, WIDTH / 6, HEIGHT / 10, fontSize),
     };
     load();
-
+    menuBackground.width = GetScreenWidth();
+    menuBackground.height = GetScreenHeight();
     for (int i = 0; i < 3; i++)
     {
-        buttonsTextures[i].width = 325;
-        buttonsTextures[i].height = 250;
+        buttonsTextures[i].width = WIDTH / 5.907f;
+        buttonsTextures[i].height = HEIGHT / 4.32f;
     }
 }
 
@@ -49,8 +50,7 @@ inline bool Menu::isClicked(const Vector2& mPos, const Rectangle& rec)
 
 void Menu::drawMainMenu()
 {
-    menuBackground.width = GetScreenWidth();
-    menuBackground.height = GetScreenHeight();
+
     DrawTexture(menuBackground, 0, 0, WHITE);
 
     mousePoint = GetMousePosition();
@@ -70,5 +70,5 @@ void Menu::drawMainMenu()
         button.draw(0.5f, 15, BLANK, BLANK);
 
     for (int i=0;i<3;i++)
-        DrawTexture(buttonsTextures[i], 800,500 + i *180,WHITE);
+        DrawTexture(buttonsTextures[i], WIDTH / 2.4f, HEIGHT / 2.16f + i * HEIGHT / 6, WHITE);
 }

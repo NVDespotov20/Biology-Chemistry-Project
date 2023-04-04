@@ -1,6 +1,7 @@
 #pragma once
 class LastRoom
 {
+	float WIDTH, HEIGHT;
 	public:
 	LastRoom(int door);
 	LastRoom();

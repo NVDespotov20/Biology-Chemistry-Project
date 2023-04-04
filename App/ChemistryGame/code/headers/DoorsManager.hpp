@@ -3,6 +3,7 @@
 #include "Teacher.hpp"
 class DoorsManager
 {
+	float WIDTH, HEIGHT;
 	Texture2D door;
 
 	std::shared_ptr<Navigator> dir;

@@ -13,8 +13,8 @@ public:
 
 private:
 	static std::shared_ptr<Items> instantiate_;
-	int WIDTH;
-	int HEIGHT;
+	float WIDTH;
+	float HEIGHT;
 	//seed that we make different every time
 	unsigned seed;
 

@@ -8,7 +8,7 @@ InventorySystem::InventorySystem()
 	HEIGHT = GetScreenHeight();
 
 	//the position where the first item is placed in the inventory
-	positionOfItemsInInventory = { float(WIDTH / 3), float(HEIGHT - HEIGHT / 1.75) };
+	positionOfItemsInInventory = { WIDTH / 3.f, HEIGHT / 2.333f };
 	
 }
 std::shared_ptr<InventorySystem> InventorySystem::instantiate_ = nullptr;
@@ -31,20 +31,21 @@ bool InventorySystem::isPickedUp(Rectangle heroPosition,Texture2D&item, std::vec
 	for (int i = 0; i < normalItemsPos.size(); i++)
 	{
 		//checks if you are close to the items
-		if (CheckCollisionCircleRec(normalItemsPos[i], WIDTH / 25, heroPosition))
-		{
-			//draw items that you are close and you can pick up without any opacity 
-			DrawTextureV(item, normalItemsPos[i], Fade(WHITE, 1));
-			if (IsKeyPressed(KEY_Q))
-			{
-				//transfer items into inventory 
-				itemsInInventoryPos.push_back(positionOfItemsInInventory);
-				//make the next item position to move 150 on right 
-				positionOfItemsInInventory.x = positionOfItemsInInventory.x + WIDTH / 15;
-				//remove items from the ground
-				normalItemsPos.erase(normalItemsPos.begin() + i);
-			}
-		}
+		if (!CheckCollisionCircleRec(normalItemsPos[i], WIDTH / 25, heroPosition))
+			continue;
+
+		//draw items that you are close and you can pick up without any opacity 
+		DrawTextureV(item, normalItemsPos[i], Fade(WHITE, 1));
+
+		if (!IsKeyPressed(KEY_Q))
+			continue;
+
+		//transfer items into inventory 
+		itemsInInventoryPos.push_back(positionOfItemsInInventory);
+		//make the next item position to move 150 on right 
+		positionOfItemsInInventory.x = positionOfItemsInInventory.x + WIDTH / 15;
+		//remove items from the ground
+		normalItemsPos.erase(normalItemsPos.begin() + i);
 	}
 	return 0;
 }

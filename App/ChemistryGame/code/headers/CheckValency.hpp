@@ -45,6 +45,6 @@ public:
 private:
 	Vector2 mousePoint;
 	static std::shared_ptr<CheckValency> instantiate_;
-	int WIDTH;
-	int HEIGHT;
+	float WIDTH;
+	float HEIGHT;
 };

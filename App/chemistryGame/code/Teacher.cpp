@@ -87,7 +87,7 @@ void Teacher::update(Vector2 posHero, Rectangle heroRec)
 	{
 		(position.x > posHero.x) ? teacherTextureChasing = left : teacherTextureChasing = right;
 
-		if (CheckCollisionPointCircle(position, posHero, 50))
+		if (CheckCollisionPointCircle(position, posHero, WIDTH / 38.4))
 		{
 			// Insert among us kill animation here
 		}

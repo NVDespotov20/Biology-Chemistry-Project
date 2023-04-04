@@ -16,6 +16,8 @@ std::shared_ptr<Money> Money::getInstantiation()
 }
 Money::Money()
 {
+    WIDTH = GetScreenWidth();
+    HEIGHT = GetScreenHeight();
     money = 0;
 }
 
@@ -31,5 +33,5 @@ void Money::addMoney()
 
 void Money::drawMoney()
 {
-    DrawText(std::to_string(money).c_str(), 172, 25.5, 55, GOLD);
+    DrawText(std::to_string(money).c_str(), WIDTH / 11.162f, HEIGHT / 42.353f, WIDTH / 34.909f, GOLD);
 }

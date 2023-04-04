@@ -50,8 +50,8 @@ SplitElements::SplitElements()
 	gen.seed(seed);
 
 	backbuttonTexture = LoadTexture("../assets/images/chemistry/Buttons/BackButton.png");
-	backbuttonTexture.width = 220;
-	backbuttonTexture.height = 150;
+	backbuttonTexture.width = WIDTH / 8.727;
+	backbuttonTexture.height = HEIGHT / 7.2;
 
 	//push split metals and nonmetals
 	for (int i = 0; i < 5; i++)
@@ -103,20 +103,20 @@ SplitElements::SplitElements()
 	//set sizes for each box
 	for (int i = 0; i < 4; i++)
 	{
-		elementsInTheBoxRec[i] = { WIDTH / 3.80f + i * 250, HEIGHT / 4.f + (HEIGHT / 4), WIDTH/12.f, HEIGHT/7.f};
-		elementsInTheBoxRec2[i] = { WIDTH / 3.80f + i * 250, HEIGHT / 4.5f + (HEIGHT / 40), WIDTH / 12.f, HEIGHT / 7.f };
+		elementsInTheBoxRec[i] = { WIDTH / 3.80f + i * WIDTH / 7.68f, HEIGHT / 4.f + (HEIGHT / 4), WIDTH / 12.f, HEIGHT / 7.f };
+		elementsInTheBoxRec2[i] = { WIDTH / 3.80f + i * WIDTH / 7.68f, HEIGHT / 4.5f + (HEIGHT / 40), WIDTH / 12.f, HEIGHT / 7.f };
 
-		elementsInTheHolders[i] = { WIDTH / 15.f,HEIGHT / 6.f + i * 175,WIDTH / 12.2f,HEIGHT / 7.f };
-		elementsInTheHolders2[i] = { WIDTH - WIDTH / 6.5f,HEIGHT / 6.f + i * 175,WIDTH / 12.f,HEIGHT / 7.f };
+		elementsInTheHolders[i] = { WIDTH / 15.f,HEIGHT / 6.f + i * HEIGHT/6.17f,WIDTH / 12.2f,HEIGHT / 7.f };
+		elementsInTheHolders2[i] = { WIDTH - WIDTH / 6.5f,HEIGHT / 6.f + i * HEIGHT / 6.17f,WIDTH / 12.f,HEIGHT / 7.f };
 	}
 
 	//set size for choosing metal or nonmetal
 	for (int i = 0; i < 2; i++)
 	{
-		choiceOfMetalOtNonmetal[i].width = 250;
-		choiceOfMetalOtNonmetal[i].height = 250;
+		choiceOfMetalOtNonmetal[i].width = WIDTH / 7.68;
+		choiceOfMetalOtNonmetal[i].height = HEIGHT / 4.32;
 
-		choice[i] = { 680 + i * 300.f,750,250,250 };
+		choice[i] = { WIDTH / 2.82f + i * WIDTH / 6.4f, HEIGHT / 1.44f, WIDTH /7.68f,HEIGHT/4.32f };
 	}
 
 	//set size for each texture
@@ -127,8 +127,8 @@ SplitElements::SplitElements()
 	}
 
 	//set place and size for back button
-	backButton = {WIDTH/2.f-WIDTH/20,HEIGHT/10.f,WIDTH/10.f,HEIGHT/20.f};
-	
+	backButton = { WIDTH / 2.f - WIDTH / 20,HEIGHT / 10.f,WIDTH / 10.f,HEIGHT / 20.f };
+
 }
 
 //destructor
@@ -160,7 +160,7 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 {
 	mousepoint = GetMousePosition();
 
-	
+
 	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousepoint, backButton))
 	{
 		loadMiniGame = false;
@@ -168,8 +168,8 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 
 	DrawTexture(backgroundOfTable, 0, 0, WHITE);
 
-	DrawText("Metals", WIDTH / 12.9, HEIGHT / 10, 35, BLACK);
-	DrawText("Nonmetals", WIDTH - WIDTH / 6.4, HEIGHT / 10, 35, BLACK);
+	DrawText("Metals", WIDTH / 12.9, HEIGHT / 10, WIDTH / 54.85f, BLACK);
+	DrawText("Nonmetals", WIDTH - WIDTH / 6.4, HEIGHT / 10, WIDTH / 54.85f, BLACK);
 
 
 	//draw the boxes of the elements
@@ -191,14 +191,14 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 		}
 		else
 		{
-			DrawTexture(elementsTextures[i], elementsInTheBoxRec[i-4].x - WIDTH/100, elementsInTheBoxRec[i-4].y, WHITE);
+			DrawTexture(elementsTextures[i], elementsInTheBoxRec[i - 4].x - WIDTH / 100, elementsInTheBoxRec[i - 4].y, WHITE);
 		}
 	}
 
 	//draw the textures after the users chosse metal or nonmetal
 	for (int i = 0; i < metalsHolders.size(); i++)
 	{
-		DrawTexture(metalsHolders[i], elementsInTheHolders[i].x-WIDTH / 115, elementsInTheHolders[i].y-HEIGHT/150, WHITE);
+		DrawTexture(metalsHolders[i], elementsInTheHolders[i].x - WIDTH / 115, elementsInTheHolders[i].y - HEIGHT / 150, WHITE);
 	}
 
 	for (int i = 0; i < nonmetalsHolders.size(); i++)
@@ -211,7 +211,7 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 		for (int i = 0; i < 2; i++)
 		{
 			DrawRectangleRec(choice[i], BLACK);
-			DrawTexture(choiceOfMetalOtNonmetal[i], 680 + i * 300,750,WHITE);
+			DrawTexture(choiceOfMetalOtNonmetal[i], WIDTH / 2.82 + i * WIDTH / 6.4, HEIGHT / 1.44, WHITE);
 		}
 
 		//if you choose metal if statemant
@@ -265,7 +265,7 @@ void SplitElements::drawAndMoveElementsAndHolders(bool& loadMiniGame)
 	}
 
 	DrawRectangleRec(backButton, BLANK);
-	DrawTexture(backbuttonTexture, 850, 60, WHITE);
+	DrawTexture(backbuttonTexture, WIDTH / 2.25, HEIGHT / 18, WHITE);
 }
 
 //checks if they are actually metals and nonmetals
@@ -287,5 +287,5 @@ bool SplitElements::checkElements()
 
 	//if you did right you earn money if not then RUN the teacher starts to chase you
 	return (counter == 4);
-	
+
 }
