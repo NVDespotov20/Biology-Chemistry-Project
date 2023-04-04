@@ -1,50 +1,48 @@
-#pragma once
+#pragma once // This is a preprocessor directive that ensures the header file is only included once in the compilation process.
 
 class CheckValency
 {
 public:
+	CheckValency(); // Constructor of the CheckValency class.
+	~CheckValency(); // Destructor of the CheckValency class.
 
-	CheckValency();
-	~CheckValency();
+	void drawAndCheckElementsAndHolders(bool& loadMiniGame); // Member function to draw and check the elements and holders.
+	bool checkAccuracy(); // Member function to check the accuracy of the user's answers.
+	void unload(); // Member function to unload the elements and holders.
 
-	void drawAndCheckElementsAndHolders(bool &loadMiniGame);
-	bool checkAccuracy();
-	void unload(); 
+	static std::shared_ptr<CheckValency> getInstantiation(); // Static member function to get an instance of the CheckValency class.
 
-	static std::shared_ptr<CheckValency> getInstantiation();
+	int counterForAccuracy; // Counter for the accuracy of the user's answers.
+	int saver; // Index of the selected element.
+	int rightAnswersArray[3]; // Array to hold the right answers.
 
-	int counterForAccuracy;
-	int saver;
-	int rightAnswersArray[3];
+	std::vector<int> givenAnswers; // Vector to hold the user's answers.
 
-	std::vector<int> givenAnswers;
+	std::vector<std::string> theChosenThreeStrings; // Vector of strings for the chosen three elements.
+	std::vector<std::string> valencyTwo; // Vector of strings for the elements with valency two.
+	std::vector<std::string> valencyOne; // Vector of strings for the elements with valency one.
 
-	std::vector<std::string> theChosenThreeStrings;
-	std::vector<std::string> valencyTwo;
-	std::vector<std::string> valencyOne;
+	std::vector<Texture2D> theChosenThree; // Vector of textures for the chosen three elements.
 
-	std::vector<Texture2D> theChosenThree;
+	Rectangle backbutton; // Rectangle for the back button.
+	Rectangle answersRec1[3]; // Array of rectangles for the answers.
+	Rectangle answersRec2[3]; // Array of rectangles for the answers.
+	Rectangle answersRec3[3]; // Array of rectangles for the answers.
+	Rectangle containersRec[3]; // Array of rectangles for the containers.
 
-	Rectangle backbutton;
-	Rectangle answersRec1[3];
-	Rectangle answersRec2[3];
-	Rectangle answersRec3[3];
-	Rectangle containersRec[3];
+	Texture2D background; // Texture for the background.
+	Texture2D label; // Texture for the label.
+	Texture2D backbuttonTexture; // Texture for the back button.
+	Texture2D buttonsTextures[3]; // Array of textures for the answer buttons.
+	Texture2D metalOrNonmetalChoice[2]; // Array of textures for the metal or non-metal choice buttons.
 
-	Texture2D background;
-	Texture2D backbuttonTexture;
-	Texture2D buttonsTextures[3];
-	Texture2D metalOrNonmetalChoice[2];
-
-	unsigned seed;
+	unsigned seed; // Unsigned integer to hold the seed for the random engine.
 
 	//random engine from random library
-	std::mt19937 gen;
-
-	
+	std::mt19937 gen; // Object of the mt19937 class from the random library.
 private:
-	Vector2 mousePoint;
-	static std::shared_ptr<CheckValency> instantiate_;
-	float WIDTH;
-	float HEIGHT;
+	Vector2 mousePoint; // Vector to hold the mouse position.
+	static std::shared_ptr<CheckValency> instantiate_; // Static shared pointer to an instance of the CheckValency class.
+	float WIDTH; // Width of the elements and holders.
+	float HEIGHT; // Height of the elements and holders.
 };

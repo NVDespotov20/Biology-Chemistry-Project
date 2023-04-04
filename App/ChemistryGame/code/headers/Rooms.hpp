@@ -2,8 +2,8 @@
 #include "MixElements.hpp"
 #include "ChasingRoom.hpp"
 #include "LastRoom.hpp"
-#include "Shop.hpp"
-class Rooms: public ChasingRoom, public LastRoom, public Shop
+
+class Rooms: public ChasingRoom, public LastRoom
 {
 	public:
 	Rooms();

@@ -12,10 +12,9 @@ GameManager::GameManager()
 
 	BeginDrawing();
 	{
-
-		DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), PURPLE);
+		DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), WHITE);
 		Vector2 textSize = MeasureTextEx(GetFontDefault(), "LOADING...", GetScreenWidth() / 11.294f, 1);
-		DrawText("LOADING...", (GetScreenWidth() - textSize.x) / 2, (GetScreenHeight() - textSize.y) / 2, GetScreenWidth() / 11.294f, WHITE);
+		DrawText("LOADING...", (GetScreenWidth() - textSize.x) / 2, (GetScreenHeight() - textSize.y) / 2, GetScreenWidth() / 11.294f, BLACK);
 	}
 	EndDrawing();
 

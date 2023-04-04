@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../../../lib/include/raylib.h"
+
 class Button
 {
 public:

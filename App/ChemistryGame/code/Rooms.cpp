@@ -10,7 +10,7 @@ Rooms::~Rooms()
 {
 }
 
-Rooms::Rooms(int door) : ChasingRoom(door), LastRoom(door), Shop(door)
+Rooms::Rooms(int door) : ChasingRoom(door), LastRoom(door)
 {
 
 }

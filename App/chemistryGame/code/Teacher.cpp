@@ -83,24 +83,34 @@ void Teacher::update(Vector2 posHero, Rectangle heroRec)
 	//check if a player is near teacher
 	//(CheckCollisionPointCircle(posHero, position, 300)) ? isSeen = 1 : isSeen = 0;
 
-	if (isSeen)
-	{
-		(position.x > posHero.x) ? teacherTextureChasing = left : teacherTextureChasing = right;
-
-		if (CheckCollisionPointCircle(position, posHero, WIDTH / 38.4))
-		{
-			// Insert among us kill animation here
-		}
-
-		if (GetFrameTime() < 1)
-		{
-			float rotation = atan2(posHero.y - position.y, posHero.x - position.x);
-			position.x += cos(rotation) * speed * GetFrameTime();
-			position.y += sin(rotation) * speed * GetFrameTime();
-		}
-	}
-	else
+	if (!isSeen)
 	{
 		teacherTextureIdle = idle;
+		return;
+	}
+		
+	(position.x > posHero.x) ? teacherTextureChasing = left : teacherTextureChasing = right;
+
+	if (CheckCollisionPointCircle(position, posHero, WIDTH / 38.4))
+	{
+		CloseWindow();
+		std::cout << "DIEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!\n";
+		// Insert among us kill animation here
+		Rectangle killanimRect = { 0,0, WIDTH, HEIGHT };
+		Texture killAnim = LoadTexture("../assets/images/chemistry/Objects/EndgameLoss.png");
+		while (killanimRect.x != killAnim.width - WIDTH && !WindowShouldClose())
+		{
+			if (IsKeyPressed(KEY_ESCAPE))
+
+				ClearBackground(RED);
+			DrawTextureRec(killAnim, killanimRect, Vector2{ 0,0 }, WHITE);
+		}
+	}
+
+	if (GetFrameTime() < 1)
+	{
+		float rotation = atan2(posHero.y - position.y, posHero.x - position.x);
+		position.x += cos(rotation) * speed * GetFrameTime();
+		position.y += sin(rotation) * speed * GetFrameTime();
 	}
 }

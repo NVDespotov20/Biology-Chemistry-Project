@@ -134,14 +134,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pchGame.hpp</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)HumanMuscles\code\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>raylib.lib;HumanMuscles.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -165,10 +167,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="CheckValency.cpp" />
     <ClCompile Include="DoorsManager.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -180,7 +178,6 @@
     <ClCompile Include="MixElements.cpp" />
     <ClCompile Include="Money.cpp" />
     <ClCompile Include="Navigator.cpp" />
-    <ClCompile Include="Shop.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pchGame.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -194,7 +191,6 @@
     <ClCompile Include="Teacher.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.hpp" />
     <ClInclude Include="headers\CheckValency.hpp" />
     <ClInclude Include="headers\DoorsManager.hpp" />
     <ClInclude Include="headers\Game.hpp" />
@@ -205,7 +201,6 @@
     <ClInclude Include="headers\Menu.hpp" />
     <ClInclude Include="headers\Money.hpp" />
     <ClInclude Include="headers\Navigator.hpp" />
-    <ClInclude Include="headers\Shop.hpp" />
     <ClInclude Include="headers\pchGame.hpp" />
     <ClInclude Include="headers\Player.hpp" />
     <ClInclude Include="headers\RoomManager.hpp" />
@@ -214,6 +209,11 @@
     <ClInclude Include="headers\SplitElements.hpp" />
     <ClInclude Include="headers\Teacher.hpp" />
     <ClInclude Include="MixElements.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\HumanMuscles\code\humanMuscles.vcxproj">
+      <Project>{48467b4e-246c-4a39-99ed-4b2f2bae5350}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
